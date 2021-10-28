@@ -1,0 +1,29 @@
+; *****************************************************************************
+; - the Aging Apprentice 
+; - OSX version
+; - PlatformIO project configuration file for Arduino libraries. Note that the
+;   directory structure for this repo template is geared toward making a class
+;   library. In order for the examples to compile and run we need to change
+;   where the linker and compiler look for library files and root source files.
+;   The lib_extra_dirs parameter is required when you wish to use third party
+;   libraries in your class. Please visit documentation for the other options 
+;   and examples https://docs.platformio.org/page/projectconf.html.
+; *****************************************************************************
+[platformio]
+src_dir = examples/simpleExample ; Build uses .cpp here.
+lib_dir = . ; Build finds library in src.  
+
+[env:featheresp32]
+platform = espressif32 ; Espressif ESP32 tool chain.
+board = featheresp32 ; Adafruit Huzzah32 dev board.
+framework = arduino ; Arduino core library.
+monitor_speed = 115200 ; Fastest serial baud rate.
+upload_port = /dev/cu.usbserial* ; This changes for each baord type.
+monitor_port = /dev/cu.usbserial* ; This changes for each baord type.
+build_flags = -I include ; Allows code in lib subdirectory to find include directory 
+lib_extra_dirs =
+  ./lib ; Standard lib location altered so we have to add it back.
+; build_flags = -Wl,-Map,output.map ; Create build map
+; extra_scripts =
+;   pre:pre_extra_script.py
+;   post:autoDoc.py
