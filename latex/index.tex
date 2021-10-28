@@ -1,0 +1,160 @@
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+
+
+ This is a template repository to be cloned when making a class intended to become part of the Aging Apprentice API (3API) class library. Instructions for using this template repository are as follows. ~\newline
+
+
+\hypertarget{index_autotoc_md4}{}\doxysubsection{Make repo on Github}\label{index_autotoc_md4}
+
+\begin{DoxyItemize}
+\item Navigate to the Aging Apprentice template repo \href{https://github.com/theAgingApprentice/aaTemplate}{\texttt{ here}}.
+\item Click the Use this template button.
+\item Follow the online instructions.
+\item Be sure to click the {\bfseries{include all branches}} option.
+\item Invite new contributors if required to do the next steps.
+\begin{DoxyItemize}
+\item Go to your new Github repo with your browser. ~\newline
+
+\item Settings/\+Manage Access/\+Invite a collaborator/enter name.
+\end{DoxyItemize}
+\item Click on the {\bfseries{Code}} button then click on the clipboard to copy the URL.
+\end{DoxyItemize}
+
+\hypertarget{index_autotoc_md5}{}\doxysubsection{Make local repo}\label{index_autotoc_md5}
+
+\begin{DoxyItemize}
+\item Get into Visual Studio Code terminal window with no projects open.
+\item Navigate to the project folder on your local hard drive.
+\item Issue the command {\ttfamily git clone \href{https://github.com/theAgingApprentice/}{\texttt{ https\+://github.\+com/the\+Aging\+Apprentice/}}\{project name\}} (you can paste the URL that you copied in the previous step)
+\item Navigate into the newly created directory {\ttfamily cd \{project name\}}
+\item \sout{Create a local gh-\/pages branch to host Doxygen output}
+\begin{DoxyItemize}
+\item \sout{Issue the command {\ttfamily git checkout -\/-\/orphan gh-\/pages}}
+\item \sout{Issue the command {\ttfamily git reset -\/-\/hard}}
+\item \sout{Issue the command {\ttfamily git commit -\/-\/allow-\/empty -\/m \char`\"{}\+Initializing gh-\/pages branch\char`\"{}}}
+\end{DoxyItemize}
+\item \sout{Push local gh-\/pages branch to origin on Github.}
+\begin{DoxyItemize}
+\item \sout{Back on local machine issue the command {\ttfamily git push origin gh-\/pages}.}
+\item \sout{Issue the command {\ttfamily git checkout main}.}
+\end{DoxyItemize}
+\item Rename {\bfseries{template\+\_\+platformio.\+ini\+\_\+tmp}} to {\bfseries{platformio.\+ini}} in the root of your repo.
+\item Open project in Platform\+IO.
+\begin{DoxyItemize}
+\item Start Visual Studio Code.
+\item Start Platform\+IO.
+\end{DoxyItemize}
+\item Open project.
+\end{DoxyItemize}
+
+\hypertarget{index_autotoc_md6}{}\doxysubsection{Edit Doxyfile}\label{index_autotoc_md6}
+There is a file called Doxyfile in the root of the repository. Make the following edits.
+\begin{DoxyItemize}
+\item PROJECT\+\_\+\+NAME = \{project name\}
+\item PROJECT\+\_\+\+BRIEF = \char`\"{}\+Brief explanation of what class does.\char`\"{}
+\end{DoxyItemize}
+
+\hypertarget{index_autotoc_md7}{}\doxysubsection{Source Files}\label{index_autotoc_md7}
+Write the library using the tempates provided in the src directory off of the root of this repo.
+
+\hypertarget{index_autotoc_md8}{}\doxysubsection{Examples}\label{index_autotoc_md8}
+Write at least one example script using the template in examples/simple\+Example off the root of this repo.
+
+\hypertarget{index_autotoc_md9}{}\doxysubsection{Edit this README.\+md file}\label{index_autotoc_md9}
+
+\begin{DoxyItemize}
+\item The basic edits that you should make to this README file are noted below in bold text labelled {\bfseries{Edit 1}} through {\bfseries{Edit 7}}. You may wish to make additional edits as you see fit.
+\item Once you are done with these instructions you can delete them starting from the top of the file and ending with the line below. What remains will be a well formatted README file.
+\end{DoxyItemize}
+
+\hypertarget{index_autotoc_md10}{}\doxysubsection{$<$!-\/-\/ This is where your README file starts. Delete everyth0ing above -\/-\/$>$}\label{index_autotoc_md10}
+ 
+
+\href{https://raw.githubusercontent.com/mmistakes/minimal-mistakes/master/LICENSE}{\texttt{ }} \href{https://github.com/theAgingApprentice/aaChip/actions/workflows/main.yml}{\texttt{ }}
+
+{\bfseries{Edit 1 -\/ update title}}\hypertarget{index_autotoc_md11}{}\doxysection{Put your title here}\label{index_autotoc_md11}
+\hypertarget{index_autotoc_md12}{}\doxysubsection{Table of contents}\label{index_autotoc_md12}
+
+\begin{DoxyItemize}
+\item \href{\#Overview}{\texttt{ Overview}}
+\item \href{\#Dependencies}{\texttt{ Dependencies}}
+\item \href{\#Author}{\texttt{ Author(s)}}
+\item \href{\#Development-environment}{\texttt{ Development environment}}
+\item \href{\#Code-documentation}{\texttt{ Code documentation}}
+\item \href{\#Microprocessor-compatibility}{\texttt{ Microprocessor compatibility}}
+\item \href{\#Installing}{\texttt{ Installing}}
+\item \href{\#Running-tests}{\texttt{ Running tests}}
+\item \href{\#Releases}{\texttt{ Releases}}
+\item \href{\#Acknowledgements}{\texttt{ Acknowledgements}}
+\end{DoxyItemize}\hypertarget{index_autotoc_md13}{}\doxysubsection{Overview}\label{index_autotoc_md13}
+{\bfseries{Edit 2 -\/ Update this block of text with an explanation of what the class you are making does. For example\+:}}
+
+This repository contains an Arduino class that does wonderful things. This is part of a series of classes made to support a standard set of APIs for experimental robot platforms.\hypertarget{index_autotoc_md14}{}\doxysubsection{Dependencies}\label{index_autotoc_md14}
+This class depends on \href{https://github.com/espressif/arduino-esp32}{\texttt{ Arduino.\+h}} being present on your system. This is the Arduino core library that comes bundled with Platform\+IO.
+
+{\bfseries{Edit 3 -\/ Add other dependencies here.}}\hypertarget{index_autotoc_md15}{}\doxysubsection{Author}\label{index_autotoc_md15}
+Written by Old Squire for the Aging Apprentice.
+
+{\bfseries{Edit 4. Update author information above and remove this line.}}\hypertarget{index_autotoc_md16}{}\doxysubsection{Development environment}\label{index_autotoc_md16}
+This library was written using the following tools\+:
+\begin{DoxyItemize}
+\item \href{https://code.visualstudio.com/docs}{\texttt{ }} Microsoft\textquotesingle{}s Visual Studio Code source code editor.
+\item \href{https://platformio.org/}{\texttt{ }} Platform\+IO plugin \href{https://en.wikipedia.org/wiki/Embedded_software}{\texttt{ embedded software}} application \href{https://en.wikipedia.org/wiki/Integrated_development_environment}{\texttt{ IDE}}.
+\end{DoxyItemize}
+
+suggestion\+: If you are using the standard Arduino IDE for your project then you should probably avoid using this library unless you are comfortable navigating the subtle differences bewteen how your envoronment bahaves and how the environment used to create this library behaved.\hypertarget{index_autotoc_md17}{}\doxysubsection{Code documentation}\label{index_autotoc_md17}
+As part of our CI/\+CD software development process we use \href{https://docs.github.com/en/actions}{\texttt{ Github Actions}} to automatically generate up-\/to-\/date documentation via \href{https://www.doxygen.nl/index.html}{\texttt{ Doxygen}} every time the {\bfseries{main}} branch gets updated. The output from Doxygen is placed in the {\bfseries{root}} diretory of the {\bfseries{gh-\/pages}} branch. This repository has an associated \href{https://pages.github.com/}{\texttt{ Github Pages}} site that contains all of the Doxygen tags and assorted embedded comments from the code itself. This documentation can be viewed in your web browser {\bfseries{Edit 5 -\/ Update URL \{project\+Name\} for Doxygen online docs}} \href{https://theagingapprentice.github.io/{projectName}/html/index.html}{\texttt{ here}}. ~\newline
+\hypertarget{index_autotoc_md18}{}\doxysubsection{Microprocessor compatibility}\label{index_autotoc_md18}
+This library has only been tested on the \href{https://learn.adafruit.com/adafruit-huzzah32-esp32-feather}{\texttt{ Adafruit Huzzah32}} development board containing the \href{https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf}{\texttt{ Espressif ESP WROOM32 SOC}} featuring a pair of \href{https://mirrobo.ru/wp-content/uploads/2016/11/Cadence_Tensillica_Xtensa_LX6_ds.pdf}{\texttt{ Cadence/\+Xtensa®32-\/bit LX6 microprocessors}}.\hypertarget{index_autotoc_md19}{}\doxysubsection{Installing}\label{index_autotoc_md19}
+These instructions assume that you have \href{https://git-scm.com/}{\texttt{ Git}} installed on your computer.
+
+
+\begin{DoxyEnumerate}
+\item Navigate to the Arduino project directory on your computer.
+\item Issue the command {\ttfamily git clone \href{https://github.com/theAgingApprentice/{projectName.git}}{\texttt{ https\+://github.\+com/the\+Aging\+Apprentice/\{project\+Name.\+git\}}}}.
+\item Issue the command {\ttfamily git remote}. If you get back the response {\itshape origin} then you are all set. If you get a blank response back then you must set up an association to the remote repository by issuing the command {\ttfamily git remote add origin \href{https://github.com/theAgingApprentice/{projectName.git}}{\texttt{ https\+://github.\+com/the\+Aging\+Apprentice/\{project\+Name.\+git\}}}} to set up the remote.
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md20}{}\doxysubsection{Running tests}\label{index_autotoc_md20}
+As part of our CI/\+CD software development process we want to run automated tests every time new code is pushed to the main branch. To date we have not managed to do this though we have experimented with the Platform\+IO C/\+C++ unit testing tool called \href{https://github.com/ThrowTheSwitch/Unity}{\texttt{ unity}}. We have a dummy script called \href{test/test_main.cpp}{\texttt{ test\+\_\+main.\+cpp}} located located in the test directory off the root of the repository. This test does nothing useful at the moment and it may not even make sense to run tests on a class such as this. Full instructions on how to write and run these test can be found on the Platform\+IO website \href{https://docs.platformio.org/en/latest/tutorials/espressif32/arduino_debugging_unit_testing.html\#writing-unit-tests}{\texttt{ here}}. If you wish to run the tests you must do so manally while in Visual Studio Code and Platform\+IO\+:
+
+
+\begin{DoxyEnumerate}
+\item Click the Platform\+IO Icon in the Visual Studio Code Activity bar along the left hand side of your screen.
+\item Expand the Advanced menu item.
+\item Click the Test menu item.
+\end{DoxyEnumerate}
+
+The tests will then run and show you results like this.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{test/test\_main.cpp:58:test\_string\_concat        [PASSED]}
+\DoxyCodeLine{test/test\_main.cpp:59:test\_string\_substring     [PASSED]}
+\DoxyCodeLine{test/test\_main.cpp:60:test\_string\_index\_of      [PASSED]}
+\DoxyCodeLine{test/test\_main.cpp:61:test\_string\_equal\_ignore\_case     [PASSED]}
+\DoxyCodeLine{test/test\_main.cpp:62:test\_string\_to\_upper\_case [PASSED]}
+\DoxyCodeLine{test/test\_main.cpp:63:test\_string\_replace       [PASSED]}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{6 Tests 0 Failures 0 Ignored}
+\DoxyCodeLine{==================================== [PASSED] Took 13.70 seconds }
+\DoxyCodeLine{Test    Environment    Status    Duration}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/  -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/  -\/-\/-\/-\/-\/-\/-\/-\/  -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{*       featheresp32   PASSED    00:00:13.699}
+\DoxyCodeLine{==================================== 1 succeeded in 00:00:13.699 }
+
+\end{DoxyCode}
+
+
+We are also looking at Platform\+IO\textquotesingle{}s support of \href{https://docs.platformio.org/en/latest/integration/ci/github-actions.html}{\texttt{ Github Actions}} to see what can be accomplished for Arduino projects. We do not want to pay to use Travis\+CI.\hypertarget{index_autotoc_md21}{}\doxysubsection{Releases}\label{index_autotoc_md21}
+
+\begin{DoxyItemize}
+\item We use the \href{http://semver.org/}{\texttt{ Sem\+Ver}} numbering scheme for our releases.
+\item The latest stable release is \href{https://github.com/theAgingApprentice/{projectName}/releases/tag/v1.0.0}{\texttt{ v1.\+0.\+0}}. {\bfseries{Edit 6 -\/ replace \{project\+Name\}}}
+\end{DoxyItemize}\hypertarget{index_autotoc_md22}{}\doxysubsection{Examples}\label{index_autotoc_md22}
+There is an \href{https://github.com/theAgingApprentice/{projectName}/blob/main/examples/simpleExample/simpleExample.cpp}{\texttt{ example sketch}} that shows you how to use this class. {\bfseries{Edit 7 -\/ replace \{project\+Name\}}} ~\newline
+\hypertarget{index_autotoc_md23}{}\doxysubsection{Acknowledgements}\label{index_autotoc_md23}
+
+\begin{DoxyItemize}
+\item The many folks involved in porting the Arduino libraries over to the ESP32 SOC.
+\item Adafruit for their excellent freely available tutorials. 
+\end{DoxyItemize}
