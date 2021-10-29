@@ -7,7 +7,7 @@
 ## Table of contents
 * [Overview](#Overview)
 * [Features](#Features)
-* [Compatabillity](#Compatability)
+* [Compatability](#Compatability)
 * [Development environment](#Development-environment)
 * [Code documentation](#Code-documentation)
 * [Downloading](#Downloading)
