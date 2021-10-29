@@ -63,7 +63,7 @@ association to the remote repository by issuing the command `git remote add
 origin https://github.com/theAgingApprentice/{projectName.git}` to set up the remote. 
 
 ## Testing
-At this time we do not have a way t test this embedded code.
+At this time we do not have a way to test this embedded code.
 
 ## Releases
 * We use the [SemVer](http://semver.org/) numbering scheme for our releases. 
