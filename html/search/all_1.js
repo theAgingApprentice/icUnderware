@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7eaatemplate_0',['~aaTemplate',['../classaa_template.html#a040c3d9cfdad40001895c93f53807aa9',1,'aaTemplate']]]
+  ['begin_0',['begin',['../class_logging.html#a4b79e9f2e0deb509aacad7f267217db5',1,'Logging']]]
 ];

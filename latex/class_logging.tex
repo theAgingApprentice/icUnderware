@@ -1,0 +1,334 @@
+\hypertarget{class_logging}{}\doxysection{Logging Class Reference}
+\label{class_logging}\index{Logging@{Logging}}
+
+
+{\ttfamily \#include $<$Arduino\+Log.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_logging_acc3d848a3d05076fd185cd95e9c648d5}{Logging}} ()
+\item 
+void \mbox{\hyperlink{class_logging_a4b79e9f2e0deb509aacad7f267217db5}{begin}} (int level, Print $\ast$output, bool show\+Level=true)
+\item 
+void \mbox{\hyperlink{class_logging_a15d86da43b329a174d40bf6060cd7f25}{set\+Level}} (int level)
+\item 
+int \mbox{\hyperlink{class_logging_a7e08bbf4977d111072321e0b7661db0e}{get\+Level}} () const
+\item 
+void \mbox{\hyperlink{class_logging_ac6395383b13666f0aba894383660e92c}{set\+Show\+Level}} (bool show\+Level)
+\item 
+bool \mbox{\hyperlink{class_logging_a9a2a46597f8e5f52835f9394458ee597}{get\+Show\+Level}} () const
+\item 
+void \mbox{\hyperlink{class_logging_a79bd645ebb0f691d01c38b430f6d38fa}{set\+Prefix}} (printfunction f)
+\item 
+void \mbox{\hyperlink{class_logging_a26fd28f6bbb9f2654a7faf9d6417de26}{clear\+Prefix}} ()
+\item 
+void \mbox{\hyperlink{class_logging_a56f75c773d8b236d75c345eb92c3cc20}{set\+Suffix}} (printfunction f)
+\item 
+void \mbox{\hyperlink{class_logging_ad188dcb19731a2299439d3ad366707b3}{clear\+Suffix}} ()
+\item 
+{\footnotesize template$<$class T , typename... Args$>$ }\\void \mbox{\hyperlink{class_logging_a41dda7e7738ef5c4e2700509accec236}{fatal}} (T msg, Args... args)
+\item 
+\mbox{\Hypertarget{class_logging_a046ddc3ede6cd157c4477c24446acc80}\label{class_logging_a046ddc3ede6cd157c4477c24446acc80}} 
+{\footnotesize template$<$class T , typename... Args$>$ }\\void {\bfseries fatalln} (T msg, Args... args)
+\item 
+{\footnotesize template$<$class T , typename... Args$>$ }\\void \mbox{\hyperlink{class_logging_a9edf91cf07da256afd780753ef748bb0}{error}} (T msg, Args... args)
+\item 
+\mbox{\Hypertarget{class_logging_afa9da80db02193fc61ac08013fb3d5c4}\label{class_logging_afa9da80db02193fc61ac08013fb3d5c4}} 
+{\footnotesize template$<$class T , typename... Args$>$ }\\void {\bfseries errorln} (T msg, Args... args)
+\item 
+{\footnotesize template$<$class T , typename... Args$>$ }\\void \mbox{\hyperlink{class_logging_a1609a3ef235dd9afc3de8ed96a89a7ba}{warning}} (T msg, Args...\+args)
+\item 
+\mbox{\Hypertarget{class_logging_a5f1b8d91f1b4a4187ab6841a9b0183f9}\label{class_logging_a5f1b8d91f1b4a4187ab6841a9b0183f9}} 
+{\footnotesize template$<$class T , typename... Args$>$ }\\void {\bfseries warningln} (T msg, Args...\+args)
+\item 
+{\footnotesize template$<$class T , typename... Args$>$ }\\void \mbox{\hyperlink{class_logging_a6350649aea4d88d6398bb6b789d6da40}{notice}} (T msg, Args...\+args)
+\item 
+\mbox{\Hypertarget{class_logging_ad7c96b077c6f4c8c02a7b1a946349a6b}\label{class_logging_ad7c96b077c6f4c8c02a7b1a946349a6b}} 
+{\footnotesize template$<$class T , typename... Args$>$ }\\void {\bfseries noticeln} (T msg, Args...\+args)
+\item 
+\mbox{\Hypertarget{class_logging_ac9ea9c2e074d311b53d524f3ccffe18d}\label{class_logging_ac9ea9c2e074d311b53d524f3ccffe18d}} 
+{\footnotesize template$<$class T , typename... Args$>$ }\\void {\bfseries info} (T msg, Args...\+args)
+\item 
+\mbox{\Hypertarget{class_logging_a3bacac48ccc5f2f9c375e9ac9b425f72}\label{class_logging_a3bacac48ccc5f2f9c375e9ac9b425f72}} 
+{\footnotesize template$<$class T , typename... Args$>$ }\\void {\bfseries infoln} (T msg, Args...\+args)
+\item 
+{\footnotesize template$<$class T , typename... Args$>$ }\\void \mbox{\hyperlink{class_logging_afc1945db6f72b34f30a8636fa9ef2440}{trace}} (T msg, Args... args)
+\item 
+\mbox{\Hypertarget{class_logging_a434c51f10b4666b20fb3976af15c4db7}\label{class_logging_a434c51f10b4666b20fb3976af15c4db7}} 
+{\footnotesize template$<$class T , typename... Args$>$ }\\void {\bfseries traceln} (T msg, Args... args)
+\item 
+{\footnotesize template$<$class T , typename... Args$>$ }\\void \mbox{\hyperlink{class_logging_a914d3541e84dd8aec39dc5fec6599cf2}{verbose}} (T msg, Args... args)
+\item 
+\mbox{\Hypertarget{class_logging_aaf752d304740b55c741336fd8f318b81}\label{class_logging_aaf752d304740b55c741336fd8f318b81}} 
+{\footnotesize template$<$class T , typename... Args$>$ }\\void {\bfseries verboseln} (T msg, Args... args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Arduino\+Log is a minimalistic framework to help the programmer output log statements to an output of choice, fashioned after extensive logging libraries such as log4cpp ,log4j and log4net. In case of problems with an application, it is helpful to enable logging so that the problem can be located. Arduino\+Log is designed so that log statements can remain in the code with minimal performance cost. In order to facilitate this the loglevel can be adjusted, and (if your code is completely tested) all logging code can be compiled out.
+
+-\/--- Wildcards
+
+s display as string (char$\ast$) S display as string from flash memory (\+\_\+\+\_\+\+Flash\+String\+Helper$\ast$ or char\mbox{[}\mbox{]} PROGMEM) c display as single character C display as single character or as hexadecimal value (prefixed by {\ttfamily 0x}) if not a printable character d display as integer value l display as long value u display as unsigned long value x display as hexadecimal value X display as hexadecimal value prefixed by {\ttfamily 0x} and leading zeros b display as binary number B display as binary number, prefixed by {\ttfamily 0b} t display as boolean value \char`\"{}t\char`\"{} or \char`\"{}f\char`\"{} T display as boolean value \char`\"{}true\char`\"{} or \char`\"{}false\char`\"{} D,F display as double value p display a printable object
+
+-\/--- Loglevels
+
+0 -\/ LOG\+\_\+\+LEVEL\+\_\+\+SILENT no output 1 -\/ LOG\+\_\+\+LEVEL\+\_\+\+FATAL fatal errors 2 -\/ LOG\+\_\+\+LEVEL\+\_\+\+ERROR all errors 3 -\/ LOG\+\_\+\+LEVEL\+\_\+\+WARNING errors and warnings 4 -\/ LOG\+\_\+\+LEVEL\+\_\+\+INFO errors, warnings and notices 4 -\/ LOG\+\_\+\+LEVEL\+\_\+\+NOTICE Same as INFO, kept for backward compatibility 5 -\/ LOG\+\_\+\+LEVEL\+\_\+\+TRACE errors, warnings, notices, traces 6 -\/ LOG\+\_\+\+LEVEL\+\_\+\+VERBOSE all 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_logging_acc3d848a3d05076fd185cd95e9c648d5}\label{class_logging_acc3d848a3d05076fd185cd95e9c648d5}} 
+\index{Logging@{Logging}!Logging@{Logging}}
+\index{Logging@{Logging}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{Logging()}{Logging()}}
+{\footnotesize\ttfamily Logging\+::\+Logging (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+default Constructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_logging_a4b79e9f2e0deb509aacad7f267217db5}\label{class_logging_a4b79e9f2e0deb509aacad7f267217db5}} 
+\index{Logging@{Logging}!begin@{begin}}
+\index{begin@{begin}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily void Logging\+::begin (\begin{DoxyParamCaption}\item[{int}]{level,  }\item[{Print $\ast$}]{output,  }\item[{bool}]{show\+Level = {\ttfamily true} }\end{DoxyParamCaption})}
+
+Initializing, must be called as first. Note that if you use this variant of Init, you need to initialize the baud rate yourself, if printer happens to be a serial port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & -\/ logging levels \texorpdfstring{$<$}{<}= this will be logged. \\
+\hline
+{\em printer} & -\/ place that logging output will be sent to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_logging_a26fd28f6bbb9f2654a7faf9d6417de26}\label{class_logging_a26fd28f6bbb9f2654a7faf9d6417de26}} 
+\index{Logging@{Logging}!clearPrefix@{clearPrefix}}
+\index{clearPrefix@{clearPrefix}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{clearPrefix()}{clearPrefix()}}
+{\footnotesize\ttfamily void Logging\+::clear\+Prefix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+clears prefix.
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_logging_ad188dcb19731a2299439d3ad366707b3}\label{class_logging_ad188dcb19731a2299439d3ad366707b3}} 
+\index{Logging@{Logging}!clearSuffix@{clearSuffix}}
+\index{clearSuffix@{clearSuffix}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{clearSuffix()}{clearSuffix()}}
+{\footnotesize\ttfamily void Logging\+::clear\+Suffix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+clears suffix.
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_logging_a9edf91cf07da256afd780753ef748bb0}\label{class_logging_a9edf91cf07da256afd780753ef748bb0}} 
+\index{Logging@{Logging}!error@{error}}
+\index{error@{error}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{error()}{error()}}
+{\footnotesize\ttfamily template$<$class T , typename... Args$>$ \\
+void Logging\+::error (\begin{DoxyParamCaption}\item[{T}]{msg,  }\item[{Args...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Output an error message. Output message contains E\+: followed by original message Error messages are printed out at loglevels \texorpdfstring{$>$}{>}= LOG\+\_\+\+LEVEL\+\_\+\+ERROR
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & format string to output \\
+\hline
+{\em ...} & any number of variables \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_logging_a41dda7e7738ef5c4e2700509accec236}\label{class_logging_a41dda7e7738ef5c4e2700509accec236}} 
+\index{Logging@{Logging}!fatal@{fatal}}
+\index{fatal@{fatal}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{fatal()}{fatal()}}
+{\footnotesize\ttfamily template$<$class T , typename... Args$>$ \\
+void Logging\+::fatal (\begin{DoxyParamCaption}\item[{T}]{msg,  }\item[{Args...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Output a fatal error message. Output message contains F\+: followed by original message Fatal error messages are printed out at loglevels \texorpdfstring{$>$}{>}= LOG\+\_\+\+LEVEL\+\_\+\+FATAL
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & format string to output \\
+\hline
+{\em ...} & any number of variables \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_logging_a7e08bbf4977d111072321e0b7661db0e}\label{class_logging_a7e08bbf4977d111072321e0b7661db0e}} 
+\index{Logging@{Logging}!getLevel@{getLevel}}
+\index{getLevel@{getLevel}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{getLevel()}{getLevel()}}
+{\footnotesize\ttfamily int Logging\+::get\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get the log level.
+
+\begin{DoxyReturn}{Returns}
+The current log level. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_logging_a9a2a46597f8e5f52835f9394458ee597}\label{class_logging_a9a2a46597f8e5f52835f9394458ee597}} 
+\index{Logging@{Logging}!getShowLevel@{getShowLevel}}
+\index{getShowLevel@{getShowLevel}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{getShowLevel()}{getShowLevel()}}
+{\footnotesize\ttfamily bool Logging\+::get\+Show\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get whether the log level is shown during logging
+
+\begin{DoxyReturn}{Returns}
+true if the log level is be shown for each log false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_logging_a6350649aea4d88d6398bb6b789d6da40}\label{class_logging_a6350649aea4d88d6398bb6b789d6da40}} 
+\index{Logging@{Logging}!notice@{notice}}
+\index{notice@{notice}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{notice()}{notice()}}
+{\footnotesize\ttfamily template$<$class T , typename... Args$>$ \\
+void Logging\+::notice (\begin{DoxyParamCaption}\item[{T}]{msg,  }\item[{Args...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Output a notice message. Output message contains N\+: followed by original message Notice messages are printed out at loglevels \texorpdfstring{$>$}{>}= LOG\+\_\+\+LEVEL\+\_\+\+NOTICE
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & format string to output \\
+\hline
+{\em ...} & any number of variables \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_logging_a15d86da43b329a174d40bf6060cd7f25}\label{class_logging_a15d86da43b329a174d40bf6060cd7f25}} 
+\index{Logging@{Logging}!setLevel@{setLevel}}
+\index{setLevel@{setLevel}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{setLevel()}{setLevel()}}
+{\footnotesize\ttfamily void Logging\+::set\+Level (\begin{DoxyParamCaption}\item[{int}]{level }\end{DoxyParamCaption})}
+
+Set the log level.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & -\/ The new log level. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_logging_a79bd645ebb0f691d01c38b430f6d38fa}\label{class_logging_a79bd645ebb0f691d01c38b430f6d38fa}} 
+\index{Logging@{Logging}!setPrefix@{setPrefix}}
+\index{setPrefix@{setPrefix}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{setPrefix()}{setPrefix()}}
+{\footnotesize\ttfamily void Logging\+::set\+Prefix (\begin{DoxyParamCaption}\item[{printfunction}]{f }\end{DoxyParamCaption})}
+
+Sets a function to be called before each log command.
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & -\/ The function to be called \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_logging_ac6395383b13666f0aba894383660e92c}\label{class_logging_ac6395383b13666f0aba894383660e92c}} 
+\index{Logging@{Logging}!setShowLevel@{setShowLevel}}
+\index{setShowLevel@{setShowLevel}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{setShowLevel()}{setShowLevel()}}
+{\footnotesize\ttfamily void Logging\+::set\+Show\+Level (\begin{DoxyParamCaption}\item[{bool}]{show\+Level }\end{DoxyParamCaption})}
+
+Set whether to show the log level.
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+Level} & -\/ true if the log level should be shown for each log false otherwise. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_logging_a56f75c773d8b236d75c345eb92c3cc20}\label{class_logging_a56f75c773d8b236d75c345eb92c3cc20}} 
+\index{Logging@{Logging}!setSuffix@{setSuffix}}
+\index{setSuffix@{setSuffix}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{setSuffix()}{setSuffix()}}
+{\footnotesize\ttfamily void Logging\+::set\+Suffix (\begin{DoxyParamCaption}\item[{printfunction}]{f }\end{DoxyParamCaption})}
+
+Sets a function to be called after each log command.
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & -\/ The function to be called \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_logging_afc1945db6f72b34f30a8636fa9ef2440}\label{class_logging_afc1945db6f72b34f30a8636fa9ef2440}} 
+\index{Logging@{Logging}!trace@{trace}}
+\index{trace@{trace}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{trace()}{trace()}}
+{\footnotesize\ttfamily template$<$class T , typename... Args$>$ \\
+void Logging\+::trace (\begin{DoxyParamCaption}\item[{T}]{msg,  }\item[{Args...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Output a trace message. Output message contains N\+: followed by original message Trace messages are printed out at loglevels \texorpdfstring{$>$}{>}= LOG\+\_\+\+LEVEL\+\_\+\+TRACE
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & format string to output \\
+\hline
+{\em ...} & any number of variables \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_logging_a914d3541e84dd8aec39dc5fec6599cf2}\label{class_logging_a914d3541e84dd8aec39dc5fec6599cf2}} 
+\index{Logging@{Logging}!verbose@{verbose}}
+\index{verbose@{verbose}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{verbose()}{verbose()}}
+{\footnotesize\ttfamily template$<$class T , typename... Args$>$ \\
+void Logging\+::verbose (\begin{DoxyParamCaption}\item[{T}]{msg,  }\item[{Args...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Output a verbose message. Output message contains V\+: followed by original message Debug messages are printed out at loglevels \texorpdfstring{$>$}{>}= LOG\+\_\+\+LEVEL\+\_\+\+VERBOSE
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & format string to output \\
+\hline
+{\em ...} & any number of variables \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_logging_a1609a3ef235dd9afc3de8ed96a89a7ba}\label{class_logging_a1609a3ef235dd9afc3de8ed96a89a7ba}} 
+\index{Logging@{Logging}!warning@{warning}}
+\index{warning@{warning}!Logging@{Logging}}
+\doxysubsubsection{\texorpdfstring{warning()}{warning()}}
+{\footnotesize\ttfamily template$<$class T , typename... Args$>$ \\
+void Logging\+::warning (\begin{DoxyParamCaption}\item[{T}]{msg,  }\item[{Args...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Output a warning message. Output message contains W\+: followed by original message Warning messages are printed out at loglevels \texorpdfstring{$>$}{>}= LOG\+\_\+\+LEVEL\+\_\+\+WARNING
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & format string to output \\
+\hline
+{\em ...} & any number of variables \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Arduino-\/\+Log-\/master/Arduino\+Log.\+h\item 
+lib/\+Arduino-\/\+Log-\/master/Arduino\+Log.\+cpp\end{DoxyCompactItemize}
