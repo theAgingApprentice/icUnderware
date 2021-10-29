@@ -46,6 +46,11 @@ PlatformIO plugin
 [embedded software](https://en.wikipedia.org/wiki/Embedded_software) application 
 [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment). 
 
+## Code documentation
+This repository automatcally generates 
+[online documentation](https://theagingapprentice.github.io/icUnderwear/html/index.html) 
+each time code is merged into the main branch.
+
 ## Downloading
 These instructions assume that you have [Git](https://git-scm.com/) installed on 
 your computer.
