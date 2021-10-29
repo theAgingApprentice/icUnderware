@@ -1,4 +1,4 @@
-![Underware logo](img/underwareBanner.png)
+[![Underware logo](img/underwareBanner.png)]
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mmistakes/minimal-mistakes/master/LICENSE)
 [![Doxygen Action](https://github.com/theAgingApprentice/aaChip/actions/workflows/main.yml/badge.svg?event=push)](https://github.com/theAgingApprentice/aaChip/actions/workflows/main.yml)
 
