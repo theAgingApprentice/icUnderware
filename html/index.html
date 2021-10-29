@@ -67,180 +67,72 @@ $(function() {
   <div class="headertitle"><div class="title">icUnderwear </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md_lib_Arduino_Log_master_README"></a> <img src="/Images/logo.png?raw=true" alt="ArduinoLog logo" class="inline"/> </p>
+<div class="textblock"><p ><a class="anchor" id="md_README"></a> <img src="img/underwareBanner.png" alt="Underwear logo" class="inline"/> <a href="https://raw.githubusercontent.com/mmistakes/minimal-mistakes/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="LICENSE" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/theAgingApprentice/aaChip/actions/workflows/main.yml"><img src="https://github.com/theAgingApprentice/aaChip/actions/workflows/main.yml/badge.svg?event=push" alt="Doxygen Action" style="pointer-events: none;" class="inline"/></a></p>
 <h1><a class="anchor" id="autotoc_md18"></a>
-ArduinoLog - C++ Log library for Arduino devices</h1>
-<p ><a href="https://travis-ci.org/thijse/Arduino-Log"><img src="https://travis-ci.org/thijse/Arduino-Log.svg?branch=master" alt="Build Status" style="pointer-events: none;" class="inline"/></a> <a href="http://doge.mit-license.org"><img src="https://img.shields.io/badge/license-MIT%20License-blue.svg" alt="License" style="pointer-events: none;" class="inline"/></a></p>
-<p ><em>An minimalistic <a class="el" href="class_logging.html">Logging</a> framework for Arduino-compatible embedded systems.</em></p>
-<p >ArduinoLog is a minimalistic framework to help the programmer output log statements to an output of choice, fashioned after extensive logging libraries such as log4cpp ,log4j and log4net. In case of problems with an application, it is helpful to enable logging so that the problem can be located. ArduinoLog is designed so that log statements can remain in the code with minimal performance cost. In order to facilitate this the loglevel can be adjusted, and (if your code is completely tested) all logging code can be compiled out.</p>
+icUnderwear - The starting point for robot projects</h1>
 <h2><a class="anchor" id="autotoc_md19"></a>
-Features</h2>
+Table of contents</h2>
 <ul>
-<li>Different log levels (Error, Info, Warn, Debug, Verbose )</li>
-<li>Supports multiple variables</li>
-<li>Supports formatted strings</li>
-<li>Supports formatted strings from flash memory</li>
-<li>Fixed memory allocation (zero malloc)</li>
-<li>MIT License</li>
+<li><a href="#Overview">Overview</a></li>
+<li><a href="#Features">Features</a></li>
+<li><a href="#Compatability">Compatabillity</a></li>
+<li><a href="#Development-environment">Development environment</a></li>
+<li><a href="#Code-documentation">Code documentation</a></li>
+<li><a href="#Downloading">Downloading</a></li>
+<li><a href="#Testing">Testing</a></li>
+<li><a href="#Releases">Releases</a></li>
+<li><a href="#Acknowledgements">Acknowledgements</a></li>
 </ul>
 <h2><a class="anchor" id="autotoc_md20"></a>
-Tested for</h2>
-<ul>
-<li>All Arduino boards (Uno, Due, Mini, Micro, Yun...)</li>
-<li>ESP8266</li>
-<li>ESP32</li>
-</ul>
+Overview</h2>
+<p >This repository contains Arduino code that get you off to a flying start when you start you next robot project. Simply clone this template repository and use the source code to boot strap the development of your robot's integrated circuit firmware.</p>
 <h2><a class="anchor" id="autotoc_md21"></a>
-Downloading</h2>
-<p >This package has been published to the Arduino &amp; PlatformIO package managers, but you can also download it from GitHub.</p>
+Features</h2>
 <ul>
-<li>By directly loading fetching the Archive from GitHub:<ol type="1">
-<li>Go to <a href="https://github.com/thijse/Arduino-Log">https://github.com/thijse/Arduino-Log</a></li>
-<li>Click the DOWNLOAD ZIP button in the panel on the</li>
-<li>Rename the uncompressed folder <b>Arduino-Log-master</b> to <b>Arduino-Log</b>.</li>
-<li>You may need to create the libraries subfolder if its your first library. <br  />
+<li>Modular code for easy maintenance</li>
+<li>Hardware aware for easy configuration</li>
+<li>Supports typical subsystems found in robot projects <br  />
 </li>
-<li>Place the <b>Arduino-Log</b> library folder in your **&lt;arduinosketchfolder&gt;/libraries/** folder.</li>
-</ol>
-<ol type="1">
-<li>Restart the IDE.</li>
-<li>For more information, <a href="http://thijs.elenbaas.net/2012/07/installing-an-arduino-library/">read this extended manual</a></li>
-</ol>
-</li>
+<li>Repo auto generates online documentation</li>
+<li>MIT License</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md22"></a>
-Quick start</h2>
-<div class="fragment"><div class="line">{c++}</div>
-<div class="line">   Serial.begin(9600);</div>
-<div class="line">   </div>
-<div class="line">   // Initialize with log level and log output. </div>
-<div class="line">   Log.begin   (LOG_LEVEL_VERBOSE, &amp;Serial);</div>
-<div class="line">   </div>
-<div class="line">   // Start logging text and formatted values</div>
-<div class="line">   Log.errorln (  &quot;Log as Error   with binary values             : %b, %B&quot;    , 23  , 345808);</div>
-<div class="line">   Log.warning (F(&quot;Log as Warning with integer values from Flash : %d, %d&quot;CR) , 34  , 799870);</div>
-</div><!-- fragment --><p >See <a href="examples/Log-basic/Log-basic.ino">Log-basic.ino</a> example</p>
-<h2><a class="anchor" id="autotoc_md23"></a>
-Usage</h2>
-<h3><a class="anchor" id="autotoc_md24"></a>
-Initialisation</h3>
-<p >The log library needs to be initialized with the log level of messages to show and the log output. The latter will often be the Serial interface. Optionally, you can indicate whether to show the log type (error, debug, etc) for each line.</p>
-<div class="fragment"><div class="line">begin(int level, Print* logOutput, bool showLevel)</div>
-<div class="line">begin(int level, Print* logOutput)</div>
-</div><!-- fragment --><p >The loglevels available are</p>
-<div class="fragment"><div class="line">* 0 - LOG_LEVEL_SILENT     no output </div>
-<div class="line">* 1 - LOG_LEVEL_FATAL      fatal errors </div>
-<div class="line">* 2 - LOG_LEVEL_ERROR      all errors  </div>
-<div class="line">* 3 - LOG_LEVEL_WARNING    errors, and warnings </div>
-<div class="line">* 4 - LOG_LEVEL_NOTICE     errors, warnings and notices </div>
-<div class="line">* 5 - LOG_LEVEL_TRACE      errors, warnings, notices &amp; traces </div>
-<div class="line">* 6 - LOG_LEVEL_VERBOSE    all </div>
-</div><!-- fragment --><p >example</p>
-<div class="fragment"><div class="line">Log.begin(LOG_LEVEL_ERROR, &amp;Serial, true);</div>
-</div><!-- fragment --><p >if you want to fully remove all logging code, uncomment <code>#define DISABLE_LOGGING</code> in <code><a class="el" href="_arduino_log_8h_source.html">ArduinoLog.h</a></code>, this may significantly reduce your sketch/library size.</p>
-<h3><a class="anchor" id="autotoc_md25"></a>
-Log events</h3>
-<p >The library allows you to log on different levels by the following functions</p>
-<div class="fragment"><div class="line"> {c++}</div>
-<div class="line">void fatal   (const char *format, va_list logVariables); </div>
-<div class="line">void error   (const char *format, va_list logVariables);</div>
-<div class="line">void warning (const char *format, va_list logVariables);</div>
-<div class="line">void notice  (const char *format, va_list logVariables);</div>
-<div class="line">void trace   (const char *format, va_list logVariables);</div>
-<div class="line">void verbose (const char *format, va_list logVariables);</div>
-</div><!-- fragment --><p >where the format string can be used to format the log variables</p>
-<div class="fragment"><div class="line">* %s    display as string (char*)</div>
-<div class="line">* %S    display as string from flash memory (__FlashStringHelper* or char[] PROGMEM)</div>
-<div class="line">* %c    display as single character</div>
-<div class="line">* %C    display as single character or as hexadecimal value (prefixed by `0x`) if not a printable character</div>
-<div class="line">* %d    display as integer value</div>
-<div class="line">* %l    display as long value</div>
-<div class="line">* %u    display as unsigned long value</div>
-<div class="line">* %x    display as hexadecimal value</div>
-<div class="line">* %X    display as hexadecimal value prefixed by `0x` and leading zeros</div>
-<div class="line">* %b    display as binary number</div>
-<div class="line">* %B    display as binary number, prefixed by `0b`</div>
-<div class="line">* %t    display as boolean value &quot;t&quot; or &quot;f&quot;</div>
-<div class="line">* %T    display as boolean value &quot;true&quot; or &quot;false&quot;</div>
-<div class="line">* %D,%F display as double value</div>
-<div class="line">* %p    display a  printable object </div>
-</div><!-- fragment --><p >Newlines can be added using the <code>CR</code> keyword or by using the <code>...ln</code> version of each of the log functions. The difference when using the <code>...ln</code> is that the newline is placed after suffix, and only a single newline can be added. Some terminals prefer <code>NL</code> (New line).</p>
-<h3><a class="anchor" id="autotoc_md26"></a>
-Examples</h3>
-<div class="fragment"><div class="line"> {c++}</div>
-<div class="line">Log.fatal     (F(&quot;Log as Fatal   with string value from Flash   : %s&quot;CR    ) , &quot;value&quot;     );</div>
-<div class="line">Log.errorln   (  &quot;Log as Error   with binary values             : %b, %B&quot;    , 23  , 345808);</div>
-<div class="line">Log.warning   (F(&quot;Log as Warning with integer values from Flash : %d, %d&quot;CR) , 34  , 799870);</div>
-<div class="line">Log.notice    (  &quot;Log as Notice  with hexadecimal values        : %x, %X&quot;CR  , 21  , 348972);</div>
-<div class="line">Log.trace     (  &quot;Log as Trace   with Flash string              : %S&quot;CR    ) , F(&quot;value&quot;)  );</div>
-<div class="line">Log.verboseln (F(&quot;Log as Verbose with bool value from Flash     : %t, %T&quot;  ) , true, false );</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md27"></a>
-Disable library</h3>
-<p >(if your code is completely tested) all logging code can be compiled out. Do this by uncommenting <br  />
- </p><div class="fragment"><div class="line"> {c++}</div>
-<div class="line">#define DISABLE_LOGGING </div>
-</div><!-- fragment --><p> in <code>Logging.h</code>. This may significantly reduce your project size.</p>
-<h2><a class="anchor" id="autotoc_md28"></a>
-Advanced usage</h2>
-<p >Advanced features are demonstrated in <a href="examples/Log-advanced/Log-advanced.ino">Log-advanced</a> example.</p>
-<h3><a class="anchor" id="autotoc_md29"></a>
-Displaying a printable object</h3>
-<p >Some Arduino objects are printable. That is, they implement the <code>Printable</code> interface and are able for format their own representation As an example, the IPadress object is printable:</p>
-<div class="fragment"><div class="line"> {c++}</div>
-<div class="line">IPAddress   ipAddress(192, 168, 0, 1);</div>
-<div class="line">Log.verboseln (&quot;ip address   : %p&quot;, ipAddress);</div>
-</div><!-- fragment --><p ><a href="https://forum.arduino.cc/t/printable-classes/438816">this example</a> shows how to make your own classes printable</p>
-<h3><a class="anchor" id="autotoc_md30"></a>
-Storing messages in Flash memory</h3>
-<p >Flash strings log variables can be stored and reused at several places to reduce final hex size.</p>
-<div class="fragment"><div class="line"> {c++}</div>
-<div class="line">const __FlashStringHelper * logAs = F(&quot;Log as&quot;);</div>
-<div class="line">Log.fatal   (F(&quot;%S Fatal with string value from Flash   : %s&quot;CR    ) , logAs, &quot;value&quot;     );</div>
-<div class="line">Log.error   (  &quot;%S Error with binary values             : %b, %B&quot;CR  , logAs, 23  , 345808);</div>
-</div><!-- fragment --><p >If you want to declare that string globally (outside of a function), you will need to use the PROGMEM macro instead.</p>
-<div class="fragment"><div class="line"> {c++}</div>
-<div class="line">const char LOG_AS[] PROGMEM = &quot;Log as &quot;;</div>
-<div class="line"> </div>
-<div class="line">void logError() {</div>
-<div class="line">    Log.error   (  &quot;%S Error with binary values : %b, %B&quot;CR  , PSTRPTR(LOG_AS), 23  , 345808);</div>
-<div class="line">}</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md31"></a>
-Custom logging format</h3>
-<p >You can modify your logging format by defining a custom prefix &amp; suffix for each log line. For example: </p><div class="fragment"><div class="line"> {c++}</div>
-<div class="line">void printPrefix(Print* _logOutput, int logLevel) {</div>
-<div class="line">    printTimestamp(_logOutput);</div>
-<div class="line">    printLogLevel (_logOutput, logLevel);</div>
-<div class="line">}</div>
-</div><!-- fragment --><p> will result in log timestamps very similar to e.g. NLOG: </p><div class="fragment"><div class="line">00:47:51.432 VERBOSE Message to be logged</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md32"></a>
-Credit</h2>
-<p >Based on library by</p><ul>
-<li><a href="https://github.com/mrRobot62">Bernd Klein</a> <br  />
-</li>
-</ul>
-<p >Bugfixes &amp; features by</p><ul>
-<li><a href="https://github.com/rahuldeo2047">rahuldeo2047</a></li>
-<li><a href="https://github.com/NOX73">NOX73</a></li>
-<li><a href="https://github.com/dhylands">Dave Hylands</a></li>
-<li><a href="https://github.com/Josha">Jos Hanon</a></li>
-<li><a href="https://github.com/blemasle">Bertrand Lemasle</a></li>
-<li><a href="https://github.com/mfalkvidd">Mikael Falkvidd</a></li>
-<li><a href="https://github.com/rowanG077">Rowan Goemans</a></li>
-<li><a href="https://github.com/sanddorn">Nils Bokermann</a></li>
-<li><a href="https://github.com/1technophile">Florian</a></li>
-<li><a href="https://github.com/wrong-kendall">wrong-kendall</a></li>
-<li><a href="https://github.com/bitli">bitli</a></li>
-<li><a href="https://github.com/ChristianBauerAMDC">ChristianBauerAMDC</a></li>
-</ul>
-<h2><a class="anchor" id="autotoc_md33"></a>
-On using and modifying libraries</h2>
+Compatability</h2>
 <ul>
-<li><a href="http://www.arduino.cc/en/Main/Libraries">http://www.arduino.cc/en/Main/Libraries</a></li>
-<li><a href="http://www.arduino.cc/en/Reference/Libraries">http://www.arduino.cc/en/Reference/Libraries</a></li>
+<li>This code has only been tested on the <a href="https://learn.adafruit.com/adafruit-huzzah32-esp32-feather">Adafruit Huzzah32</a> development board containing the <a href="https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf">Espressif ESP WROOM32 SOC</a> featuring a pair of <a href="https://mirrobo.ru/wp-content/uploads/2016/11/Cadence_Tensillica_Xtensa_LX6_ds.pdf">Cadence/Xtensa®32-bit LX6 microprocessors</a>.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md34"></a>
-Copyright</h2>
-<p >ArduinoLog (Copyright © 2017,2018, 2019, 2021) is provided under MIT License. </p>
+<h2><a class="anchor" id="autotoc_md23"></a>
+Development environment</h2>
+<p >This library was written using the following tools:</p><ul>
+<li><a href="https://code.visualstudio.com/docs"><img src="/img/vscLogo.png" alt="" width="15" height="15" class="inline"/></a> Microsoft's Visual Studio Code source code editor.</li>
+<li><a href="https://platformio.org/"><img src="/img/pioLogo.png" alt="" width="20" height="15" class="inline"/></a> PlatformIO plugin <a href="https://en.wikipedia.org/wiki/Embedded_software">embedded software</a> application <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">IDE</a>.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md24"></a>
+Code documentation</h2>
+<p >This repository automatcally generates <a href="https://theagingapprentice.github.io/icUnderwear/html/index.html">online documentation</a> each time code is merged into the main branch.</p>
+<h2><a class="anchor" id="autotoc_md25"></a>
+Downloading</h2>
+<p >These instructions assume that you have <a href="https://git-scm.com/">Git</a> installed on your computer.</p>
+<ol type="1">
+<li>Navigate to the Arduino project directory on your computer.</li>
+<li>Issue the command <code>git clone <a href="https://github.com/theAgingApprentice/{projectName.git}">https://github.com/theAgingApprentice/{projectName.git}</a></code>.</li>
+<li>Issue the command <code>git remote</code>. If you get back the response <em>origin</em> then you are all set. If you get a blank response back then you must set up an association to the remote repository by issuing the command <code>git remote add origin <a href="https://github.com/theAgingApprentice/{projectName.git}">https://github.com/theAgingApprentice/{projectName.git}</a></code> to set up the remote.</li>
+</ol>
+<h2><a class="anchor" id="autotoc_md26"></a>
+Testing</h2>
+<p >At this time we do not have a way to test this embedded code.</p>
+<h2><a class="anchor" id="autotoc_md27"></a>
+Releases</h2>
+<ul>
+<li>We use the <a href="http://semver.org/">SemVer</a> numbering scheme for our releases.</li>
+<li>The latest stable release is <a href="https://github.com/theAgingApprentice/underwear/releases/tag/v1.0.0">v1.0.0</a>.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md28"></a>
+Acknowledgements</h2>
+<ul>
+<li>The many folks involved in porting the Arduino libraries over to the ESP32 SOC.</li>
+<li>Adafruit for their excellent freely available tutorials. </li>
+</ul>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->

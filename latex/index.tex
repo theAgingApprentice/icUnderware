@@ -1,232 +1,55 @@
-\label{index_md_lib_Arduino_Log_master_README}%
-\Hypertarget{index_md_lib_Arduino_Log_master_README}%
-  \hypertarget{index_autotoc_md18}{}\doxysection{Arduino\+Log -\/ C++ Log library for Arduino devices}\label{index_autotoc_md18}
-\href{https://travis-ci.org/thijse/Arduino-Log}{\texttt{ }} \href{http://doge.mit-license.org}{\texttt{ }}
-
-{\itshape An minimalistic \mbox{\hyperlink{class_logging}{Logging}} framework for Arduino-\/compatible embedded systems.}
-
-Arduino\+Log is a minimalistic framework to help the programmer output log statements to an output of choice, fashioned after extensive logging libraries such as log4cpp ,log4j and log4net. In case of problems with an application, it is helpful to enable logging so that the problem can be located. Arduino\+Log is designed so that log statements can remain in the code with minimal performance cost. In order to facilitate this the loglevel can be adjusted, and (if your code is completely tested) all logging code can be compiled out.\hypertarget{index_autotoc_md19}{}\doxysubsection{Features}\label{index_autotoc_md19}
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+  \href{https://raw.githubusercontent.com/mmistakes/minimal-mistakes/master/LICENSE}{\texttt{ }} \href{https://github.com/theAgingApprentice/aaChip/actions/workflows/main.yml}{\texttt{ }}\hypertarget{index_autotoc_md18}{}\doxysection{ic\+Underwear -\/ The starting point for robot projects}\label{index_autotoc_md18}
+\hypertarget{index_autotoc_md19}{}\doxysubsection{Table of contents}\label{index_autotoc_md19}
 
 \begin{DoxyItemize}
-\item Different log levels (Error, Info, Warn, Debug, Verbose )
-\item Supports multiple variables
-\item Supports formatted strings
-\item Supports formatted strings from flash memory
-\item Fixed memory allocation (zero malloc)
+\item \href{\#Overview}{\texttt{ Overview}}
+\item \href{\#Features}{\texttt{ Features}}
+\item \href{\#Compatability}{\texttt{ Compatabillity}}
+\item \href{\#Development-environment}{\texttt{ Development environment}}
+\item \href{\#Code-documentation}{\texttt{ Code documentation}}
+\item \href{\#Downloading}{\texttt{ Downloading}}
+\item \href{\#Testing}{\texttt{ Testing}}
+\item \href{\#Releases}{\texttt{ Releases}}
+\item \href{\#Acknowledgements}{\texttt{ Acknowledgements}}
+\end{DoxyItemize}\hypertarget{index_autotoc_md20}{}\doxysubsection{Overview}\label{index_autotoc_md20}
+This repository contains Arduino code that get you off to a flying start when you start you next robot project. Simply clone this template repository and use the source code to boot strap the development of your robot\textquotesingle{}s integrated circuit firmware.\hypertarget{index_autotoc_md21}{}\doxysubsection{Features}\label{index_autotoc_md21}
+
+\begin{DoxyItemize}
+\item Modular code for easy maintenance
+\item Hardware aware for easy configuration
+\item Supports typical subsystems found in robot projects ~\newline
+
+\item Repo auto generates online documentation
 \item MIT License
-\end{DoxyItemize}\hypertarget{index_autotoc_md20}{}\doxysubsection{Tested for}\label{index_autotoc_md20}
+\end{DoxyItemize}\hypertarget{index_autotoc_md22}{}\doxysubsection{Compatability}\label{index_autotoc_md22}
 
 \begin{DoxyItemize}
-\item All Arduino boards (Uno, Due, Mini, Micro, Yun...)
-\item ESP8266
-\item ESP32
-\end{DoxyItemize}\hypertarget{index_autotoc_md21}{}\doxysubsection{Downloading}\label{index_autotoc_md21}
-This package has been published to the Arduino \& Platform\+IO package managers, but you can also download it from Git\+Hub.
-
-
+\item This code has only been tested on the \href{https://learn.adafruit.com/adafruit-huzzah32-esp32-feather}{\texttt{ Adafruit Huzzah32}} development board containing the \href{https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf}{\texttt{ Espressif ESP WROOM32 SOC}} featuring a pair of \href{https://mirrobo.ru/wp-content/uploads/2016/11/Cadence_Tensillica_Xtensa_LX6_ds.pdf}{\texttt{ Cadence/\+Xtensa®32-\/bit LX6 microprocessors}}.
+\end{DoxyItemize}\hypertarget{index_autotoc_md23}{}\doxysubsection{Development environment}\label{index_autotoc_md23}
+This library was written using the following tools\+:
 \begin{DoxyItemize}
-\item By directly loading fetching the Archive from Git\+Hub\+:
+\item \href{https://code.visualstudio.com/docs}{\texttt{ }} Microsoft\textquotesingle{}s Visual Studio Code source code editor.
+\item \href{https://platformio.org/}{\texttt{ }} Platform\+IO plugin \href{https://en.wikipedia.org/wiki/Embedded_software}{\texttt{ embedded software}} application \href{https://en.wikipedia.org/wiki/Integrated_development_environment}{\texttt{ IDE}}.
+\end{DoxyItemize}\hypertarget{index_autotoc_md24}{}\doxysubsection{Code documentation}\label{index_autotoc_md24}
+This repository automatcally generates \href{https://theagingapprentice.github.io/icUnderwear/html/index.html}{\texttt{ online documentation}} each time code is merged into the main branch.\hypertarget{index_autotoc_md25}{}\doxysubsection{Downloading}\label{index_autotoc_md25}
+These instructions assume that you have \href{https://git-scm.com/}{\texttt{ Git}} installed on your computer.
+
+
 \begin{DoxyEnumerate}
-\item Go to \href{https://github.com/thijse/Arduino-Log}{\texttt{ https\+://github.\+com/thijse/\+Arduino-\/\+Log}}
-\item Click the DOWNLOAD ZIP button in the panel on the
-\item Rename the uncompressed folder {\bfseries{Arduino-\/\+Log-\/master}} to {\bfseries{Arduino-\/\+Log}}.
-\item You may need to create the libraries subfolder if its your first library. ~\newline
+\item Navigate to the Arduino project directory on your computer.
+\item Issue the command {\ttfamily git clone \href{https://github.com/theAgingApprentice/{projectName.git}}{\texttt{ https\+://github.\+com/the\+Aging\+Apprentice/\{project\+Name.\+git\}}}}.
+\item Issue the command {\ttfamily git remote}. If you get back the response {\itshape origin} then you are all set. If you get a blank response back then you must set up an association to the remote repository by issuing the command {\ttfamily git remote add origin \href{https://github.com/theAgingApprentice/{projectName.git}}{\texttt{ https\+://github.\+com/the\+Aging\+Apprentice/\{project\+Name.\+git\}}}} to set up the remote.
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md26}{}\doxysubsection{Testing}\label{index_autotoc_md26}
+At this time we do not have a way to test this embedded code.\hypertarget{index_autotoc_md27}{}\doxysubsection{Releases}\label{index_autotoc_md27}
 
-\item Place the {\bfseries{Arduino-\/\+Log}} library folder in your $\ast$$\ast$$<$arduinosketchfolder$>$/libraries/$\ast$$\ast$ folder.
-\end{DoxyEnumerate}
-\begin{DoxyEnumerate}
-\item Restart the IDE.
-\item For more information, \href{http://thijs.elenbaas.net/2012/07/installing-an-arduino-library/}{\texttt{ read this extended manual}}
-\end{DoxyEnumerate}
-\end{DoxyItemize}\hypertarget{index_autotoc_md22}{}\doxysubsection{Quick start}\label{index_autotoc_md22}
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{\{c++\}}
-\DoxyCodeLine{   Serial.begin(9600);}
-\DoxyCodeLine{   }
-\DoxyCodeLine{   // Initialize with log level and log output. }
-\DoxyCodeLine{   Log.begin   (LOG\_LEVEL\_VERBOSE, \&Serial);}
-\DoxyCodeLine{   }
-\DoxyCodeLine{   // Start logging text and formatted values}
-\DoxyCodeLine{   Log.errorln (  "{}Log as Error   with binary values             : \%b, \%B"{}    , 23  , 345808);}
-\DoxyCodeLine{   Log.warning (F("{}Log as Warning with integer values from Flash : \%d, \%d"{}CR) , 34  , 799870);}
-
-\end{DoxyCode}
-
-
-See \href{examples/Log-basic/Log-basic.ino}{\texttt{ Log-\/basic.\+ino}} example\hypertarget{index_autotoc_md23}{}\doxysubsection{Usage}\label{index_autotoc_md23}
-\hypertarget{index_autotoc_md24}{}\doxysubsubsection{Initialisation}\label{index_autotoc_md24}
-The log library needs to be initialized with the log level of messages to show and the log output. The latter will often be the Serial interface. Optionally, you can indicate whether to show the log type (error, debug, etc) for each line.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{begin(int level, Print* logOutput, bool showLevel)}
-\DoxyCodeLine{begin(int level, Print* logOutput)}
-
-\end{DoxyCode}
-
-
-The loglevels available are
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{* 0 -\/ LOG\_LEVEL\_SILENT     no output }
-\DoxyCodeLine{* 1 -\/ LOG\_LEVEL\_FATAL      fatal errors }
-\DoxyCodeLine{* 2 -\/ LOG\_LEVEL\_ERROR      all errors  }
-\DoxyCodeLine{* 3 -\/ LOG\_LEVEL\_WARNING    errors, and warnings }
-\DoxyCodeLine{* 4 -\/ LOG\_LEVEL\_NOTICE     errors, warnings and notices }
-\DoxyCodeLine{* 5 -\/ LOG\_LEVEL\_TRACE      errors, warnings, notices \& traces }
-\DoxyCodeLine{* 6 -\/ LOG\_LEVEL\_VERBOSE    all }
-
-\end{DoxyCode}
-
-
-example
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{Log.begin(LOG\_LEVEL\_ERROR, \&Serial, true);}
-
-\end{DoxyCode}
-
-
-if you want to fully remove all logging code, uncomment {\ttfamily \#define DISABLE\+\_\+\+LOGGING} in {\ttfamily \mbox{\hyperlink{_arduino_log_8h_source}{Arduino\+Log.\+h}}}, this may significantly reduce your sketch/library size.\hypertarget{index_autotoc_md25}{}\doxysubsubsection{Log events}\label{index_autotoc_md25}
-The library allows you to log on different levels by the following functions
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{ \{c++\}}
-\DoxyCodeLine{void fatal   (const char *format, va\_list logVariables); }
-\DoxyCodeLine{void error   (const char *format, va\_list logVariables);}
-\DoxyCodeLine{void warning (const char *format, va\_list logVariables);}
-\DoxyCodeLine{void notice  (const char *format, va\_list logVariables);}
-\DoxyCodeLine{void trace   (const char *format, va\_list logVariables);}
-\DoxyCodeLine{void verbose (const char *format, va\_list logVariables);}
-
-\end{DoxyCode}
-
-
-where the format string can be used to format the log variables
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{* \%s    display as string (char*)}
-\DoxyCodeLine{* \%S    display as string from flash memory (\_\_FlashStringHelper* or char[] PROGMEM)}
-\DoxyCodeLine{* \%c    display as single character}
-\DoxyCodeLine{* \%C    display as single character or as hexadecimal value (prefixed by `0x`) if not a printable character}
-\DoxyCodeLine{* \%d    display as integer value}
-\DoxyCodeLine{* \%l    display as long value}
-\DoxyCodeLine{* \%u    display as unsigned long value}
-\DoxyCodeLine{* \%x    display as hexadecimal value}
-\DoxyCodeLine{* \%X    display as hexadecimal value prefixed by `0x` and leading zeros}
-\DoxyCodeLine{* \%b    display as binary number}
-\DoxyCodeLine{* \%B    display as binary number, prefixed by `0b`}
-\DoxyCodeLine{* \%t    display as boolean value "{}t"{} or "{}f"{}}
-\DoxyCodeLine{* \%T    display as boolean value "{}true"{} or "{}false"{}}
-\DoxyCodeLine{* \%D,\%F display as double value}
-\DoxyCodeLine{* \%p    display a  printable object }
-
-\end{DoxyCode}
-
-
-Newlines can be added using the {\ttfamily CR} keyword or by using the {\ttfamily ...ln} version of each of the log functions. The difference when using the {\ttfamily ...ln} is that the newline is placed after suffix, and only a single newline can be added. Some terminals prefer {\ttfamily NL} (New line).\hypertarget{index_autotoc_md26}{}\doxysubsubsection{Examples}\label{index_autotoc_md26}
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{ \{c++\}}
-\DoxyCodeLine{Log.fatal     (F("{}Log as Fatal   with string value from Flash   : \%s"{}CR    ) , "{}value"{}     );}
-\DoxyCodeLine{Log.errorln   (  "{}Log as Error   with binary values             : \%b, \%B"{}    , 23  , 345808);}
-\DoxyCodeLine{Log.warning   (F("{}Log as Warning with integer values from Flash : \%d, \%d"{}CR) , 34  , 799870);}
-\DoxyCodeLine{Log.notice    (  "{}Log as Notice  with hexadecimal values        : \%x, \%X"{}CR  , 21  , 348972);}
-\DoxyCodeLine{Log.trace     (  "{}Log as Trace   with Flash string              : \%S"{}CR    ) , F("{}value"{})  );}
-\DoxyCodeLine{Log.verboseln (F("{}Log as Verbose with bool value from Flash     : \%t, \%T"{}  ) , true, false );}
-
-\end{DoxyCode}
-\hypertarget{index_autotoc_md27}{}\doxysubsubsection{Disable library}\label{index_autotoc_md27}
-(if your code is completely tested) all logging code can be compiled out. Do this by uncommenting ~\newline
- 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{ \{c++\}}
-\DoxyCodeLine{\#define DISABLE\_LOGGING }
-
-\end{DoxyCode}
- in {\ttfamily Logging.\+h}. This may significantly reduce your project size.\hypertarget{index_autotoc_md28}{}\doxysubsection{Advanced usage}\label{index_autotoc_md28}
-Advanced features are demonstrated in \href{examples/Log-advanced/Log-advanced.ino}{\texttt{ Log-\/advanced}} example.\hypertarget{index_autotoc_md29}{}\doxysubsubsection{Displaying a printable object}\label{index_autotoc_md29}
-Some Arduino objects are printable. That is, they implement the {\ttfamily Printable} interface and are able for format their own representation As an example, the IPadress object is printable\+:
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{ \{c++\}}
-\DoxyCodeLine{IPAddress   ipAddress(192, 168, 0, 1);}
-\DoxyCodeLine{Log.verboseln ("{}ip address   : \%p"{}, ipAddress);}
-
-\end{DoxyCode}
-
-
-\href{https://forum.arduino.cc/t/printable-classes/438816}{\texttt{ this example}} shows how to make your own classes printable\hypertarget{index_autotoc_md30}{}\doxysubsubsection{Storing messages in Flash memory}\label{index_autotoc_md30}
-Flash strings log variables can be stored and reused at several places to reduce final hex size.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{ \{c++\}}
-\DoxyCodeLine{const \_\_FlashStringHelper * logAs = F("{}Log as"{});}
-\DoxyCodeLine{Log.fatal   (F("{}\%S Fatal with string value from Flash   : \%s"{}CR    ) , logAs, "{}value"{}     );}
-\DoxyCodeLine{Log.error   (  "{}\%S Error with binary values             : \%b, \%B"{}CR  , logAs, 23  , 345808);}
-
-\end{DoxyCode}
-
-
-If you want to declare that string globally (outside of a function), you will need to use the PROGMEM macro instead.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{ \{c++\}}
-\DoxyCodeLine{const char LOG\_AS[] PROGMEM = "{}Log as "{};}
-\DoxyCodeLine{}
-\DoxyCodeLine{void logError() \{}
-\DoxyCodeLine{    Log.error   (  "{}\%S Error with binary values : \%b, \%B"{}CR  , PSTRPTR(LOG\_AS), 23  , 345808);}
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}
-\hypertarget{index_autotoc_md31}{}\doxysubsubsection{Custom logging format}\label{index_autotoc_md31}
-You can modify your logging format by defining a custom prefix \& suffix for each log line. For example\+: 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{ \{c++\}}
-\DoxyCodeLine{void printPrefix(Print* \_logOutput, int logLevel) \{}
-\DoxyCodeLine{    printTimestamp(\_logOutput);}
-\DoxyCodeLine{    printLogLevel (\_logOutput, logLevel);}
-\DoxyCodeLine{\}}
-
-\end{DoxyCode}
- will result in log timestamps very similar to e.\+g. NLOG\+: 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00:47:51.432 VERBOSE Message to be logged}
-
-\end{DoxyCode}
-\hypertarget{index_autotoc_md32}{}\doxysubsection{Credit}\label{index_autotoc_md32}
-Based on library by
 \begin{DoxyItemize}
-\item \href{https://github.com/mrRobot62}{\texttt{ Bernd Klein}} ~\newline
+\item We use the \href{http://semver.org/}{\texttt{ Sem\+Ver}} numbering scheme for our releases.
+\item The latest stable release is \href{https://github.com/theAgingApprentice/underwear/releases/tag/v1.0.0}{\texttt{ v1.\+0.\+0}}.
+\end{DoxyItemize}\hypertarget{index_autotoc_md28}{}\doxysubsection{Acknowledgements}\label{index_autotoc_md28}
 
+\begin{DoxyItemize}
+\item The many folks involved in porting the Arduino libraries over to the ESP32 SOC.
+\item Adafruit for their excellent freely available tutorials. 
 \end{DoxyItemize}
-
-Bugfixes \& features by
-\begin{DoxyItemize}
-\item \href{https://github.com/rahuldeo2047}{\texttt{ rahuldeo2047}}
-\item \href{https://github.com/NOX73}{\texttt{ NOX73}}
-\item \href{https://github.com/dhylands}{\texttt{ Dave Hylands}}
-\item \href{https://github.com/Josha}{\texttt{ Jos Hanon}}
-\item \href{https://github.com/blemasle}{\texttt{ Bertrand Lemasle}}
-\item \href{https://github.com/mfalkvidd}{\texttt{ Mikael Falkvidd}}
-\item \href{https://github.com/rowanG077}{\texttt{ Rowan Goemans}}
-\item \href{https://github.com/sanddorn}{\texttt{ Nils Bokermann}}
-\item \href{https://github.com/1technophile}{\texttt{ Florian}}
-\item \href{https://github.com/wrong-kendall}{\texttt{ wrong-\/kendall}}
-\item \href{https://github.com/bitli}{\texttt{ bitli}}
-\item \href{https://github.com/ChristianBauerAMDC}{\texttt{ Christian\+Bauer\+AMDC}}
-\end{DoxyItemize}\hypertarget{index_autotoc_md33}{}\doxysubsection{On using and modifying libraries}\label{index_autotoc_md33}
-
-\begin{DoxyItemize}
-\item \href{http://www.arduino.cc/en/Main/Libraries}{\texttt{ http\+://www.\+arduino.\+cc/en/\+Main/\+Libraries}}
-\item \href{http://www.arduino.cc/en/Reference/Libraries}{\texttt{ http\+://www.\+arduino.\+cc/en/\+Reference/\+Libraries}}
-\end{DoxyItemize}\hypertarget{index_autotoc_md34}{}\doxysubsection{Copyright}\label{index_autotoc_md34}
-Arduino\+Log (Copyright © 2017,2018, 2019, 2021) is provided under MIT License. 
