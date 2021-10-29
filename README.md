@@ -5,13 +5,13 @@
 # icUnderwear - The starting point for ESP32 Arduino based robot projects
 
 ## Table of contents
-* [Overview](## Overview)
-* [Features](## Features)
-* [Compatabillity](## Compatability)
-* [Development environment](## Development-environment)
-* [Code documentation](# Code-documentation)
-* [Downloading](##Downloading)
-* [Testing](## Testing)
+* [Overview](#Overview)
+* [Features](#Features)
+* [Compatabillity](#Compatability)
+* [Development environment](#Development-environment)
+* [Code documentation](#Code-documentation)
+* [Downloading](#Downloading)
+* [Testing](#Testing)
 * [Releases](#Releases)
 * [Acknowledgements](#Acknowledgements)
 
