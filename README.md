@@ -1,8 +1,6 @@
+![Underwear logo](/Img/readmeBanner?raw=true)
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mmistakes/minimal-mistakes/master/LICENSE)
 [![Doxygen Action](https://github.com/theAgingApprentice/aaChip/actions/workflows/main.yml/badge.svg?event=push)](https://github.com/theAgingApprentice/aaChip/actions/workflows/main.yml)
-
-# Underwear 
-
 ## Table of contents
 * [Overview](#Overview)
 * [Dependencies](#Dependencies)
