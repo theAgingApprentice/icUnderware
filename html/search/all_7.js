@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['notice_0',['notice',['../class_logging.html#a6350649aea4d88d6398bb6b789d6da40',1,'Logging']]]
+  ['logging_0',['Logging',['../class_logging.html',1,'Logging'],['../class_logging.html#acc3d848a3d05076fd185cd95e9c648d5',1,'Logging::Logging()']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['underwear_0',['underwear',['../index.html',1,'']]]
+  ['icunderwear_0',['icUnderwear',['../index.html',1,'']]]
 ];
