@@ -1,29 +1,41 @@
 ![Underwear logo](img/underwearLogo.png)
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mmistakes/minimal-mistakes/master/LICENSE)
 [![Doxygen Action](https://github.com/theAgingApprentice/aaChip/actions/workflows/main.yml/badge.svg?event=push)](https://github.com/theAgingApprentice/aaChip/actions/workflows/main.yml)
+
+# icUnderwear - The starting point for ESP32 Arduino based robot projects
+
 ## Table of contents
-* [Overview](#Overview)
-* [Dependencies](#Dependencies)
-* [Author(s)](#Author)
-* [Development environment](#Development-environment)
-* [Code documentation](#Code-documentation)
-* [Microprocessor compatibility](#Microprocessor-compatibility)
-* [Installing](#Installing)
-* [Running tests](#Running-tests)
+* [Overview](## Overview)
+* [Features](## Features)
+* [Compatabillity](## Compatability)
+* [Development environment](## Development-environment)
+* [Code documentation](# Code-documentation)
+* [Downloading](##Downloading)
+* [Testing](## Testing)
 * [Releases](#Releases)
 * [Acknowledgements](#Acknowledgements)
 
 ## Overview
-This repository contains Arduino code that serves as the base code you will use to create your IOT embedded system's device software. Extend this code to create your application. This code is broken down into modules.
+This repository contains Arduino code that get you off to a flying 
+start when you start you next robot project. Simply clone this 
+template repository and use the source code to boot strap the 
+development of your robot's integrated circuit firmware. 
 
-## Dependencies
-This class depends on <a href="https://github.com/espressif/arduino-esp32">
-Arduino.h</a> being present on your system. This is the Arduino core library
-that comes bundled with PlatformIO. All other libraries upon which this code 
-depends are included in the lib directory tree. 
+## Features
 
-## Author
-Written by Old Squire for the Aging Apprentice.
+* Modular code for easy maintenance
+* Hardware aware for easy configuration
+* Supports typical subsystems found in robot projects   
+* Repo auto generates online documentation
+* MIT License
+
+## Compatability 
+
+* This code has only been tested on the 
+[Adafruit Huzzah32](https://learn.adafruit.com/adafruit-huzzah32-esp32-feather) 
+development board containing the 
+[Espressif ESP WROOM32 SOC](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf) 
+featuring a pair of [Cadence/Xtensa®32-bit LX6 microprocessors](https://mirrobo.ru/wp-content/uploads/2016/11/Cadence_Tensillica_Xtensa_LX6_ds.pdf). 
 
 ## Development environment
 This library was written using the following tools:
@@ -34,21 +46,7 @@ PlatformIO plugin
 [embedded software](https://en.wikipedia.org/wiki/Embedded_software) application 
 [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment). 
 
-## Code documentation
-As part of our CI/CD software development process we use 
-[Github Actions](https://docs.github.com/en/actions) to automatically generate
-up-to-date documentation via [Doxygen](https://www.doxygen.nl/index.html) every 
-time the **main** branch gets updated. The output from Doxygen is placed in the 
-**root** diretory of the **gh-pages** branch. This repository has an associated 
-[Github Pages](https://pages.github.com/) site that contains all of the Doxygen
-tags and assorted embedded comments from the code itself. This documentation 
-can be viewed in your web browser 
-[here](https://theagingapprentice.github.io/underwear/html/index.html).    
-
-## Microprocessor compatibility
-This code has only been tested on the [Adafruit Huzzah32](https://learn.adafruit.com/adafruit-huzzah32-esp32-feather) development board containing the [Espressif ESP WROOM32 SOC](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf) featuring a pair of [Cadence/Xtensa®32-bit LX6 microprocessors](https://mirrobo.ru/wp-content/uploads/2016/11/Cadence_Tensillica_Xtensa_LX6_ds.pdf). 
-
-## Installing
+## Downloading
 These instructions assume that you have [Git](https://git-scm.com/) installed on 
 your computer.
 
@@ -59,54 +57,12 @@ you are all set. If you get a blank response back then you must set up an
 association to the remote repository by issuing the command `git remote add 
 origin https://github.com/theAgingApprentice/{projectName.git}` to set up the remote. 
 
-## Running tests
-As part of our CI/CD software development process we want to run automated tests 
-every time new code is pushed to the main branch. To date we have not managed to
-do this though we have experimented with the PlatformIO C/C++ unit testing tool 
-called [unity](https://github.com/ThrowTheSwitch/Unity). We have a dummy script
-called [test_main.cpp](test/test_main.cpp) located located in the test directory 
-off the root of the repository. This test does nothing useful at the moment and
-it may not even make sense to run tests on a class such as this. Full 
-instructions on how to write and run these test can be found on the PlatformIO 
-website 
-[here](https://docs.platformio.org/en/latest/tutorials/espressif32/arduino_debugging_unit_testing.html#writing-unit-tests). 
-If you wish to run the tests you must do so manally while in Visual Studio Code 
-and PlatformIO:
-
-1. Click the PlatformIO Icon in the Visual Studio Code Activity bar along the left
-hand side of your screen.
-2. Expand the Advanced menu item.
-3. Click the Test menu item.
-
-The tests will then run and show you results like this.
-
-```
-test/test_main.cpp:58:test_string_concat        [PASSED]
-test/test_main.cpp:59:test_string_substring     [PASSED]
-test/test_main.cpp:60:test_string_index_of      [PASSED]
-test/test_main.cpp:61:test_string_equal_ignore_case     [PASSED]
-test/test_main.cpp:62:test_string_to_upper_case [PASSED]
-test/test_main.cpp:63:test_string_replace       [PASSED]
------------------------
-6 Tests 0 Failures 0 Ignored
-==================================== [PASSED] Took 13.70 seconds 
-Test    Environment    Status    Duration
-------  -------------  --------  ------------
-*       featheresp32   PASSED    00:00:13.699
-==================================== 1 succeeded in 00:00:13.699 
-```
-
-We are also looking at PlatformIO's support of 
-[Github Actions](https://docs.platformio.org/en/latest/integration/ci/github-actions.html) 
-to see what can be accomplished for Arduino projects. We do not want to pay to 
-use TravisCI. 
+## Testing
+At this time we do not have a way t test this embedded code.
 
 ## Releases
 * We use the [SemVer](http://semver.org/) numbering scheme for our releases. 
 * The latest stable release is [v1.0.0](https://github.com/theAgingApprentice/underwear/releases/tag/v1.0.0).
-
-## Examples
-There is an [example sketch](https://github.com/theAgingApprentice/underwear/blob/main/examples/simpleExample/simpleExample.cpp) that shows you how to use this class.
 
 ## Acknowledgements
 * The many folks involved in porting the Arduino libraries over to the ESP32 SOC.
