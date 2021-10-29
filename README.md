@@ -48,7 +48,7 @@ PlatformIO plugin
 
 ## Code documentation
 This repository automatcally generates 
-[online documentation](https://theagingapprentice.github.io/icUnderwear/html/index.html) 
+[online documentation](https://theagingapprentice.github.io/icUnderware/html/index.html) 
 each time code is merged into the main branch.
 
 ## Downloading
