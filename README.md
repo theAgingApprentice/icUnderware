@@ -16,10 +16,10 @@
 * [Acknowledgements](#Acknowledgements)
 
 ## Overview
-This repository contains Arduino code that get you off to a flying 
-start when you start you next robot project. Simply clone this 
-template repository and use the source code to boot strap the 
-development of your robot's integrated circuit firmware. 
+This repository contains Arduino code that will get you off to a flying start 
+when you begin your next robot project. Simply clone this template repository 
+and use the source code to boot strap the development of your robot's 
+integrated circuit firmware. 
 
 ## Features
 
