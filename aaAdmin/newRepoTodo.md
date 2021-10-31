@@ -42,5 +42,5 @@ In order to use our curated list of Github labels while managing tasks and pull 
 - Make sure that the bash script is an executable (chmod u+x updateGithubLabels).
 - Run the script: ./updateGithubLabels taregtRepoName githubPersonalToken 
 - If all goes well you should see 
-   - A bunch of messages scoll by in your terminal
+   - A bunch of messages scroll by in your terminal
    - In the issues tab of your code repoitory click the Labels button and you should see the curated list of labels. 
