@@ -10,13 +10,13 @@
  *******************************************************************************/
 #include <Arduino.h> // Arduino Core for ESP32. Comes with PlatformIO.
 #include <ArduinoLog.h> // https://github.com/thijse/Arduino-Log.
-#include <aaChip.h> // Information about the host processor. 
+#include <aaSocMicro.h> // Information about the host ESP32 SOC. 
 
 /************************************************************************************
- * @section mainGlobalVars Global variables and constants.
+ * @section mainGlobalVars Global variables, constants and objects.
  ************************************************************************************/
 const unsigned long SERIAL_BAUD_RATE = 115200;
-aaChip bob;
+aaSocMicro MCU;
 
 /************************************************************************************
  * @section mainDeclare Declare functions found in main.cpp.

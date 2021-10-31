@@ -69,14 +69,8 @@ void setup()
 {
    setupSerial(); // Set serial baud rate. 
    Log.traceln("<setup> Start of setup.");
-   Log.verboseln("<setup> Chip manufacturer = %s.", bob.manufacturer); 
-   Log.verboseln("<setup> Chip model = %u.", bob.getChipModel()); 
-   Log.verboseln("<setup> Chip revision = %u.", bob.getChipRevision()); 
-   Log.verboseln("<setup> SDK version = %s.", bob.SdkVer); 
-//- manufacturer - public const char manufacturer[]
-//- model - getChipModel(), getChipRevision()
-//- cpu - getCpuId(), getCpuClock()
-//- memory - getCodeSize(), getFreeHeap()   
+   MCU.logResetReason(); // Report on reason for last CPU reset.
+   MCU.logSubsystemDetails(); // Log microprocessor details. 
    Log.traceln("<setup> End of setup."); 
 } // start()
 
