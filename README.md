@@ -52,15 +52,7 @@ This repository automatcally generates
 each time code is merged into the main branch.
 
 ## Downloading
-These instructions assume that you have [Git](https://git-scm.com/) installed on 
-your computer.
-
-1. Navigate to the Arduino project directory on your computer.
-2. Issue the command `git clone https://github.com/theAgingApprentice/{projectName.git}`.
-3. Issue the command `git remote`. If you get back the response *origin* then 
-you are all set. If you get a blank response back then you must set up an 
-association to the remote repository by issuing the command `git remote add 
-origin https://github.com/theAgingApprentice/{projectName.git}` to set up the remote. 
+Detailed instructions on how to use this template repository can bew viewed [here](./aaAdmin/newRepoTodo.md).
 
 ## Testing
 At this time we do not have a way to test this embedded code.
