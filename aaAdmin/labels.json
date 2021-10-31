@@ -135,7 +135,7 @@
      "color": "e6e6e6",
      "description": "No action needed or possible. The issue is either fixed, addressed better by other issues, or just out of product scope.",
      "aliases": [
-       "dupicate", 
+       "duplicate", 
        "invalid",
        "stale",
        "Status: Abandoned",
