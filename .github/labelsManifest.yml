@@ -1,0 +1,87 @@
+- name: breaking
+  description: Introduces a breaking change.
+  color: d73a4a
+- name: good first issue
+  description: Good for newcomers.
+  color: 7057ff
+- name: help
+  description: Require assistance and/or training.
+  color: 0e8a16
+- name: effort 1
+  description: One hours work
+  color: 91ca55
+- name: effort 2
+  description: Half days work
+  color: c2e2a2
+- name: effort 3
+  description: One days work
+  color: e9f4dc
+- name: effort 4
+  description: Half weeks work
+  color: fef6d7
+- name: effort 5
+  description: Weeks work
+  color: fef2c0
+- name: effort 6
+  description: Many weeks work
+  color: fbca04
+- name: priority critical
+  description: Fix today
+  color: d73a4a
+- name: priority medium
+  description: Fix within a week
+  color: ffb8c6
+- name: priority low
+  description: Fix when you have time
+  color: fbca04
+- name: semantic-release
+  description: Create Github release when merged.
+  color: e6e6e6
+- name: state approved
+  description: Approved to proceed.
+  color: 91ca55
+- name: state blocked
+  description: Something is blocking action.
+  color: d73a4a
+- name: state pending
+  description: Taking action, but need a few things to happen first. A feature that needs dependencies merged, or a bug that needs further data.
+  color: fbca04
+- name: state inactive
+  description: No action needed or possible. The issue is either fixed, addressed better by other issues, or just out of product scope.
+  color: e6e6e6
+- name: type bug
+  description: Something isn't working.
+  color: d73a4a
+- name: type chore
+  description: Converting measurements, reorganizing folder structure, and other necessary (but less impactful) tasks.
+  color: fef2c0
+- name: type discussion
+  description: Questions, proposals and info that requires discussion.
+  color: d4c5f9
+- name: type docs
+  description: Related to documentation and information.
+  color: fef2c0
+- name: type feature
+  description: Brand new functionality, features, pages, workflows, endpoints, etc.
+  color: 5ebeff
+- name: type fix
+  description: Iterations on existing features or infrastructure.
+  color: 91ca55
+- name: type security
+  description: Something is vulnerable or not secure.
+  color: d73a4a
+- name: type testing
+  description: Related to testing.
+  color: fbca04
+- name: work chaotic
+  description: The situation is chaotic, novel practices used.
+  color: fbca04
+- name: work complex
+  description: The situation is complex, emergent practices used.
+  color: d4c5f9
+- name: work complicated
+  description: The situation is complicated, good practices used.
+  color: ffb8c6
+- name: work obvious
+  description: The situation is obvious, best practices used.
+  color: 91ca55
