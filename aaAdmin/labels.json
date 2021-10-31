@@ -12,27 +12,33 @@
    },
    {
      "name": "effort: 1",
-     "color": "91ca55"
+     "color": "91ca55",
+     "description": "Requires about 1 to 2 hours of work."
    },
    {
      "name": "effort: 2",
-     "color": "c2e2a2"
+     "color": "c2e2a2",
+     "description": "Requires about half a days work."
    },
    {
      "name": "effort: 3",
-     "color": "e9f4dc"
+     "color": "e9f4dc",
+     "description": "Requires about 1 to 2 days of work."
+   },
+   {
+     "name": "effort: 4",
+     "color": "fef6d7",
+     "description": "Requires about 1 week of work."
    },
    {
      "name": "effort: 5",
-     "color": "fef6d7"
+     "color": "fef2c0",
+     "description": "Requires weeks of work."
    },
    {
-     "name": "effort: 8",
-     "color": "fef2c0"
-   },
-   {
-     "name": "effort: 13",
-     "color": "fbca04"
+     "name": "effort: 6",
+     "color": "fbca04",
+     "description": "Requires months of work."
    },
    {
      "name": "good first issue",
@@ -52,6 +58,7 @@
    {
      "name": "help",
      "color": "0e8a16",
+     "description": "Requires training or information exchange.",
      "aliases": [
        "help wanted",
        "Patch Welcome",
@@ -63,6 +70,7 @@
    {
      "name": "priority: now",
      "color": "d73a4a",
+     "description": "Fix today.",      
      "aliases": [
        "priority: critical",
        "Priority: Critical"
@@ -71,14 +79,16 @@
    {
      "name": "priority: soon",
      "color": "ffb8c6",
+     "description": "Fix in the next few days.",
      "aliases": [
        "priority: medium",
        "Priority: Medium"
      ]
    },
    {
-     "name": "priority: 2day",
+     "name": "priority: eventually",
      "color": "fbca04",
+     "description": "No rush to fix this.",
      "aliases": [
        "priority: high",
        "Priority: High"
@@ -86,6 +96,7 @@
    },
    {
      "name": "semantic-release",
+     "description": "Create release after main merge.",
      "color": "e6e6e6"
    },
    {
