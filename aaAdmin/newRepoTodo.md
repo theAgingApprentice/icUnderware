@@ -1,6 +1,6 @@
 # Todo list for new repo
 
-This document contains a list of actions to take once you have in order to set up a new Github repo using the IC Underwear repository as a template.
+This document contains a list of actions to take once you have in order to set up a new Github repo using the IC Underwear repository as a template. ```The instructions assume that you have git installed on your machine.```
 
 ## Process Overview
 
