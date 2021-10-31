@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>icUnderware: Retrieve Class Reference</title>
+<title>icUnderware: lib/aaSocMicro/aaSocMicro.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,44 +62,64 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_680252715f57bd2d40b43f71ac04b1ad.html">aaSocMicro</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
-  <div class="headertitle"><div class="title">Retrieve Class Reference</div></div>
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">aaSocMicro.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Library for the host Software On a Chip (SOC) Micro Controller (MC). <br  />
+  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &lt;ArduinoLog.h&gt;</code><br />
+<code>#include &lt;rom/rtc.h&gt;</code><br />
+</div>
+<p><a href="aa_soc_micro_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html">aaSocMicro</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a478906598b682ee4f9f5b828ee047a49"><td class="memItemLeft" align="right" valign="top">const int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aa_soc_micro_8h.html#a478906598b682ee4f9f5b828ee047a49">NUM_CORES</a> = 2</td></tr>
+<tr class="separator:a478906598b682ee4f9f5b828ee047a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >configuration details from both FreeRTOS and the ESP32 Arduino framework.</p>
-<p >This is the first variation of the class constructor. <a class="el" href="class_logging.html">Logging</a> defaults to silent mode. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">null</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<h1><a class="anchor" id="autotoc_md4"></a>
-@return null</h1>
-<p >configuration details from both FreeRTOS and the ESP32 Arduino framework.</p>
-<p >This is the second variation of the class constructor. <a class="el" href="class_logging.html">Logging</a> is sent to the specified output pointer. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">output</td><td>class that handles bit stream input. </td></tr>
-  </table>
-  </dd>
-</dl>
-<h1><a class="anchor" id="autotoc_md5"></a>
-@return null</h1>
-<p >configuration details from both FreeRTOS and the ESP32 Arduino framework.</p>
-<p >This is the third variation of the class constructor. <a class="el" href="class_logging.html">Logging</a> is sent to the specified output pointer at the specified logging level. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">loggingLevel</td><td>is one of 6 predefined levels from the logging library. </td></tr>
-    <tr><td class="paramname">output</td><td>class that handles bit stream input. </td></tr>
-    <tr><td class="paramname">showLevel</td><td>when true prefixs log message with the logging level letter. </td></tr>
-  </table>
-  </dd>
-</dl>
-<h1><a class="anchor" id="autotoc_md6"></a>
-@return null</h1>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>lib/aaSocMicro/<a class="el" href="aa_soc_micro_8cpp.html">aaSocMicro.cpp</a></li>
-</ul>
+<div class="textblock"><p >Library for the host Software On a Chip (SOC) Micro Controller (MC). <br  />
+ </p>
+<p >This library was written to manage access to the four subsystems </p>
+<h1><a class="anchor" id="autotoc_md17"></a>
+embedded in the ESP32 family of SOCs.</h1>
+</div><h2 class="groupheader">Variable Documentation</h2>
+<a id="a478906598b682ee4f9f5b828ee047a49" name="a478906598b682ee4f9f5b828ee047a49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a478906598b682ee4f9f5b828ee047a49">&#9670;&nbsp;</a></span>NUM_CORES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int8_t NUM_CORES = 2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<h1><a class="anchor" id="aaSocMicroIncludes"></a>
+Included libraries.</h1>
+<h1><a class="anchor" id="aaSocMicroVars"></a>
+Define global variables.</h1>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

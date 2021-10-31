@@ -83,13 +83,13 @@ $(function() {
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> *******************************************************************************/</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span> <span class="comment">// Arduino Core for ESP32. Comes with PlatformIO.</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;ArduinoLog.h&gt;</span> <span class="comment">// https://github.com/thijse/Arduino-Log.</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;aaChip.h&gt;</span> <span class="comment">// Information about the host processor. </span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="aa_soc_micro_8h.html">aaSocMicro.h</a>&gt;</span> <span class="comment">// Information about the host ESP32 SOC. </span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">/************************************************************************************</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> * @section mainGlobalVars Global variables and constants.</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> * @section mainGlobalVars Global variables, constants and objects.</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> ************************************************************************************/</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> SERIAL_BAUD_RATE = 115200;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><a class="code hl_class" href="classaa_chip.html">aaChip</a> bob;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><a class="code hl_class" href="classaa_soc_micro.html">aaSocMicro</a> MCU;</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">/************************************************************************************</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> * @section mainDeclare Declare functions found in main.cpp.</span></div>
@@ -99,7 +99,8 @@ $(function() {
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keywordtype">void</span> loop(); <span class="comment">// Arduino mandatory function #2. Runs continually.</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#endif </span><span class="comment">// End of precompiler protected code block</span></div>
-<div class="ttc" id="aclassaa_chip_html"><div class="ttname"><a href="classaa_chip.html">aaChip</a></div><div class="ttdef"><b>Definition:</b> aaChip.h:20</div></div>
+<div class="ttc" id="aaa_soc_micro_8h_html"><div class="ttname"><a href="aa_soc_micro_8h.html">aaSocMicro.h</a></div><div class="ttdoc">Library for the host Software On a Chip (SOC) Micro Controller (MC).</div></div>
+<div class="ttc" id="aclassaa_soc_micro_html"><div class="ttname"><a href="classaa_soc_micro.html">aaSocMicro</a></div><div class="ttdef"><b>Definition:</b> aaSocMicro.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

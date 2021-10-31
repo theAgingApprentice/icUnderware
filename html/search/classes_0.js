@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['aachip_0',['aaChip',['../classaa_chip.html',1,'']]]
+  ['aasocmicro_0',['aaSocMicro',['../classaa_soc_micro.html',1,'']]]
 ];

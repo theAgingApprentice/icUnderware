@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7eaachip_0',['~aaChip',['../classaa_chip.html#a91c98e22cf02f01b4aad708517eb4923',1,'aaChip']]]
+  ['_7eaasocmicro_0',['~aaSocMicro',['../classaa_soc_micro.html#a56fe62917e801df460e502ada323fa23',1,'aaSocMicro']]]
 ];

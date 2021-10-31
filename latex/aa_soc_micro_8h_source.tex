@@ -1,0 +1,41 @@
+\hypertarget{aa_soc_micro_8h_source}{}\doxysection{aa\+Soc\+Micro.\+h}
+\label{aa_soc_micro_8h_source}\index{lib/aaSocMicro/aaSocMicro.h@{lib/aaSocMicro/aaSocMicro.h}}
+\mbox{\hyperlink{aa_soc_micro_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifndef aaSocMicro\_h }\textcolor{comment}{// Start precompiler code block. }}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define aaSocMicro\_h }\textcolor{comment}{// Precompiler macro used to avoid dupicate inclusion of this code.}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <Arduino.h>} \textcolor{comment}{// Arduino Core for ESP32. Comes with Platform.io.}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <ArduinoLog.h>} \textcolor{comment}{// https://github.com/thijse/Arduino-\/Log.}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <rom/rtc.h>} \textcolor{comment}{// Low level RTC functions such as RESET\_REASON.}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{21 \textcolor{comment}{//const char CHIP\_MANUFACTURER[20] = "{}Espressif"{};}}
+\DoxyCodeLine{22 \textcolor{comment}{//const char CHIP\_RADIO[60] = "{}802.11 b/g/n/e/i (802.11n @ 2.4 GHz up to 150 Mbit/s)"{};}}
+\DoxyCodeLine{23 \textcolor{keyword}{const} int8\_t \mbox{\hyperlink{aa_soc_micro_8h_a478906598b682ee4f9f5b828ee047a49}{NUM\_CORES}} = 2;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{28 \textcolor{keyword}{class }\mbox{\hyperlink{classaa_soc_micro}{aaSocMicro}} }
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30    \textcolor{keyword}{public}:}
+\DoxyCodeLine{31       \mbox{\hyperlink{classaa_soc_micro}{aaSocMicro}}(); \textcolor{comment}{// First form class constructor.}}
+\DoxyCodeLine{32       \mbox{\hyperlink{classaa_soc_micro}{aaSocMicro}}(Print *); \textcolor{comment}{// Second form of class constructor.}}
+\DoxyCodeLine{33       \mbox{\hyperlink{classaa_soc_micro}{aaSocMicro}}(\textcolor{keywordtype}{int}, Print *, \textcolor{keywordtype}{bool}); \textcolor{comment}{// Third form of class constructor.}}
+\DoxyCodeLine{34       \mbox{\hyperlink{classaa_soc_micro_a56fe62917e801df460e502ada323fa23}{\string~aaSocMicro}}(); \textcolor{comment}{// Class destructor.}}
+\DoxyCodeLine{35       \textcolor{keywordtype}{void} \mbox{\hyperlink{classaa_soc_micro_a6f051b40547e850b43b95673dff10480}{logResetReason}}(); \textcolor{comment}{// Logs last CPU reset reason for both cores.}}
+\DoxyCodeLine{36       \textcolor{keywordtype}{void} \mbox{\hyperlink{classaa_soc_micro_aac635a19a9debb041fb5906396fc30e3}{logSubsystemDetails}}(); \textcolor{comment}{// Logs details of host micro controller.}}
+\DoxyCodeLine{37    \textcolor{keyword}{private}:}
+\DoxyCodeLine{38       \textcolor{keywordtype}{void} \_transReasonCode(\textcolor{keywordtype}{char} \&, RESET\_REASON); \textcolor{comment}{// Translate reset reason codes.}}
+\DoxyCodeLine{39       \textcolor{keywordtype}{void} \_logCoreCPU(); \textcolor{comment}{// Logs core CPU details.}}
+\DoxyCodeLine{40       \textcolor{keywordtype}{void} \_logCoreMem(); \textcolor{comment}{// Logs core memory details.}}
+\DoxyCodeLine{41       \textcolor{keywordtype}{void} \_logIntegratedFlash(); \textcolor{comment}{// Logs integrated flash details.}}
+\DoxyCodeLine{42       \textcolor{keywordtype}{void} \_logPsramMem(); \textcolor{comment}{// Logs PSRAM details.}}
+\DoxyCodeLine{43       \textcolor{keywordtype}{void} \_transFlashModeCode(\textcolor{keywordtype}{char} \&); \textcolor{comment}{// Translate flash memory mode code.}}
+\DoxyCodeLine{44       \textcolor{keywordtype}{void} \_logGPIO(); \textcolor{comment}{// Logs GPIO details.}}
+\DoxyCodeLine{45       \textcolor{keywordtype}{void} \_Wireless(); \textcolor{comment}{// Logs radio details.}}
+\DoxyCodeLine{46       \textcolor{keywordtype}{void} \_Bluetooth(); \textcolor{comment}{// Logs bluetooth details.     }}
+\DoxyCodeLine{47 \}; \textcolor{comment}{//class aaSocMicro}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// End of precompiler protected code block}}
+
+\end{DoxyCode}
