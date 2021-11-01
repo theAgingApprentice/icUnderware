@@ -1,51 +1,12 @@
-/**
- * @file aaSocMicro.cpp
- * 
- * @section intro_sec Introduction
- *
- * This is an Arduino class that retrieves information about the integrated
- * circuit running the binary.  
- *
- * @section dependencies Dependencies
- * 
- * This class depends on on <a href="https://github.com/espressif/arduino-esp32">
- * Arduino.h</a> being present on your system. This is the Arduino core library
- * that comes bundled with PlatformIO.
- *
- * @section author Author(s)
- *
- * Written by Old Squire for the Aging Apprentice.
- *
- * @section license license
- *
- * Copyright 2021 the Aging Apprentice 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to 
- * deal in the Software without restriction, including without limitation the 
- * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
- * sell copies of the Software, and to permit persons to whom the Software is 
- * furnished to do so, subject to the following conditions: The above copyright
- * notice and this permission notice shall be included in all copies or 
- * substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
- * IN THE SOFTWARE.  
- *****************************************************************************/
 #include <aaSocMicro.h> // Header file for linking.
 
 /**
- * @class Retrieve integrated circuit configuration details from both FreeRTOS 
- * and the ESP32 Arduino framework.
- * @details This is the first variation of the class constructor. Logging
- * defaults to silent mode.
+ * Retrieve integrated circuit configuration details from both FreeRTOS and 
+ * the ESP32 Arduino framework. This is the first variation of the class 
+ * constructor. Logging defaults to silent mode.
  * @param null
  * @return null
- * ==========================================================================*/
+ ******************************************************************************/
 aaSocMicro::aaSocMicro()
 {
    bool showLevel = true; // Prefixed logging output with a single letter level.
@@ -56,13 +17,13 @@ aaSocMicro::aaSocMicro()
 } //aaSocMicro::aaSocMicro()
 
 /**
- * @class Retrieve integrated circuit configuration details from both FreeRTOS 
+ * Retrieve integrated circuit configuration details from both FreeRTOS 
  * and the ESP32 Arduino framework.
  * @details This is the second variation of the class constructor. Logging is
  * sent to the specified output pointer.
  * @param output class that handles bit stream input.
  * @return null
- * ==========================================================================*/
+ ******************************************************************************/
 aaSocMicro::aaSocMicro(Print *output)
 {
    bool showLevel = true; // Prefixed logging output with a single letter level.
@@ -80,7 +41,7 @@ aaSocMicro::aaSocMicro(Print *output)
  * @param output class that handles bit stream input.
  * @param showLevel when true prefixs log message with the logging level letter.
  * @return null
- * ==========================================================================*/
+ ******************************************************************************/
 aaSocMicro::aaSocMicro(int loggingLevel, Print *output, bool showLevel)
 {
    Log.begin(loggingLevel, output, showLevel); // Set logging parameters. 
@@ -91,7 +52,7 @@ aaSocMicro::aaSocMicro(int loggingLevel, Print *output, bool showLevel)
  * @brief This is the destructor for this class.
  * @param null
  * @return null
- * ==========================================================================*/
+ ******************************************************************************/
 aaSocMicro::~aaSocMicro()
 {
    Log.traceln("<aaSocMicro::~aaSocMicro> Destructor running.");
@@ -102,7 +63,7 @@ aaSocMicro::~aaSocMicro()
  * @param reason is the address to put the reason code.
  * @param code is the nuerica reset value reported by the CPU. 
  * @return null. Populated char array pointed to by the reason parameter.
- * ============================================================================*/
+ ******************************************************************************/
 void aaSocMicro::_transReasonCode(char &reason, RESET_REASON code)
 {
    switch(code)
@@ -129,7 +90,7 @@ void aaSocMicro::_transReasonCode(char &reason, RESET_REASON code)
 /**
  * @brief Sends human readable reset reason for both cores to the log.
  * @details 
- * ============================================================================*/
+ ******************************************************************************/
 void aaSocMicro::logResetReason()
 {
    char _reason[20]; // Text version of last reset reason code.
@@ -156,7 +117,7 @@ void aaSocMicro::logResetReason()
  * hardware acceleration.
  * - Peripherals subsystem that handles all of the General Purpose Input/Output 
  * (GPIO) interfaces.
- * ============================================================================*/
+ ******************************************************************************/
 void aaSocMicro::logSubsystemDetails()
 {
    _logCoreCPU();
@@ -183,7 +144,7 @@ void aaSocMicro::logSubsystemDetails()
  * subsystem called RTC which remains active even when it is in standby. RTC is 
  * able to access some SRAM aswell as some GPIO pins (the ones with capacitive 
  * touch capabilities) even when the chip is in non active modes.
- * ============================================================================*/
+ ******************************************************************************/
 void aaSocMicro::_logCoreCPU()
 {
    Log.verboseln("<aaSocMicro::_logCoreCPU> Core CPU details.");
@@ -261,7 +222,7 @@ void aaSocMicro::_logCoreCPU()
  * TODO: #11 See https://blog.espressif.com/esp32-programmers-memory-model-259444d89387
  * for further breakdown of SRAM, IRAM, DRAM. Also investigate SOC_IRAM, 
  * SOC_DRAM, SOC_RTC high/low syntax.
- * ============================================================================*/
+ ******************************************************************************/
 void aaSocMicro::_logCoreMem()
 {
    Log.verboseln("<aaSocMicro::_logCoreMem> Core memory details.");
@@ -298,7 +259,7 @@ void aaSocMicro::_logCoreMem()
  * 4. FM_FAST_READ -
  * 5. FM_SLOW_READ -
  * 255. FM_UNKNOWN -  
- * ============================================================================*/
+ ******************************************************************************/
 void aaSocMicro::_transFlashModeCode(char &details)
 {
    switch(ESP.getFlashChipMode())
@@ -329,7 +290,7 @@ void aaSocMicro::_transFlashModeCode(char &details)
  * cache for this external memory. The architecture can supports up to 16 MB 
  * off-chip SPI Flash. The Huzzah32 featherboard does not come with any 
  * off-chip SPI Flash memory. 
- * ============================================================================*/
+ ******************************************************************************/
 void aaSocMicro::_logIntegratedFlash()
 {
    char _details[80]; // Text version of flash memory mode.
@@ -347,7 +308,7 @@ void aaSocMicro::_logIntegratedFlash()
  * cache for this external memory. The architecture can supports up to 8 MB 
  * off-chip SPI SRAM (PSRAM). The Huzzah32 featherboard does not come with any 
  * PSRAM.
- * ============================================================================*/
+ ******************************************************************************/
 void aaSocMicro::_logPsramMem()
 {
    Log.traceln("<aaSocMicro::_logPsramMem> PSRAM is optional external RAM accessed via the SPI bus.");
