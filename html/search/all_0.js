@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['aasocmicro_0',['aaSocMicro',['../classaa_soc_micro.html',1,'aaSocMicro'],['../classaa_soc_micro.html#a716726aa9e3bcb458f6e0f3ccbcead3e',1,'aaSocMicro::aaSocMicro()'],['../classaa_soc_micro.html#a12d0d45a66b27759a1ad9ac2ef767dd0',1,'aaSocMicro::aaSocMicro(Print *)']]]
+  ['_3ca_20href_3d_22https_3a_2f_2fgithub_2ecom_2ftheagingapprentice_2ficunderware_22_3eicuderwear_3c_2fa_3e_20robot_20projects_20start_20here_21_0',['&lt;a href=&quot;https://github.com/theAgingApprentice/icUnderware&quot;&gt;icUderwear&lt;/a&gt; Robot projects start here!',['../index.html',1,'']]]
 ];
