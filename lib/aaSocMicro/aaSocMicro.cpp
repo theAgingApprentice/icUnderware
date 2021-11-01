@@ -1,7 +1,5 @@
 /**
  * @file aaSocMicro.cpp
- *
- * @mainpage the Aging Apprentice microprcessor information class 
  * 
  * @section intro_sec Introduction
  *
