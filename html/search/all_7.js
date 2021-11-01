@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['logging_0',['Logging',['../class_logging.html',1,'Logging'],['../class_logging.html#acc3d848a3d05076fd185cd95e9c648d5',1,'Logging::Logging()']]],
-  ['logresetreason_1',['logResetReason',['../classaa_soc_micro.html#a6f051b40547e850b43b95673dff10480',1,'aaSocMicro']]],
-  ['logsubsystemdetails_2',['logSubsystemDetails',['../classaa_soc_micro.html#aac635a19a9debb041fb5906396fc30e3',1,'aaSocMicro']]]
+  ['getlevel_0',['getLevel',['../class_logging.html#a7e08bbf4977d111072321e0b7661db0e',1,'Logging']]],
+  ['getshowlevel_1',['getShowLevel',['../class_logging.html#a9a2a46597f8e5f52835f9394458ee597',1,'Logging']]]
 ];

@@ -66,6 +66,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_logging-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Logging Class Reference</div></div>
 </div><!--header-->
@@ -145,6 +147,43 @@ template&lt;class T , typename... Args&gt; </td></tr>
 template&lt;class T , typename... Args&gt; </td></tr>
 <tr class="memitem:aaf752d304740b55c741336fd8f318b81"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>verboseln</b> (T msg, Args... args)</td></tr>
 <tr class="separator:aaf752d304740b55c741336fd8f318b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a714840794950ab31df5da5b95322e391"><td class="memItemLeft" align="right" valign="top"><a id="a714840794950ab31df5da5b95322e391" name="a714840794950ab31df5da5b95322e391"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (const char *format, va_list args)</td></tr>
+<tr class="separator:a714840794950ab31df5da5b95322e391"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac235601ab2022bbba6ef5df756ec8906"><td class="memItemLeft" align="right" valign="top"><a id="ac235601ab2022bbba6ef5df756ec8906" name="ac235601ab2022bbba6ef5df756ec8906"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (const __FlashStringHelper *format, va_list args)</td></tr>
+<tr class="separator:ac235601ab2022bbba6ef5df756ec8906"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdd64501e98b8ff6afdaecf46109961c"><td class="memItemLeft" align="right" valign="top"><a id="acdd64501e98b8ff6afdaecf46109961c" name="acdd64501e98b8ff6afdaecf46109961c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (const Printable &amp;obj, va_list args)</td></tr>
+<tr class="separator:acdd64501e98b8ff6afdaecf46109961c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa716d9b029fa8c7bb1c9b508ac7c0bec"><td class="memItemLeft" align="right" valign="top"><a id="aa716d9b029fa8c7bb1c9b508ac7c0bec" name="aa716d9b029fa8c7bb1c9b508ac7c0bec"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>printFormat</b> (const char format, va_list *args)</td></tr>
+<tr class="separator:aa716d9b029fa8c7bb1c9b508ac7c0bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36549bd2f6b0790a2ce66b7dd8e30b0f"><td class="memTemplParams" colspan="2"><a id="a36549bd2f6b0790a2ce66b7dd8e30b0f" name="a36549bd2f6b0790a2ce66b7dd8e30b0f"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a36549bd2f6b0790a2ce66b7dd8e30b0f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>printLevel</b> (int level, bool cr, T msg,...)</td></tr>
+<tr class="separator:a36549bd2f6b0790a2ce66b7dd8e30b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a117105f639285ba5922836121294c04a"><td class="memItemLeft" align="right" valign="top"><a id="a117105f639285ba5922836121294c04a" name="a117105f639285ba5922836121294c04a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>_level</b></td></tr>
+<tr class="separator:a117105f639285ba5922836121294c04a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0238efb5e2ef03157163c858f6ea2d20"><td class="memItemLeft" align="right" valign="top"><a id="a0238efb5e2ef03157163c858f6ea2d20" name="a0238efb5e2ef03157163c858f6ea2d20"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_showLevel</b></td></tr>
+<tr class="separator:a0238efb5e2ef03157163c858f6ea2d20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfe6419194701dde6aa639ff2aed9f55"><td class="memItemLeft" align="right" valign="top"><a id="adfe6419194701dde6aa639ff2aed9f55" name="adfe6419194701dde6aa639ff2aed9f55"></a>
+Print *&#160;</td><td class="memItemRight" valign="bottom"><b>_logOutput</b></td></tr>
+<tr class="separator:adfe6419194701dde6aa639ff2aed9f55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3aa57b147a22eb8878455e4efc9811f"><td class="memItemLeft" align="right" valign="top"><a id="ae3aa57b147a22eb8878455e4efc9811f" name="ae3aa57b147a22eb8878455e4efc9811f"></a>
+printfunction&#160;</td><td class="memItemRight" valign="bottom"><b>_prefix</b> = NULL</td></tr>
+<tr class="separator:ae3aa57b147a22eb8878455e4efc9811f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdef1e9b3c17f9447e0a65f2a665aa83"><td class="memItemLeft" align="right" valign="top"><a id="afdef1e9b3c17f9447e0a65f2a665aa83" name="afdef1e9b3c17f9447e0a65f2a665aa83"></a>
+printfunction&#160;</td><td class="memItemRight" valign="bottom"><b>_suffix</b> = NULL</td></tr>
+<tr class="separator:afdef1e9b3c17f9447e0a65f2a665aa83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >ArduinoLog is a minimalistic framework to help the programmer output log statements to an output of choice, fashioned after extensive logging libraries such as log4cpp ,log4j and log4net. In case of problems with an application, it is helpful to enable logging so that the problem can be located. ArduinoLog is designed so that log statements can remain in the code with minimal performance cost. In order to facilitate this the loglevel can be adjusted, and (if your code is completely tested) all logging code can be compiled out.</p>
