@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['warning_0',['warning',['../class_logging.html#a1609a3ef235dd9afc3de8ed96a89a7ba',1,'Logging']]]
+  ['verbose_0',['verbose',['../class_logging.html#a914d3541e84dd8aec39dc5fec6599cf2',1,'Logging']]]
 ];

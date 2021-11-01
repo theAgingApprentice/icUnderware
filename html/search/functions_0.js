@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['begin_0',['begin',['../class_logging.html#a4b79e9f2e0deb509aacad7f267217db5',1,'Logging']]]
+  ['aasocmicro_0',['aaSocMicro',['../classaa_soc_micro.html#a716726aa9e3bcb458f6e0f3ccbcead3e',1,'aaSocMicro::aaSocMicro()'],['../classaa_soc_micro.html#a12d0d45a66b27759a1ad9ac2ef767dd0',1,'aaSocMicro::aaSocMicro(Print *)']]]
 ];

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['aasocmicro_0',['aaSocMicro',['../classaa_soc_micro.html',1,'']]],
-  ['aasocmicro_2ecpp_1',['aaSocMicro.cpp',['../aa_soc_micro_8cpp.html',1,'']]],
-  ['aasocmicro_2eh_2',['aaSocMicro.h',['../aa_soc_micro_8h.html',1,'']]]
+  ['aasocmicro_0',['aaSocMicro',['../classaa_soc_micro.html',1,'aaSocMicro'],['../classaa_soc_micro.html#a716726aa9e3bcb458f6e0f3ccbcead3e',1,'aaSocMicro::aaSocMicro()'],['../classaa_soc_micro.html#a12d0d45a66b27759a1ad9ac2ef767dd0',1,'aaSocMicro::aaSocMicro(Print *)']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['manage_0',['Manage',['../class_manage.html',1,'']]]
+  ['retrieve_0',['Retrieve',['../class_retrieve.html',1,'']]]
 ];
