@@ -1,29 +1,64 @@
-/**
- * @file aaSocMicro.h
- * @brief Library for the host Software On a Chip (SOC) Micro Controller (MC).  
- * @details This library was written to manage access to the four subsystems 
- * embedded in the ESP32 family of SOCs.  
- ===================================================================================*/
 #ifndef aaSocMicro_h // Start precompiler code block. 
 
-#define aaSocMicro_h // Precompiler macro used to avoid dupicate inclusion of this code.
+#define aaSocMicro_h // Precompiler macro to prevent duplicate inclusions.
 
 /**
- * @section aaSocMicroIncludes Included libraries.
- ************************************************************************************/
+ * Included libraries.
+ ******************************************************************************/
 #include <Arduino.h> // Arduino Core for ESP32. Comes with Platform.io.
 #include <ArduinoLog.h> // https://github.com/thijse/Arduino-Log.
 #include <rom/rtc.h> // Low level RTC functions such as RESET_REASON.
 
 /**
- * @section aaSocMicroVars Define global variables.
- ************************************************************************************/
-//const char CHIP_MANUFACTURER[20] = "Espressif";
-//const char CHIP_RADIO[60] = "802.11 b/g/n/e/i (802.11n @ 2.4 GHz up to 150 Mbit/s)";
+ * Global variables.
+ ******************************************************************************/
 const int8_t NUM_CORES = 2;
 
 /**
- * @class Manage wifi connection to Access Point.
+ * The aaSocMicro class provides a single object of authority regarding the ESP32's 
+ * subsystems. These subsystems are:
+ * 
+ * Core subsystem
+ * ==============
+ * 
+ * The core is made up of two core processors and both ROM and RAM core memory.
+ * 
+ * WiFi subsystem
+ * ==============
+ * 
+ * The Wifi subsystem shares RF send/recieve, clock, switch and balun with the 
+ * Bluetooth subsystem.
+ * 
+ * Bluetooth subsystem
+ * ===================
+ * 
+ * The Bluetooth shares RF send/recieve, clock, switch and balun with the WiFi 
+ * subsystem.
+ * 
+ * RTC subsystem
+ * 
+ * The Real Time Clock (RTC) subsystem is used by the ESP32 for low power modes. It
+ * contains the following: 
+ * 
+ * 1. The Phasor Measurement Unit (PMU)
+ * 2. The small and ultra low power (ULP) 32-bit co-processor
+ * 3. 8Kbs of RAM memory known as the recovery memory. 
+ * 
+ * Crytographic Acceleration subsystem
+ * =================================== 
+ * The Cryptograpic Acceleration subsystem provides hardware encrytion acceleration.
+ * The following algorithms are supported:
+ * 
+ * 1. SHA
+ * 2. RSA
+ * 3. AES
+ * 4. RNG 
+ * 
+ * Peripherals subsystem
+ * =====================
+ * 
+ * The Peripherals subsystem handles all of the General Purpose Input/Output (GPIO) 
+ * interfaces.
  ************************************************************************************/
 class aaSocMicro 
 {
