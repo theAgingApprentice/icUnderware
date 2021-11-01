@@ -48,10 +48,10 @@ aaSocMicro::aaSocMicro(Print *output)
 /**
  * @brief This is the third constructor form for this class.
  * @details Instantiating this class using the third form results in you
- * controlling all logging behavior for this class.
- * @param loggingLevel is one of 6 predefined levels from the logging library.
+ * controlling all Logging behavior for this class.
+ * @param loggingLevel is one of 6 predefined levels from the Logging library.
  * @param output class that handles bit stream input.
- * @param showLevel when true prefixs log message with the logging level letter.
+ * @param showLevel when true prefixs log message with the Logging level letter.
  * @return null
  ******************************************************************************/
 aaSocMicro::aaSocMicro(int loggingLevel, Print *output, bool showLevel)
