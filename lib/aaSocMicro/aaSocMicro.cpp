@@ -260,7 +260,7 @@ void aaSocMicro::_logCoreCPU()
  * cache for this external memory.
  * – Supports up to 16 MB off-Chip SPI Flash.
  * – Supports up to 8 MB off-Chip SPI SRAM.
- * See https://blog.espressif.com/esp32-programmers-memory-model-259444d89387
+ * TODO: #11 See https://blog.espressif.com/esp32-programmers-memory-model-259444d89387
  * for further breakdown of SRAM, IRAM, DRAM. Also investigate SOC_IRAM, 
  * SOC_DRAM, SOC_RTC high/low syntax.
  * ============================================================================*/
