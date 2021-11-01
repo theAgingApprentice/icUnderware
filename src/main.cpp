@@ -1,7 +1,5 @@
 /******************************************************************************
  * @file main.cpp
- *
- * @mainpage the Aging Apprentice underwear 
  * 
  * @section intro_sec Introduction
  *
