@@ -1,5 +1,4 @@
 #include <main.h> // Header file for linking
-
 /**
  * Initialize the serial output. The usual Serial.print function used for 
  * serial output to the terminal is replaced in this project by the Arduino 
@@ -9,9 +8,9 @@
  * LOG_LEVEL_TRACE or LOG_LEVEL_VERBOSE.
  * 
  * Note: To fully remove all logging code, uncomment the line 
- * #define DISABLE_LOGGING from the file Logging.h. This will significantly 
- * reduce the binary code file size.
- * ============================================================================*/
+ * #define DISABLE_LOGGING from the file Logging.h. This will 
+ * significantly reduce the binary code file size.
+ ******************************************************************************/
 void setupSerial()
 {
    bool showLevel = true; // Prefixed logging output with a single letter level.
@@ -23,8 +22,8 @@ void setupSerial()
 } //setupSerial()
 
 /**
- * @brief Standard Arduino initialization routine.
- * ==========================================================================*/
+ * Standard Arduino initialization routine.
+ ******************************************************************************/
 void setup() 
 {
    setupSerial(); // Set serial baud rate. 
@@ -35,8 +34,8 @@ void setup()
 } // start()
 
 /**
- * @brief Standard Arduino main loop.
- * ==========================================================================*/
+ * Standard Arduino main loop.
+ ******************************************************************************/
 void loop() 
 {
 
