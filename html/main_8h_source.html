@@ -71,34 +71,46 @@ $(function() {
   <div class="headertitle"><div class="title">main.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*******************************************************************************</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * @file main.h  </span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *******************************************************************************/</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#ifndef main_h </span><span class="comment">// Start of precompiler check to avoid dupicate inclusion of this code block.</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define main_h </span><span class="comment">// Precompiler macro used for precompiler check.</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">/*******************************************************************************</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * @section mainIncludes Included libraries.</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> *******************************************************************************/</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span> <span class="comment">// Arduino Core for ESP32. Comes with PlatformIO.</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;ArduinoLog.h&gt;</span> <span class="comment">// https://github.com/thijse/Arduino-Log.</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="aa_soc_micro_8h.html">aaSocMicro.h</a>&gt;</span> <span class="comment">// Information about the host ESP32 SOC. </span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">/************************************************************************************</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> * @section mainGlobalVars Global variables, constants and objects.</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> ************************************************************************************/</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> SERIAL_BAUD_RATE = 115200;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><a class="code hl_class" href="classaa_soc_micro.html">aaSocMicro</a> MCU;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">/************************************************************************************</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> * @section mainDeclare Declare functions found in main.cpp.</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment"> ************************************************************************************/</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keywordtype">void</span> setupSerial(); <span class="comment">// Serial output initilization.</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keywordtype">void</span> setup(); <span class="comment">// Arduino mandatory function #1. Runs once at boot. </span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keywordtype">void</span> loop(); <span class="comment">// Arduino mandatory function #2. Runs continually.</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#endif </span><span class="comment">// End of precompiler protected code block</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">   d8b          888     888               888                                                          </span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">   Y8P          888     888               888                                                          </span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">                888     888               888                                                          </span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">   888  .d8888b 888     888 88888b.   .d88888  .d88b.  888d888 888  888  888  8888b.  888d888  .d88b.  </span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">   888 d88P&quot;    888     888 888 &quot;88b d88&quot; 888 d8P  Y8b 888P&quot;   888  888  888     &quot;88b 888P&quot;   d8P  Y8b </span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">   888 888      888     888 888  888 888  888 88888888 888     888  888  888 .d888888 888     88888888 </span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">   888 Y88b.    Y88b. .d88P 888  888 Y88b 888 Y8b.     888     Y88b 888 d88P 888  888 888     Y8b.     </span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">   888  &quot;Y8888P  &quot;Y88888P&quot;  888  888  &quot;Y88888  &quot;Y8888  888      &quot;Y8888888P&quot;  &quot;Y888888 888      &quot;Y8888 </span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"></span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">   Log library for Arduino</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">   https://github.com/theAgingApprentice/icUnderware</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">   Licensed under the MIT License &lt;http://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifndef main_h </span><span class="comment">// Start of precompiler check to avoid dupicate inclusion of this code block.</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#define main_h </span><span class="comment">// Precompiler macro used for precompiler check.</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> * Included libraries.</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span> <span class="comment">// Arduino Core for ESP32. Comes with PlatformIO.</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;ArduinoLog.h&gt;</span> <span class="comment">// https://github.com/thijse/Arduino-Log.</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;<a class="code" href="aa_soc_micro_8h.html">aaSocMicro.h</a>&gt;</span> <span class="comment">// Information about the host ESP32 SOC. </span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"> * Global variables, constants and objects.</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> SERIAL_BAUD_RATE = 115200;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><a class="code hl_class" href="classaa_soc_micro.html">aaSocMicro</a> MCU;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment"> * Declare functions found in main.cpp.</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keywordtype">void</span> setupSerial(); <span class="comment">// Serial output initilization.</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keywordtype">void</span> setup(); <span class="comment">// Arduino mandatory function #1. Runs once at boot. </span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keywordtype">void</span> loop(); <span class="comment">// Arduino mandatory function #2. Runs continually.</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif </span><span class="comment">// End of precompiler protected code block</span></div>
 <div class="ttc" id="aaa_soc_micro_8h_html"><div class="ttname"><a href="aa_soc_micro_8h.html">aaSocMicro.h</a></div><div class="ttdoc">Library for the host Software On a Chip (SOC) Micro Controller (MC).</div></div>
 <div class="ttc" id="aclassaa_soc_micro_html"><div class="ttname"><a href="classaa_soc_micro.html">aaSocMicro</a></div><div class="ttdef"><b>Definition:</b> aaSocMicro.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
