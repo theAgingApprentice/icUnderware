@@ -15,8 +15,10 @@
 const int8_t NUM_CORES = 2;
 
 /**
- * The aaSocMicro class provides a single object of authority regarding the ESP32's 
- * subsystems. These subsystems are:
+ * The aaSocMicro class provides a single object of authority regarding the 
+ * ESP32. Details are collected from both FreeRTOS and the ESP32 Arduino 
+ * framework. The information comes from the ESP32's six substems which are 
+ * outlined below.
  * 
  * Core subsystem
  * ==============
@@ -36,6 +38,7 @@ const int8_t NUM_CORES = 2;
  * subsystem.
  * 
  * RTC subsystem
+ * =============
  * 
  * The Real Time Clock (RTC) subsystem is used by the ESP32 for low power modes. It
  * contains the following: 
