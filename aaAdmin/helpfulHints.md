@@ -1,4 +1,4 @@
-Back to [README](./README.md)
+Back to [README](https://github.com/theAgingApprentice/icUnderware/blob/main/README.md)
 ---
 
 This page contains a list of information that tripped us up while we were creating this repository. May it save you the hours of pain that we went through!
