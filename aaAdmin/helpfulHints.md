@@ -7,7 +7,8 @@ This page contains a list of information that tripped us up while we were creati
 
 * [Making ASCII banners](#Making-ASCII-banners).
 * [Making Markdown internal links](#Making-markdown-lnternal-links).
-* [Doxygen ignores main.cpp](#Doxygen-ignores-maincpp) 
+* [Doxygen ignores main.cpp](#Doxygen-ignores-maincpp). 
+* [Doxygen TODO list issue](#Doxygen-TODO-issue).
 
 # Making ASCII banners
 
@@ -36,3 +37,7 @@ The content of the main.cpp is considered to be global objects which doxygen, by
 To document a member of a C++ class, you must also document the class itself. The same holds for namespaces. To document a global C function, typedef, enum or preprocessor definition you must first document the file that contains it (usually this will be a header file, because that file contains the information that is exported to other source files).
 ```
 Let's repeat that, because it is often overlooked: to document global objects (functions, typedefs, enum, macros, etc), you must document the file in which they are defined. In other words, there must at least be a ```/** @file */``` line in this file.
+
+# Doxygen TODO issue
+
+When you create a TODO list item that you are not going to immediately delete put it at the end of a comment block with a blank line before and after it.
