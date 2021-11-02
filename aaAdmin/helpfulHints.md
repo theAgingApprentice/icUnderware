@@ -6,8 +6,8 @@ This page contains a list of information that tripped us up while we were creati
 # Table of content
 
 * [Making ASCII banners](#Making-ASCII-banners).
-* [Markdown TOC](markdown-toc).
-* [Doxygen ignores main.cpp](doxygen-ignores-maincpp) 
+* [Making Markdown internal links](#Making-markdown-lnternal-links).
+* [Doxygen ignores main.cpp](#Doxygen-ignores-maincpp) 
 
 # Making ASCII banners
 
@@ -18,17 +18,15 @@ We like to put fancy ASCII banners at the top of the header files for all of our
 3. Type in the text you want.
 4. Click the ```select and copy``` button at the bottom of the page. 
 
-# Markdown TOC
+# Making markdown lnternal links
 
 Making a TOC in Markdown files with working links to headings.
 The IDs are generated from the content of the header according to the following rules:
 
-1. All text is converted to lowercase.
-2. All non-word text (e.g., punctuation, HTML) is removed. Exception to this is that you must leave one hash ```#``` at the start. 
-3. All spaces are converted to hyphens. 
-4. Two or more hyphens in a row are converted to one. Same goes for hash characters ```#```.
-5. If a header with the same ID has already been generated, a unique incrementing number is appended, starting at 1.
-
+1. All non-word text (e.g., punctuation, HTML) is removed. Exception to this is that you must leave one hash ```#``` at the start. 
+2. All spaces are converted to hyphens. 
+3. Two or more hyphens in a row are converted to one. Same goes for hash characters ```#```.
+4. If a header with the same ID has already been generated, a unique incrementing number is appended, starting at 1.
 
 # Doxygen ignores main.cpp
 
