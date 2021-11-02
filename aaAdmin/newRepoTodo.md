@@ -9,11 +9,11 @@ The following is a brief list of the steps you must take in order to make use of
 
 1. Clone the [icUnderware repository](#Cloning-the-template).
 2. Make a [local repo](#Making-a-local-repo).
-3. Edit the [Doxy file](#Editing-the-Doxyfile).
+3. Edit the [Doxyfile](#Editing-the-Doxyfile).
 4. Edit the [README.md](#Edit-the-READMEmd-file).
 5. Move/rename ```./aaAdmin/platformio.ini.temp``` to ```./platformio.ini```.  
 6. Curate the [Github labels](#Curating-the-Github-Labels) in the new repository.
-7. [Next steps](next-steps).
+7. [Next steps](#Next-steps).
 
 ## Cloning the template
 
@@ -47,7 +47,7 @@ There is a file called Doxyfile in the root of the repository. Make the followin
 Update the README.md file to reflect what your project is all about. 
 ## Curating the Github Labels
 
-```This process only works on unix systems. A windows script could be mae to do this on windos machines.```
+```This process only works on unix systems. A windows script could be made to do this on windos machines.```
 In order to use our curated list of Github labels while managing tasks and pull requests do the following.
 - Create a Github [personal access Token](https://github.com/settings/tokens). Be sure to select REPO scope. Save the token somewhere safe as you cannot find it again once you close the tab. 
 - Navigate to the aaAdmin directory of the new local repository that you created.   
@@ -58,5 +58,5 @@ In order to use our curated list of Github labels while managing tasks and pull 
    - A bunch of messages scroll by in your terminal
    - In the issues tab of your code repoitory click the Labels button and you should see the curated list of labels. 
 
-# Next Steps
+# Next steps
 Congratulations, you can now start working on your new project! Note that the repository you are using makes use of a number of Github features that you may not be all that familiar with. If you are having trouble getting somethng to work for you check out the [helpful hints](helpfulHints.md) page.
