@@ -5,7 +5,7 @@ This page contains a list of information that tripped us up while we were creati
 
 # Table of content
 
-* [Making ASCII banners](making-ascii-banners).
+* [Making ASCII banners](#Making-ASCII-banners).
 * [Markdown TOC](markdown-toc).
 * [Doxygen ignores main.cpp](doxygen-ignores-maincpp) 
 
@@ -24,9 +24,9 @@ Making a TOC in Markdown files with working links to headings.
 The IDs are generated from the content of the header according to the following rules:
 
 1. All text is converted to lowercase.
-2. All non-word text (e.g., punctuation, HTML) is removed.
-3. All spaces are converted to hyphens.
-4. Two or more hyphens in a row are converted to one.
+2. All non-word text (e.g., punctuation, HTML) is removed. Exception to this is that you must leave one hash ```#``` at the start. 
+3. All spaces are converted to hyphens. 
+4. Two or more hyphens in a row are converted to one. Same goes for hash characters ```#```.
 5. If a header with the same ID has already been generated, a unique incrementing number is appended, starting at 1.
 
 
