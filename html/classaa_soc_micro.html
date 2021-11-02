@@ -177,7 +177,7 @@ Peripherals subsystem</h1>
 <ol type="1">
 <li><a class="el" href="class_logging.html">Logging</a> level = Silent. This means that this class will not send messages to the log.</li>
 <li><a class="el" href="class_logging.html">Logging</a> output goes to the standard Serial interface.</li>
-<li>Show logging level = TRUE. This prefixes a single letter to each log <br  />
+<li>Show <a class="el" href="class_logging.html">Logging</a> level = TRUE. This prefixes a single letter to each log <br  />
  message that indicates the method used to issue it (e.g. Log.verbose() messages show up in the logs with a V prepended to them. <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">null</td><td></td></tr>
@@ -211,7 +211,7 @@ Peripherals subsystem</h1>
 <ol type="1">
 <li><a class="el" href="class_logging.html">Logging</a> level = Silent. This means that this class will not send messages to the log.</li>
 <li><a class="el" href="class_logging.html">Logging</a> output goes wherever you specified with the output parameter.</li>
-<li>Show logging level = TRUE. This prefixes a single letter to each log <br  />
+<li>Show <a class="el" href="class_logging.html">Logging</a> level = TRUE. This prefixes a single letter to each log <br  />
  message that indicates the method used to issue it (e.g. Log.verbose() messages show up in the logs with a V prepended to them. <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">output</td><td>class that handles bit stream input. </td></tr>
@@ -260,8 +260,8 @@ Peripherals subsystem</h1>
 <p >Instantiating this class using the third form results in you controlling all <a class="el" href="class_logging.html">Logging</a> behavior for this class. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">loggingLevel</td><td>is one of 6 predefined levels from the <a class="el" href="class_logging.html">Logging</a> library. </td></tr>
-    <tr><td class="paramname">output</td><td>class that handles bit stream input. </td></tr>
-    <tr><td class="paramname">showLevel</td><td>when true prefixs log message with the <a class="el" href="class_logging.html">Logging</a> level letter. </td></tr>
+    <tr><td class="paramname">output</td><td>is a class that can handle bit stream input (i.e. Serial). </td></tr>
+    <tr><td class="paramname">showLevel</td><td>prefixs log message with the <a class="el" href="class_logging.html">Logging</a> level letter when TRUE. </td></tr>
   </table>
   </dd>
 </dl>
