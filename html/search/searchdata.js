@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "<_abcefglnstvw~",
   1: "al",
   2: "_abcefglnstvw~",
-  3: "<"
+  3: "<t"
 };
 
 var indexSectionNames =
