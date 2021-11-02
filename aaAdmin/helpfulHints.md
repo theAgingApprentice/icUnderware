@@ -40,4 +40,15 @@ Let's repeat that, because it is often overlooked: to document global objects (f
 
 # Doxygen TODO issue
 
-When you create a TODO list item that you are not going to immediately delete put it at the end of a comment block with a blank line before and after it.
+When you create a TODO list item use the that you are not going to immediately delete  then follow these rules and they will be nicely formatted in your online documentation:
+
+1. Put them at the bottom of your comment block.
+2. Start with an ``@``.
+3. Make them all lower case.
+
+For example: 
+```
+/**
+ * @todo This is Doxygen friendly todo ist item.
+ */
+```
