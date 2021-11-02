@@ -10,7 +10,7 @@
  * 2. Logging output goes to the standard Serial interface. 
  * 3. Show Logging level = TRUE. This prefixes a single letter to each log  
  * message that indicates the method used to issue it (e.g. Log.verbose() 
- * messages show up in the logs with a V prepended to them.
+ * messages show up in the logs with a V prepended to them).
  * @param null
  * @return null
  ******************************************************************************/
@@ -33,7 +33,7 @@ aaSocMicro::aaSocMicro()
  * 2. Logging output goes wherever you specified with the output parameter. 
  * 3. Show Logging level = TRUE. This prefixes a single letter to each log  
  * message that indicates the method used to issue it (e.g. Log.verbose() 
- * messages show up in the logs with a V prepended to them.
+ * messages show up in the logs with a V prepended to them).
  * @param output class that handles bit stream input.
  * @return null
  ******************************************************************************/
@@ -50,7 +50,7 @@ aaSocMicro::aaSocMicro(Print* output)
  * @details Instantiating this class using the third form results in you
  * controlling all Logging behavior for this class.
  * @param loggingLevel is one of 6 predefined levels from the Logging library.
- * @param output is a class that can handle bit stream input (i.e. Serial).
+ * @param output is a class that can handle bit stream input (e.g. Serial).
  * @param showLevel prefixs log message with the Logging level letter when TRUE.
  * @return null
  ******************************************************************************/
