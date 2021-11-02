@@ -7,12 +7,12 @@ This document contains a 'to do list' of actions to take to start your project u
 
 The following is a brief list of the steps you must take in order to make use of this template repository. Some of the more involved steps include links to a section further down in this document with greater details. 
 
-1. Clone the [icUnderware repository](Cloning-the-template).
-2. Make a [local repo](making-a-local-repo).
-3. Edit the [Doxy file](editing-the-doxyfile).
-4. Edit the [README.md](edit-the-readmemd-file).
+1. Clone the [icUnderware repository](#Cloning-the-template).
+2. Make a [local repo](#Making-a-local-repo).
+3. Edit the [Doxy file](#Editing-the-Doxyfile).
+4. Edit the [README.md](#Edit-the-READMEmd-file).
 5. Move/rename ```./aaAdmin/platformio.ini.temp``` to ```./platformio.ini```.  
-6. Curate the [Github labels](curating-the-github-labels) in the new repository.
+6. Curate the [Github labels](#Curating-the-Github-Labels) in the new repository.
 7. [Next steps](next-steps).
 
 ## Cloning the template
