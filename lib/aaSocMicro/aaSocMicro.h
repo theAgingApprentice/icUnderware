@@ -38,7 +38,8 @@ const int8_t NUM_CORES = 2;
  * Core subsystem
  * ==============
  * 
- * The core is made up of two core processors and both ROM and RAM core memory.
+ * The core subsystem is made up of CPUs, refered to as COR0 and COR1, as 
+ * well as both ROM and RAM memory, referred to as core memory.
  * 
  * WiFi subsystem
  * ==============
