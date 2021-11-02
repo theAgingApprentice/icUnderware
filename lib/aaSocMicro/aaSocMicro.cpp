@@ -199,8 +199,6 @@ void aaSocMicro::_logCoreCPU()
  * happens, one or both of these memory areas will be corrupted with 
  * unpredictable results. In some cases it will cause an immediate crash. In 
  * others, the effects of the corruption may not be noticed until much later.
- * @TODO: #4 Implement monitoring of heap and stack to detect potential SRAM 
- * corruption.
  * 
  * ESP32_WROOM_32E memory
  * ======================
@@ -238,12 +236,13 @@ void aaSocMicro::_logCoreCPU()
  * cache for this external memory.
  * – Supports up to 16 MB off-Chip SPI Flash.
  * – Supports up to 8 MB off-Chip SPI SRAM.
- * @TODO: #11 Improve core memory analysis. 
- * See https://blog.espressif.com/esp32-programmers-memory-model-259444d89387
- * for further breakdown of SRAM, IRAM, DRAM. Also investigate SOC_IRAM, 
- * SOC_DRAM, SOC_RTC high/low syntax.
  * @param null
  * @return null
+ * @TODO: #4 Implement monitoring of heap and stack to detect potential SRAM 
+ * corruption. 
+ * @TODO: #11 Improve core memory analysis of SRAM, IRAM, DRAM by leveraging 
+ the SOC_IRAM, SOC_DRAM, SOC_RTC high/low syntax. See more at 
+ * [this link](See https://blog.espressif.com/esp32-programmers-memory-model-259444d89387)
  ******************************************************************************/
 void aaSocMicro::_logCoreMem()
 {
