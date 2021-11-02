@@ -104,7 +104,7 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a606ec0fae06cc4641f51e98c03dce0d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends details about the core CPU(s) to the log.  <a href="classaa_soc_micro.html#a606ec0fae06cc4641f51e98c03dce0d5">More...</a><br /></td></tr>
 <tr class="separator:a606ec0fae06cc4641f51e98c03dce0d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb258d330f921c84f3f7a0067fe5a5a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html#adb258d330f921c84f3f7a0067fe5a5a9">_logCoreMem</a> ()</td></tr>
-<tr class="memdesc:adb258d330f921c84f3f7a0067fe5a5a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends details about the core CPU(s) to the log.  <a href="classaa_soc_micro.html#adb258d330f921c84f3f7a0067fe5a5a9">More...</a><br /></td></tr>
+<tr class="memdesc:adb258d330f921c84f3f7a0067fe5a5a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends details about the core memory to the log.  <a href="classaa_soc_micro.html#adb258d330f921c84f3f7a0067fe5a5a9">More...</a><br /></td></tr>
 <tr class="separator:adb258d330f921c84f3f7a0067fe5a5a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83309dda1ca95e1b8120f9085d988850"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html#a83309dda1ca95e1b8120f9085d988850">_logIntegratedFlash</a> ()</td></tr>
 <tr class="memdesc:a83309dda1ca95e1b8120f9085d988850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends details about the integrated flash memory to the log.  <a href="classaa_soc_micro.html#a83309dda1ca95e1b8120f9085d988850">More...</a><br /></td></tr>
@@ -127,16 +127,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>_Bluetooth</b> ()</td
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >The <a class="el" href="classaa_soc_micro.html">aaSocMicro</a> class provides a single object of authority regarding the ESP32. Details are collected from both FreeRTOS and the ESP32 Arduino framework. The information comes from the ESP32's six substems which are outlined below.</p>
-<h1><a class="anchor" id="autotoc_md1"></a>
+<h1><a class="anchor" id="autotoc_md5"></a>
 Core subsystem</h1>
 <p >The core subsystem is made up of two CPUs, refered to as COR0 and COR1, as well as both ROM and RAM memory, referred to as core memory.</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
 WiFi subsystem</h1>
 <p >The Wifi subsystem shares RF send/recieve, clock, switch and balun with the Bluetooth subsystem.</p>
-<h1><a class="anchor" id="autotoc_md3"></a>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Bluetooth subsystem</h1>
 <p >The Bluetooth subsystem shares RF send/recieve, clock, switch and balun with the WiFi subsystem.</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 RTC subsystem</h1>
 <p >The Real Time Clock (RTC) subsystem is used by the ESP32 for low power modes. It contains the following:</p>
 <ol type="1">
@@ -144,7 +144,7 @@ RTC subsystem</h1>
 <li>The small and ultra low power (ULP) 32-bit co-processor</li>
 <li>8Kbs of RAM memory known as the recovery memory.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md9"></a>
 Crytographic Acceleration subsystem</h1>
 <p >The Cryptograpic Acceleration subsystem provides hardware encrytion acceleration. The following algorithms are supported:</p>
 <ol type="1">
@@ -153,7 +153,7 @@ Crytographic Acceleration subsystem</h1>
 <li>AES</li>
 <li>RNG</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 Peripherals subsystem</h1>
 <p >The Peripherals subsystem handles all of the General Purpose Input/Output (GPIO) interfaces. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -320,7 +320,7 @@ Peripherals subsystem</h1>
 </div><div class="memdoc">
 
 <p>Sends details about the core CPU(s) to the log. </p>
-<p >The ESP32 comes with 2 Xtensa 32-bit LX6 microprocessors known as core 0 and core 1. Core0 is used for RF communication. The Arduino binary runs on core 1 by default though you can pin threads to core 0 in order to run code there.</p>
+<p >The ESP32_WROOM_32E comes with 2 Xtensa 32-bit LX6 microprocessors known as core 0 and core 1. Core0 is used for RF communication. The Arduino binary runs on core 1 by default though you can pin threads to core 0 in order to run code there.</p>
 <ul>
 <li>Ultra Low Power (ULP) coprocessor is a simple Finite State Machine (FSM) which is designed to perform measurements using the ADC, temperature sensor, and external I2C sensors, while the main processors are in deep sleep mode. The ULP coprocessor can access the RTC_SLOW_MEM memory region, and registers in RTC_CNTL, RTC_IO, and SARADC peripherals. The ULP coprocessor uses fixed-width 32-bit instructions, 32-bit memory addressing, and has 4 general-purpose 16-bit registers.</li>
 <li>Real time clock (RTC). The ESP32 processor has a very low power real time subsystem called RTC which remains active even when it is in standby. RTC is able to access some SRAM aswell as some GPIO pins (the ones with capacitive touch capabilities) even when the chip is in non active modes. <dl class="params"><dt>Parameters</dt><dd>
@@ -358,33 +358,73 @@ Peripherals subsystem</h1>
 </table>
 </div><div class="memdoc">
 
-<p>Sends details about the core CPU(s) to the log. </p>
-<p >The core subsystem contains ROM (Read Only Memory) and SRAM (Static Random Access Memory). The ROM contains espressif magic and we cannot play with that so instead we focus on the SRAM. SRAM can be read and written from your executing program. SRAM memory is used for several purposes by a running program:</p>
-<ul>
-<li>Static Data. This is a block of reserved space in SRAM for all the global and static variables from your program. For variables with initial values, the runtime system copies the initial value from Flash when the program starts.</li>
-<li>Heap. The heap is for dynamically allocated data items. The heap grows from the top of the static data area up as data items are allocated.</li>
-<li>Stack. The stack is for local variables and for maintaining a record of interrupts and function calls. The stack grows from the top of memory down towards the heap. Every interrupt, function call and/or local variable allocation causes the stack to grow. Returning from an interrupt or function call will reclaim all stack space used by that interrupt or function.</li>
-</ul>
-<p >Most memory problems occur when the stack and the heap collide. When this happens, one or both of these memory areas will be corrupted with unpredictable results. In some cases it will cause an immediate crash. In others, the effects of the corruption may not be noticed until much later.</p>
-<h1><a class="anchor" id="autotoc_md0"></a>
-ESP32_WROOM_32E memory</h1>
-<p >There are two Xtensa LX6 CPUs. Each have 4 GB (32-bit) of address space. They were designed using the Harvard Architecture meaning that there are physically separate paths to access data memory program memory. Addresses below 0x4000_0000 are serviced using the data bus. Addresses in the range 0x4000_0000 ~ 0x4FFF_FFFF are serviced using the instruction bus. Finally, addresses over and including 0x5000_0000 are shared by the data and instruction bus.</p>
+<p>Sends details about the core memory to the log. </p>
+<p >The ESP32 core subsystem contains ROM (Read Only Memory) and SRAM (Static Random Access Memory). The ROM contains espressif magic and we cannot play with that so instead we focus on the SRAM.</p>
+<h2><a class="anchor" id="autotoc_md0"></a>
+SRAM</h2>
+<p >The internal RAM layout of the ESP32 is made up of three memory blocks called SRAM0 (192KB), SRAM1 (128 KB) and SRAM2 (200 KB). SRAM0 and SRAM1 can be used as a contiguous IRAM whereas SRAM1 and SRAM2 can be used as a contiguous DRAM address space. While SRAM1 can be used as both IRAM and DRAM, for practical purposes the Espressif IoT Development Framework (ESP-IDF) uses SRAM1 as DRAM, as it’s generally the data memory that applications fall short of.</p>
+<p >The EP32 is based on a Harvard architecture meaning that there are two physically separate paths (buses) to access SRAM.</p>
 <ol type="1">
-<li>Address Space – Symmetric address mapping – 4 GB (32-bit) address space for both data bus and instruction bus – 1296 KB embedded memory address space – 19704 KB external memory address space – 512 KB peripheral address space – Some embedded and external memory regions can be accessed by either data bus or instruction bus – 328 KB DMA address space</li>
-<li>Embedded Memory – 448 KB Internal ROM – 520 KB Internal SRAM – 8 KB RTC FAST Memory – 8 KB RTC SLOW Memory</li>
-<li>The RTC (Real Time Clock) memory is an area of the processor SRAM which remains powered and accessible to the RTC functions of the ESP32 microcontroller and the ULP coprocessor even when standby is activated.</li>
-<li>External Memory Off-chip SPI memory can be mapped into the available address space as external memory. Parts of the embedded memory can be used as transparent cache for this external memory. – Supports up to 16 MB off-Chip SPI Flash. – Supports up to 8 MB off-Chip SPI SRAM. <dl class="params"><dt>Parameters</dt><dd>
+<li>The first bus is used for accessing Instruction memory (IRAM). IRAM is used for code execution and text data. It contains<ul>
+<li>32KB cache for CPU0</li>
+<li>32KB cache for CPU1</li>
+<li>Interrupt vectors</li>
+<li>Text (code binary)</li>
+<li>Free IRAM added to the heap</li>
+</ul>
+</li>
+<li>The second bus is used for accessing Data (DRAM). DRAM handles Block started by symbol (BSS) aka the stack, data aka static data and heap aka the heap. The Memory Mapping Unit (MMU) takes the total SRAM and maps it to distinct address locations. These locations are called Static Data, the Heap and the Stack (BSS).</li>
+</ol>
+<h3><a class="anchor" id="autotoc_md1"></a>
+IRAM</h3>
+<p >The 192 KB of available IRAM in ESP32 is used for code execution, as well as part of it is used as a cache memory for flash (and PSRAM) access.</p>
+<ol type="1">
+<li>First 32KB IRAM is used as a CPU0 cache. This is statically configured in the hardware and can’t be changed.</li>
+<li>The next 32KB is used as CPU1 cache memory. This is statically configured in the hardware and can’t be changed.</li>
+<li>After the first 64KB, the linker script starts placing the text region in IRAM. It first places all the interrupt vectors and then all the text in the compiled application that is marked to be placed in IRAM. While in common case, majority of the application is executed out of the flash (XiP), there are some portions of the applications which are time critical, or that operate on flash itself. They need to be placed in IRAM and that is achieved using a special attribute to these functions or files and linker script doing a job of placing them in IRAM. The symbols _iram_text_start and _iram_text_end are placed by the linker script at the two boundaries of this text section.</li>
+<li>The IRAM after the text section remains unused and is added to the heap.</li>
+</ol>
+<p >_iram_text_start and _iram_text_end symbols are placed by the linker script at the two boundaries of this text section. The IRAM after the text section remains unused and is added to the heap. Also, when the application is configured in a single-core mode, the CPU1 is not functional and CPU1 cache is unused. In that case, CPU1 cache memory (0x40078000–0x4007FFFF ) is added to the heap. The unused IRAM, that is placed in the heap, can be accessed through dynamic allocations. It can be used to place any code in IRAM if the application has such a requirement. However this is quite uncommon.</p>
+<p >The IRAM can also be used for data, but with two important limitations.</p><ol type="1">
+<li>The address used for access to the data in IRAM has to be 32-bit aligned.</li>
+<li>The size of data accessed too has to be 32-bit aligned.</li>
+</ol>
+<p >If the application has such data that can obey these two rules of accesses, it can make use of IRAM memory for that data.</p>
+<h3><a class="anchor" id="autotoc_md2"></a>
+DRAM</h3>
+<p >A typical (simplified) DRAM layout for an application. As the DRAM addresses start at the end of SRAM2, increasing in backward direction, the link time segments allocation happens starting at the end of SRAM2.</p>
+<ol type="1">
+<li>The first 8KB (0x3FFA_E000–0x3FFA_FFFF) are used as a data memory for some of the ROM functions.</li>
+<li>The linker then places initialised data segment after this first 8KB memory.</li>
+<li>Zero initialised BSS segment (the stack) comes next. The memory remaining after allocating static data and BSS segments (the stack), is configured to be used as a heap. This is where typical dynamic memory allocations go.</li>
+</ol>
+<p >Please note that the size of data and BSS segments (the stack) depend on the application. So each application, based on the components that it uses and APIs it calls has a different available heap size to begin with.</p>
+<p >There are two regions within the heap (0x3FFE_0000–0x3FFE_0440 — 1088 bytes) and (0x3FFE_3F20–0x3FFE_4350–1072 bytes) that are used by ROM code for its data. These regions are marked reserved and the heap allocator does not allocate memory from these regions.</p>
+<p >Static Data segment is a block of reserved space in SRAM for all the global and static variables from your program. For variables with initial values, the runtime system copies the initial value from Flash when the program starts.</p>
+<p >The heap segment is for dynamically allocated data items. The heap grows from the top of the static data area up as data items are allocated.</p>
+<p >The stack (BSS segment) is used for local variables and for maintaining a record of interrupts and function calls. The stack grows from the top of memory down towards the heap. Every interrupt, function call and/or local variable allocation causes the stack to grow. Returning from an interrupt or function call will reclaim all stack space used by that interrupt or function. See more at <a href="https://blog.espressif.com/esp32-programmers-memory-model-259444d89387">this link</a>.</p>
+<div class="fragment"><div class="line">NOTE: Most memory problems occur when the stack and the heap collide. When </div>
+<div class="line"><span class="keyword">this</span> happens, one or both of these memory areas will be corrupted with </div>
+<div class="line">unpredictable results. In some cases it will cause an immediate crash. In </div>
+<div class="line">others, the effects of the corruption may not be noticed until much later.</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3"></a>
+RTC Memory</h3>
+<p >The RTC (Real Time Clock) memory is an area of the processor SRAM which remains powered and accessible to the RTC functions of the ESP32 microcontroller and the ULP coprocessor even when standby is activated.</p>
+<h3><a class="anchor" id="autotoc_md4"></a>
+External Memory</h3>
+<p >Off-chip SPI memory can be mapped into the available address space as external memory. Parts of the embedded memory can be used as transparent cache for this external memory.</p>
+<ol type="1">
+<li>Supports up to 16 MB off-Chip SPI Flash.</li>
+<li>Supports up to 8 MB off-Chip SPI SRAM.</li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">null</td><td></td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd><p class="startdd">: #4 Implement monitoring of heap and stack to detect potential SRAM corruption. </p>
-<p class="enddd">: #11 Improve core memory analysis of SRAM, IRAM, DRAM by leveraging the SOC_IRAM, SOC_DRAM, SOC_RTC high/low syntax. See more at <a href="See https://blog.espressif.com/esp32-programmers-memory-model-259444d89387">this link</a></p>
-</dd></dl>
-</li>
-</ol>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>: #4 Implement monitoring of heap and stack to detect potential SRAM corruption. </dd></dl>
 
 </div>
 </div>
