@@ -13,7 +13,7 @@ This page contains a list of information that tripped us up while we were creati
 
 We like to put fancy ASCII banners at the top of the header files for all of our classes - because we think its cool. If you want to be like the other cool kids here is what you do:
 
-1. In your browser go to the online text to [ASCII tool](http://www.patorjk.com/software/taag/#p=display&f=Big&t=aaSocMicro). 
+1. In your browser go to the online text to your ASCII art tool of choice. We prefer [this one](http://www.patorjk.com/software/taag/#p=testall&f=Big&t=aaSocMicro) but have also used [this other one](http://www.patorjk.com/software/taag/#p=display&f=Big&t=aaSocMicro). Any decent tool will do the job. 
 2. Select the ```Font``` you like. We have been using ```Colossal```. 
 3. Type in the text you want.
 4. Click the ```select and copy``` button at the bottom of the page. 
