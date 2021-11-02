@@ -238,11 +238,14 @@ void aaSocMicro::_logCoreCPU()
  * – Supports up to 8 MB off-Chip SPI SRAM.
  * @param null
  * @return null
+ *
  * @TODO: #4 Implement monitoring of heap and stack to detect potential SRAM 
  * corruption. 
+ *
  * @TODO: #11 Improve core memory analysis of SRAM, IRAM, DRAM by leveraging 
- the SOC_IRAM, SOC_DRAM, SOC_RTC high/low syntax. See more at 
+ * the SOC_IRAM, SOC_DRAM, SOC_RTC high/low syntax. See more at 
  * [this link](See https://blog.espressif.com/esp32-programmers-memory-model-259444d89387)
+ *
  ******************************************************************************/
 void aaSocMicro::_logCoreMem()
 {
