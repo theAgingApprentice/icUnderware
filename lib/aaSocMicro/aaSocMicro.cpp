@@ -145,8 +145,8 @@ void aaSocMicro::logSubsystemDetails()
 
 /**
  * @brief Sends details about the core CPU(s) to the log.
- * @details The ESP32 comes with 2 Xtensa 32-bit LX6 microprocessors known
- * as core 0 and core 1. Core0 is used for RF communication. The Arduino 
+ * @details The ESP32_WROOM_32E comes with 2 Xtensa 32-bit LX6 microprocessors 
+ * known as core 0 and core 1. Core0 is used for RF communication. The Arduino 
  * binary runs on core 1 by default though you can pin threads to core 0 in 
  * order to run code there.
  * 
@@ -174,90 +174,158 @@ void aaSocMicro::_logCoreCPU()
 } // aaSocMicro::_logCoreCPU()
 
 /**
- * @brief Sends details about the core CPU(s) to the log.
- * @details The core subsystem contains ROM (Read Only Memory) and SRAM
+ * @brief Sends details about the core memory to the log.
+ * @details The ESP32 core subsystem contains ROM (Read Only Memory) and SRAM
  * (Static Random Access Memory). The ROM contains espressif magic and we 
- * cannot play with that so instead we focus on the SRAM. SRAM can be read 
- * and written from your executing program. SRAM memory is used for several 
- * purposes by a running program:
+ * cannot play with that so instead we focus on the SRAM. 
  * 
- * - Static Data. This is a block of reserved space in SRAM for all the global 
+ * ## SRAM
+ * 
+ * The internal RAM layout of the ESP32 is made up of three memory blocks 
+ * called SRAM0 (192KB), SRAM1 (128 KB) and SRAM2 (200 KB). SRAM0 and SRAM1 
+ * can be used as a contiguous IRAM whereas SRAM1 and SRAM2 can be used as a 
+ * contiguous DRAM address space. While SRAM1 can be used as both IRAM and 
+ * DRAM, for practical purposes the Espressif IoT Development Framework 
+ * (ESP-IDF) uses SRAM1 as DRAM, as it’s generally the data memory that 
+ * applications fall short of.
+ * 
+ * The EP32 is based on a Harvard architecture meaning that there are two 
+ * physically separate paths (buses) to access SRAM. 
+ * 
+ * 1. The first bus is used for accessing Instruction memory (IRAM). IRAM is 
+ * used for code execution and text data. It contains
+ *    - 32KB cache for CPU0
+ *    - 32KB cache for CPU1
+ *    - Interrupt vectors
+ *    - Text (code binary)
+ *    - Free IRAM added to the heap 
+ * 2. The second bus is used for accessing Data (DRAM). DRAM handles 
+ * Block started by symbol (BSS) aka the stack, data aka static data and 
+ * heap aka the heap. The Memory Mapping Unit (MMU) takes the total SRAM and 
+ * maps it to distinct address locations. These locations are called Static 
+ * Data, the Heap and the Stack (BSS).
+ * 
+ * ### IRAM   
+ * 
+ * The 192 KB of available IRAM in ESP32 is used for code execution, as well as 
+ * part of it is used as a cache memory for flash (and PSRAM) access. 
+ * 
+ * 1. First 32KB IRAM is used as a CPU0 cache. This is statically configured in 
+ * the hardware and can’t be changed.
+ * 2. The next 32KB is used as CPU1 cache memory. This is statically configured 
+ * in the hardware and can’t be changed.
+ * 3. After the first 64KB, the linker script starts placing the text region in 
+ * IRAM. It first places all the interrupt vectors and then all the text in the 
+ * compiled application that is marked to be placed in IRAM. While in common 
+ * case, majority of the application is executed out of the flash (XiP), there 
+ * are some portions of the applications which are time critical, or that 
+ * operate on flash itself. They need to be placed in IRAM and that is achieved 
+ * using a special attribute to these functions or files and linker script doing 
+ * a job of placing them in IRAM. The symbols _iram_text_start and _iram_text_end 
+ * are placed by the linker script at the two boundaries of this text section.
+ * 4. The IRAM after the text section remains unused and is added to the heap.
+ *  
+ * _iram_text_start and _iram_text_end symbols are placed by the linker script 
+ * at the two boundaries of this text section. The IRAM after the text section 
+ * remains unused and is added to the heap. Also, when the application is 
+ * configured in a single-core mode, the CPU1 is not functional and CPU1 cache 
+ * is unused. In that case, CPU1 cache memory (0x40078000–0x4007FFFF ) is added 
+ * to the heap. The unused IRAM, that is placed in the heap, can be accessed 
+ * through dynamic allocations. It can be used to place any code in IRAM if the 
+ * application has such a requirement. However this is quite uncommon.
+ * 
+ * The IRAM can also be used for data, but with two important limitations.
+ * 1. The address used for access to the data in IRAM has to be 32-bit aligned.
+ * 2. The size of data accessed too has to be 32-bit aligned.
+ * 
+ * If the application has such data that can obey these two rules of accesses, 
+ * it can make use of IRAM memory for that data.
+ * 
+ * ### DRAM    
+ * 
+ * A typical (simplified) DRAM layout for an application. As the DRAM addresses 
+ * start at the end of SRAM2, increasing in backward direction, the link time 
+ * segments allocation happens starting at the end of SRAM2.
+ * 
+ * 1.  The first 8KB (0x3FFA_E000–0x3FFA_FFFF) are used as a data memory for 
+ * some of the ROM functions.
+ * 2. The linker then places initialised data segment after this first 8KB 
+ * memory.
+ * 3. Zero initialised BSS segment (the stack) comes next. The memory remaining 
+ * after allocating static data and BSS segments (the stack), is configured to 
+ * be used as a heap. This is where typical dynamic memory allocations go.
+ * 
+ * Please note that the size of data and BSS segments (the stack) depend on the 
+ * application. So each application, based on the components that it uses and 
+ * APIs it calls has a different available heap size to begin with. 
+ * 
+ * There are two regions within the heap (0x3FFE_0000–0x3FFE_0440 — 1088 bytes) 
+ * and (0x3FFE_3F20–0x3FFE_4350–1072 bytes) that are used by ROM code for its 
+ * data. These regions are marked reserved and the heap allocator does not 
+ * allocate memory from these regions.
+ * 
+ * Static Data segment is a block of reserved space in SRAM for all the global 
  * and static variables from your program. For variables with initial values, 
  * the runtime system copies the initial value from Flash when the program 
  * starts.
  * 
- * - Heap. The heap is for dynamically allocated data items. The heap grows 
+ * The heap segment is for dynamically allocated data items. The heap grows 
  * from the top of the static data area up as data items are allocated.
  * 
- * - Stack. The stack is for local variables and for maintaining a record of 
- * interrupts and function calls. The stack grows from the top of memory down 
- * towards the heap. Every interrupt, function call and/or local variable 
- * allocation causes the stack to grow. Returning from an interrupt or function 
- * call will reclaim all stack space used by that interrupt or function.
+ * The stack (BSS segment) is used for local variables and for maintaining a 
+ * record of interrupts and function calls. The stack grows from the top of 
+ * memory down towards the heap. Every interrupt, function call and/or local 
+ * variable allocation causes the stack to grow. Returning from an interrupt or 
+ * function call will reclaim all stack space used by that interrupt or 
+ * function. See more at 
+ * [this link](https://blog.espressif.com/esp32-programmers-memory-model-259444d89387).
  * 
- * Most memory problems occur when the stack and the heap collide. When this 
- * happens, one or both of these memory areas will be corrupted with 
+ * ```
+ * NOTE: Most memory problems occur when the stack and the heap collide. When 
+ * this happens, one or both of these memory areas will be corrupted with 
  * unpredictable results. In some cases it will cause an immediate crash. In 
  * others, the effects of the corruption may not be noticed until much later.
+ * ```
  * 
- * ESP32_WROOM_32E memory
- * ======================
- * There are two Xtensa LX6 CPUs. Each have 4 GB (32-bit) of address space. 
- * They were designed using the Harvard Architecture meaning that there are 
- * physically separate paths to access data memory program memory. Addresses 
- * below 0x4000_0000 are serviced using the data bus. Addresses in the range 
- * 0x4000_0000 ~ 0x4FFF_FFFF are serviced using the instruction bus. Finally, 
- * addresses over and including 0x5000_0000 are shared by the data and 
- * instruction bus.
+ * ### RTC Memory
  * 
- * 1. Address Space
- * – Symmetric address mapping
- * – 4 GB (32-bit) address space for both data bus and instruction bus
- * – 1296 KB embedded memory address space
- * – 19704 KB external memory address space
- * – 512 KB peripheral address space
- * – Some embedded and external memory regions can be accessed by either data 
- * bus or instruction bus
- * – 328 KB DMA address space
- * 
- * 2. Embedded Memory
- * – 448 KB Internal ROM
- * – 520 KB Internal SRAM
- * – 8 KB RTC FAST Memory
- * – 8 KB RTC SLOW Memory
- * 
- * 3. The RTC (Real Time Clock) memory is an area of the processor SRAM which 
+ * The RTC (Real Time Clock) memory is an area of the processor SRAM which 
  * remains powered and accessible to the RTC functions of the ESP32 
  * microcontroller and the ULP coprocessor even when standby is activated.
  * 
- * 4. External Memory
+ * ### External Memory
+ * 
  * Off-chip SPI memory can be mapped into the available address space as 
  * external memory. Parts of the embedded memory can be used as transparent 
  * cache for this external memory.
- * – Supports up to 16 MB off-Chip SPI Flash.
- * – Supports up to 8 MB off-Chip SPI SRAM.
+ * 
+ * 1. Supports up to 16 MB off-Chip SPI Flash.
+ * 2. Supports up to 8 MB off-Chip SPI SRAM.
+ * 
  * @param null
  * @return null
  * @todo: #4 Implement monitoring of heap and stack to detect potential SRAM 
  * corruption. 
- * @todo: #11 Improve core memory analysis of SRAM, IRAM, DRAM by leveraging 
- * the SOC_IRAM, SOC_DRAM, SOC_RTC high/low syntax. See more at 
- * [this link](See https://blog.espressif.com/esp32-programmers-memory-model-259444d89387)
  ******************************************************************************/
 void aaSocMicro::_logCoreMem()
 {
+   const uint32_t STATIC_DATA_SIZE = ESP.getSketchSize() + ESP.getFreeSketchSpace();
+   const uint32_t SRAM_SIZE = STATIC_DATA_SIZE + ESP.getHeapSize() + uxTaskGetStackHighWaterMark(NULL);
+
    Log.verboseln("<aaSocMicro::_logCoreMem> Core memory details.");
-   Log.verboseln("<aaSocMicro::_logCoreMem> ... Ignoring ROM.");
-   Log.verboseln("<aaSocMicro::_logCoreMem> ... SRAM is the binarys read/write area. Consists of stack + free memory + heap + static data.");
-   Log.verboseln("<aaSocMicro::_logCoreMem> ...... Stack memory contains local variables, interrupt and function pointers.");
-   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Stack highwater mark = %u", uxTaskGetStackHighWaterMark(NULL));
-   Log.verboseln("<aaSocMicro::_logCoreMem> ...... Sketch memory. Need to figure out how it fits in.");
-   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Sketch size = %u", ESP.getSketchSize());
-   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Free sketch space = %u", ESP.getFreeSketchSpace());
-   Log.verboseln("<aaSocMicro::_logCoreMem> ...... Heap contains dynamic data.");
-   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Heap size = %u", ESP.getHeapSize());
-   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Free heap = %u", ESP.getFreeHeap());
-   Log.verboseln("<aaSocMicro::_logCoreMem> ...... Static memory contains global and static variables. No idea how to get SRAM consumed for this.");
+   Log.verboseln("<aaSocMicro::_logCoreMem> ... ROM contains Espressif code and we do not touch that.");
+   Log.verboseln("<aaSocMicro::_logCoreMem> ...... ROM size = %u bytes.", XSHAL_ROM_SIZE);
+   Log.verboseln("<aaSocMicro::_logCoreMem> ... SRAM is the binarys read/write area.");
+   Log.verboseln("<aaSocMicro::_logCoreMem> ...... Total SRAM size (stack + heap + static data) = %u bytes.", SRAM_SIZE);
+   Log.verboseln("<aaSocMicro::_logCoreMem> ...... The Stack contains local variables, interrupt and function pointers.");
+   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Stack highwater mark = %u bytes", uxTaskGetStackHighWaterMark(NULL));
+   Log.verboseln("<aaSocMicro::_logCoreMem> ...... Static memory (aka sketch memory) is allocated at compile time and contains global and static variables.");
+   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Static data size = %u bytes.", STATIC_DATA_SIZE);
+   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Sketch size = %u bytes.", ESP.getSketchSize());
+   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Free sketch space = %u bytes.", ESP.getFreeSketchSpace());
+   Log.verboseln("<aaSocMicro::_logCoreMem> ...... The Heap contains dynamic data.");
+   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Heap size = %u bytes.", ESP.getHeapSize());
+   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Free heap = %u bytes.", ESP.getFreeHeap());
 } // aaSocMicro::_logCoreMem()
 
 /**
