@@ -1,4 +1,4 @@
-Back to [README](./README.md)
+Back to [README](https://github.com/theAgingApprentice/icUnderware/blob/main/README.md)
 ---
 
 This document contains a 'to do list' of actions to take to start your project using the icUnderware template repository. ```These instructions assume that you have Git installed on your machine and were written using a Mac. It may be that procedures on Windows and Linux machines differ slightly.```
