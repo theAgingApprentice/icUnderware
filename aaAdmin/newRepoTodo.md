@@ -1,23 +1,33 @@
-# Todo list for new repo
+Back to [README](./README.md)
+---
 
-This document contains a list of actions to take once you have in order to set up a new Github repo using the IC Underwear repository as a template. ```The instructions assume that you have git installed on your machine.```
+This document contains a 'to do list' of actions to take to start your project using the icUnderware template repository. ```These instructions assume that you have Git installed on your machine and were written using a Mac. It may be that procedures on Windows and Linux machines differ slightly.```
 
 ## Process Overview
 
-1. Clone the https://github.com/theAgingApprentice/icUnderware repository.
-2. Move/rename ./aaAdmin/platformio.ini.temp to ./platformio.ini.  
-3. Curate the Github labels in the new repository.
-## Make repo on Github
-- Navigate to the Aging Apprentice template repo [here](https://github.com/theAgingApprentice/aaTemplate).
-- Click the Use this template button.
+The following is a brief list of the steps you must take in order to make use of this template repository. Some of the more involved steps include links to a section further down in this document with greater details. 
+
+1. Clone the [icUnderware repository](cloning-the-template).
+2. Make a [local repo](making-a-local-repo).
+3. Edit the [Doxy file](editing-the-doxyfile).
+4. Edit the [README.md](edit-the-readmemd-file).
+5. Move/rename ```./aaAdmin/platformio.ini.temp``` to ```./platformio.ini```.  
+6. Curate the [Github labels](curating-the-github-labels) in the new repository.
+7. [Next steps](next-steps).
+
+## Cloning the template
+
+- In your web browser, navigate to the Aging Apprentice template repo [here](https://github.com/theAgingApprentice/icUnderware).
+- Click the ```Use this template``` button.
 - Follow the online instructions.
-- Be sure to click the **include all branches** option.
+- Be sure to click the ```include all branches``` option.
 - Invite new contributors if required to do the next steps. 
    - Go to your new Github repo with your browser.  
    - Settings/Manage Access/Invite a collaborator/enter name.
-- Click on the **Code** button then click on the clipboard to copy the URL. 
+- Click on the ```Code``` button then click on the clipboard icon to copy the URL. 
 
-## Make local repo
+## Making a local repo
+
 - Get into Visual Studio Code terminal window with no projects open.
 - Navigate to the project folder on your local hard drive.
 - Issue the command `git clone https://github.com/theAgingApprentice/{project name}` (you can paste the URL that you copied in the previous step)
@@ -27,13 +37,16 @@ This document contains a list of actions to take once you have in order to set u
    - Start Visual Studio Code. 
    - Start PlatformIO.
 - Open project.
-## Edit Doxyfile
+## Editing the Doxyfile
+
 There is a file called Doxyfile in the root of the repository. Make the following edits.
 - PROJECT_NAME           = {project name}
 - PROJECT_BRIEF          = "Brief explanation of what class does."
-## Edit this README.md file
-Update the readme file to reflect what your project is all about. 
-## Curate Github Labels
+## Edit the README.md file
+
+Update the README.md file to reflect what your project is all about. 
+## Curating the Github Labels
+
 ```This process only works on unix systems. A windows script could be mae to do this on windos machines.```
 In order to use our curated list of Github labels while managing tasks and pull requests do the following.
 - Create a Github [personal access Token](https://github.com/settings/tokens). Be sure to select REPO scope. Save the token somewhere safe as you cannot find it again once you close the tab. 
@@ -44,3 +57,6 @@ In order to use our curated list of Github labels while managing tasks and pull 
 - If all goes well you should see 
    - A bunch of messages scroll by in your terminal
    - In the issues tab of your code repoitory click the Labels button and you should see the curated list of labels. 
+
+# Next Steps
+Congratulations, you can now start working on your new project! Note that the repository you are using makes use of a number of Github features that you may not be all that familiar with. If you are having trouble getting somethng to work for you check out the [helpful hints](helpfulHints.md) page.
