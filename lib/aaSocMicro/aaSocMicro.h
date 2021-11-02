@@ -38,7 +38,7 @@ const int8_t NUM_CORES = 2;
  * Core subsystem
  * ==============
  * 
- * The core subsystem is made up of CPUs, refered to as COR0 and COR1, as 
+ * The core subsystem is made up of two CPUs, refered to as COR0 and COR1, as 
  * well as both ROM and RAM memory, referred to as core memory.
  * 
  * WiFi subsystem
@@ -50,8 +50,8 @@ const int8_t NUM_CORES = 2;
  * Bluetooth subsystem
  * ===================
  * 
- * The Bluetooth shares RF send/recieve, clock, switch and balun with the WiFi 
- * subsystem.
+ * The Bluetooth subsystem shares RF send/recieve, clock, switch and balun with 
+ * the WiFi subsystem.
  * 
  * RTC subsystem
  * =============
