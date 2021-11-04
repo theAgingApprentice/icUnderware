@@ -14,8 +14,7 @@ Licensed under the MIT License <http://opensource.org/licenses/MIT>.
 */
 
 #ifndef aaSocMicro_h // Start precompiler code block. 
-
-#define aaSocMicro_h // Precompiler macro to prevent duplicate inclusions.
+   #define aaSocMicro_h // Precompiler macro to prevent duplicate inclusions.
 
 /**
  * Included libraries.
@@ -104,7 +103,7 @@ class aaSocMicro
       void logSubsystemDetails(); // Logs details of host micro controller.
       void getUniqueName(char *ptrNameArray); // Construct a name that is sure to be unique on the network.
       bool areWeConnected(); // Return flag reporting if we are wifi connected or not.
-      void connect(); // Connect to Wifi.
+      void connectWifi(); // Connect to Wifi.
       long rfSignalStrength(int8_t points); // Collect an average WiFi signal strength. 
       const char* evalSignal(int16_t signalStrength); // Return human readable assessment of signal strength.
       bool pingIP(IPAddress address); // Ping IP address and return response. Assume 1 ping.

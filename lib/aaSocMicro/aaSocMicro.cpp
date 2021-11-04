@@ -1,8 +1,8 @@
 #include <aaSocMicro.h> // Header file for linking.
 
 /**
+ * @class aaSocMicro
  * @brief This is the first constructor form for this class.
- * @overload
  * @details Instantiating this class using the first form results in the 
  * following defaullt settings.
  * 
@@ -25,8 +25,8 @@ aaSocMicro::aaSocMicro()
 } //aaSocMicro::aaSocMicro()
 
 /**
+ * @fn aaSocMicro::aaSocMicro(Print* output)
  * @brief This is the second constructor form for this class.
- * @overload
  * @details Instantiating this class using the second form results in the 
  * following default settings.
  * 
@@ -48,8 +48,8 @@ aaSocMicro::aaSocMicro(Print* output)
 } //aaSocMicro::aaSocMicro()
 
 /**
+ * @overload aaSocMicro::aaSocMicro(int loggingLevel, Print* output, bool showLevel)
  * @brief This is the third constructor form for this class.
- * @overload
  * @details Instantiating this class using the third form results in you
  * controlling all Logging behavior for this class.
  * @param loggingLevel is one of 6 predefined levels from the Logging library.
@@ -121,14 +121,11 @@ void aaSocMicro::logResetReason()
 
 /**
  * @brief Sends details about the host micro controller to the log.
- * @details Inside the ESP32 chip are the following subsystems:
- * - Core and memory subsystem insde of which are two processing cores, RAM and 
- * ROM.
- * - WiFi subsystem which shares RF send/recieve, clock, switch and balun with 
- * the Bluetooth subsystem.
- * - Bluetooth subsystem which shares RF send/recieve, clock, switch and balun 
- * with the WiFi subsystem.
- * - RTC subsystem inside of which are a PMU (Phasor measurement unit) a small 
+ * @details Inside the ESP32 chip is the following architecture:
+ * - Core subsystem. Comprised of CPU(s), RAM and ROM.
+ * - Wireless subsystem. Comprised of WiFi and Bluetooth which share a common
+ * RF send/recieve, clock, switch and balun. 
+ * - RTC subsystem inside of which are a PMU (Phasor measurement unit), a small 
  * and ultra low power (ULP) 32-bit co-processor, and 8Kbs of RAM memory known 
  * as the recovery memory. 
  * - Crytographic Acceleration subsystem which supports SHA, RSA, AES and RNG 
@@ -145,6 +142,7 @@ void aaSocMicro::logSubsystemDetails()
    _logIntegratedFlash();
    _logPsramMem();
    _logWireless();
+   /// @todo #45 add _logGpio() to aaSocMicro.
 } // aaSocMicro::logSubsystemDetails()
 
 /**
@@ -391,7 +389,7 @@ void aaSocMicro::_transFlashModeCode(char& details)
 void aaSocMicro::_logIntegratedFlash()
 {
    char _details[80]; // Text version of flash memory mode.
-   Log.verboseln("<aaSocMicro::_logIntegratedFlash> Flash memory is where the Arduino binary resides. It is accessed via the SPI bus.");
+   Log.verboseln("<aaSocMicro::_logIntegratedFlash> Flash memory details (Arduino binary resides here).");
    _transFlashModeCode(*_details);
    Log.verboseln("<aaSocMicro::_logIntegratedFlash> ... Flash mode = %s", _details);
    Log.verboseln("<aaSocMicro::_logIntegratedFlash> ... Flash chip size = %u", ESP.getFlashChipSize());
@@ -446,23 +444,22 @@ void aaSocMicro::_logWireless()
    long signalStrength = rfSignalStrength(dataReadings); // Get average signal strength reading.
    Log.verboseln("<aaSocMicro::_logWireless> Wireless details."); 
    Log.verboseln("<aaSocMicro::_logWireless> ... WiFi."); 
-   Log.verboseln("<aaSocMicro::_logWireless> ..... Access Point Name = %s.",WiFi.SSID().c_str()); 
-   Log.verboseln("<aaSocMicro::_logWireless> ..... Access Point Encryption method = %X (%s).", encryption, _translateEncryptionType(WiFi.encryptionType(encryption)));
-   Log.verboseln("<aaSocMicro::_logWireless> ..... Wifi signal strength = %u (%s).", signalStrength, evalSignal(signalStrength));
+   Log.verboseln("<aaSocMicro::_logWireless> ...... Access Point Name = %s.",WiFi.SSID().c_str()); 
+   Log.verboseln("<aaSocMicro::_logWireless> ...... Access Point Encryption method = %X (%s).", encryption, _translateEncryptionType(WiFi.encryptionType(encryption)));
+   Log.verboseln("<aaSocMicro::_logWireless> ...... Wifi signal strength = %u (%s).", signalStrength, evalSignal(signalStrength));
    String macAdd = WiFi.macAddress(); // Get MAC address as String
    const int8_t macNumBytes = 6; // MAC addresses have 6 byte addresses.
    byte myMacByte[macNumBytes]; // Byte array containing the 6 bytes of the SOC Mac address.
    const char* myMacChar = WiFi.macAddress().c_str();  
    _convert.macToByteArray(myMacChar, myMacByte); // Convert to Byte array
-   Log.verboseln("<aaSocMicro::cfgToConsole> ..... Robot MAC address: %X:%X:%X:%X:%X:%X.", myMacByte[0], myMacByte[1],myMacByte[2],myMacByte[3],myMacByte[4],myMacByte[5]);
+   Log.verboseln("<aaSocMicro::cfgToConsole> ...... Robot MAC address: %X:%X:%X:%X:%X:%X.", myMacByte[0], myMacByte[1],myMacByte[2],myMacByte[3],myMacByte[4],myMacByte[5]);
    const char* myIpChar = _convert.ipToString(WiFi.localIP()).c_str(); // Pointer to char array containing MQTT broker IP address
    const int8_t ipv4NumBytes = 4; // IPv4 has 4 byte address 
    byte myIpByte[ipv4NumBytes]; // Byte array for IP address   
    _convert.ipToByteArray(myIpChar, myIpByte); // Convert to byte array
    Log.verboseln("<aaSocMicro::cfgToConsole> ...... Robot IP address: %d.%d.%d.%d.", myIpByte[0], myIpByte[1], myIpByte[2], myIpByte[3]); 
-//   getUniqueName(_uniqueNamePtr); 
-//   Log.verboseln("<aaSocMicro::cfgToConsole> ...... Robot host name: %s", _uniqueName);
    Log.verboseln("<aaSocMicro::_logWireless> ... Bluetooth."); 
+   /// @todo #44 Add Bluetooth information into _logWireless in aaSocMicro.  
 } // aaSocMicro::_logWireless()
 
 /**
@@ -526,11 +523,11 @@ const char* aaSocMicro::_connectionStatus(wl_status_t status)
  * reference.  
  * @param wl_status_t wifi connection status code.
  * @return bool true when connected, false when any other status.
- * @todo Create config structure and pass a pointer to it during configuration.
+ * @todo #43 Create config structure and pass a pointer to it during configuration.
  ******************************************************************************/
 bool aaSocMicro::configure()
 {
-   connect(); // Establish WiFi connection.
+   connectWifi(); // Establish WiFi connection.
    return true;
 } // aaSocMicro::configure()
 
@@ -539,7 +536,7 @@ bool aaSocMicro::configure()
  * @param null.
  * @return null.
  ******************************************************************************/
-void aaSocMicro::connect()
+void aaSocMicro::connectWifi()
 {
    if(_lookForAP() == _unknownAP) // Scan the 2.4Ghz band for known Access Points and select the one with the strongest signal 
    {
@@ -580,7 +577,7 @@ long aaSocMicro::rfSignalStrength(int8_t dataPoints)
  * @brief Return human readable assessment of signal strength.
  * @param int16_t Signal strength as measured in decibels (db). 
  * @return const char* Assessment of signal quality in one or two words.
- =============================================================================*/
+ ******************************************************************************/
 const char* aaSocMicro::evalSignal(int16_t signalStrength)
 {
    if(signalStrength <= unusable) return "Unusable";
@@ -591,11 +588,11 @@ const char* aaSocMicro::evalSignal(int16_t signalStrength)
 } // aaSocMicro::evalSignal()
 
 /**
+ * @fn bool aaSocMicro::pingIP(IPAddress address)
  * @brief Ping IP address once and return the response.
- * @overload 
  * @param IPAddress Address to ping. 
  * @return bool Result of ping. 
- =============================================================================*/
+ ******************************************************************************/
 bool aaSocMicro::pingIP(IPAddress address)
 {
    int8_t numPings = 1; // How many pings to send to verify IP address
@@ -604,12 +601,12 @@ bool aaSocMicro::pingIP(IPAddress address)
 } // aaSocMicro::pingIP()
 
 /**
+ * @overload bool aaSocMicro::pingIP(IPAddress address, int8_t numPings)
  * @brief Ping IP address usert specified number of times and return response.
- * @overload
  * @param IPAddress Address to ping. 
  * @param int8_t Number of times to ping address. 
  * @return bool Result of pings. 
- =============================================================================*/
+ ******************************************************************************/
 bool aaSocMicro::pingIP(IPAddress address, int8_t numPings)
 {
    IPAddress tmpIp; 
@@ -620,7 +617,7 @@ bool aaSocMicro::pingIP(IPAddress address, int8_t numPings)
  * @brief Scan 2.4GHz radio spectrum for known Access Point.
  * @param null.
  * @return const char* Service Set IDentifier (SSID). 
- =============================================================================*/
+ ******************************************************************************/
 const char* aaSocMicro::_lookForAP()
 {
    Log.verboseln("<aaSocMicro::_lookForAP> Scanning the 2.4GHz radio spectrum for known Access Points.");
@@ -662,7 +659,7 @@ const char* aaSocMicro::_lookForAP()
  * @brief Provide human readable wifi encryption method.
  * @param wifi_auth_mode_t Wifi encryption type code.
  * @return const char* Encryption type in one word. 
- =============================================================================*/
+ ******************************************************************************/
 const char* aaSocMicro::_translateEncryptionType(wifi_auth_mode_t encryptionType)
 {
    switch (encryptionType)
@@ -685,7 +682,7 @@ const char* aaSocMicro::_translateEncryptionType(wifi_auth_mode_t encryptionType
  * exist for future consideration.
  * @param WiFiEvent_t Type of event that triggered this handler.
  * @param WiFiEventInfo_t Additional information about the triggering event.
- =============================================================================*/
+ ******************************************************************************/
 void aaSocMicro::_wiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info)
 {
    switch(event) 
@@ -725,3 +722,26 @@ void aaSocMicro::_wiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info)
          break;
    } //switch
 } // aaSocMicro::_wiFiEvent()
+
+/**
+ * @brief Sends details about the GPIO pins to the log.
+ * @details Peripherals connect to the SOC via the GPIO pins that are exposed
+ * for use by the development board it is mounted to. These pin definitions are
+ * defined in the include file included file 
+ * The ESP32_WROOM_32E supports two Wireless connectivity options:
+ * 1. WiFi: 802.11 b/g/n/e/i (802.11n @ 2.4 GHz up to 150 Mbit/s).
+ * 2. Bluetooth: v4.2 BR/EDR and Bluetooth Low Energy (BLE).
+ * 
+ * Bluetooth and WiFi share the same radio comprised of:
+ * 1. An RF reciever,
+ * 2. An RF transmitter,
+ * 3. A clock generator,
+ * 4. A switch, and
+ * 5. A Balun.    
+ * @param null.
+ * @return null.
+ * @todo #39 add function for unique robot name.
+ ******************************************************************************/
+void aaSocMicro::_logGPIO()
+{
+} // aaSocMicro::_logGPIO()
