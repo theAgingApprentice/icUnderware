@@ -1,6 +1,5 @@
 #ifndef main_h // Start of precompiler check to avoid dupicate inclusion of this code block.
-
-#define main_h // Precompiler macro used for precompiler check.
+   #define main_h // Precompiler macro used for precompiler check.
 
 /**
  * Included libraries.

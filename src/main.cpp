@@ -30,7 +30,7 @@ void setup()
    Log.traceln("<setup> Start of setup.");
    MCU.logResetReason(); // Report on reason for last CPU reset.
    MCU.configure(); // Configure robot.
-//   MCU.logSubsystemDetails(); // Log microprocessor details. 
+   MCU.logSubsystemDetails(); // Log microprocessor details. 
    Log.traceln("<setup> End of setup."); 
 } // start()
 
