@@ -90,7 +90,6 @@ static const int8_t HOST_NAME_SIZE = 30;  ///< Max size of network name.
  * 
  * The Peripherals subsystem handles all of the General Purpose Input/Output (GPIO) 
  * interfaces.
- * @todo #40 rename wifi functions to id them as wifi specific.
  ************************************************************************************/
 class aaSocMicro 
 {
@@ -101,7 +100,7 @@ class aaSocMicro
       ~aaSocMicro(); // Class destructor.
       void logResetReason(); // Logs last CPU reset reason for both cores.
       void logSubsystemDetails(); // Logs details of host micro controller.
-      void getUniqueName(char *ptrNameArray); // Construct a name that is sure to be unique on the network.
+      void getUniqueName(char &, const char*); // Construct a name that is sure to be unique on the network.
       bool areWeConnected(); // Return flag reporting if we are wifi connected or not.
       void connectWifi(); // Connect to Wifi.
       long rfSignalStrength(int8_t points); // Collect an average WiFi signal strength. 

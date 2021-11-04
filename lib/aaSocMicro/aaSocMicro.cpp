@@ -435,7 +435,7 @@ void aaSocMicro::_logPsramMem()
  * 5. A Balun.    
  * @param null.
  * @return null.
- * @todo #39 add function for unique robot name.
+ * @todo #47 revisit use of _convert in aaSocMicro (see uniqueName).
  ******************************************************************************/
 void aaSocMicro::_logWireless()
 {
@@ -481,19 +481,19 @@ bool aaSocMicro::areWeConnected()
 
 /**
  * @brief Construct a name that is sure to be unique on the network.
- * @param char* Pointer to name variable in main.
- * @return bool true when connected, false when any other status.
+ * @details Tis function concatintes a prefix defined in the main program with
+ * the MAC address of the SOC creating a unique name to be used for network
+ * related activities such as prefixing MQTT broker topic names etc. 
+ * @param targetArray address of char array into which we place the name.
+ * @param prefix Characters that make up the first half of the name.
+ * @return null.
  ******************************************************************************/
-void aaSocMicro::getUniqueName(char *ptrNameArray)
+void aaSocMicro::getUniqueName(char& targetArray, const char* prefix)
 { 
-   String macAdd = WiFi.macAddress(); // Get MAC address as String
-   const char* myMacChar; // Pointer to char array containing the SOC MAC address.   
-   const int8_t macNumBytes = 6; // MAC addresses have 6 byte addresses.
-   byte myMacByte[macNumBytes]; // Byte array containing the 6 bytes of the SOC Mac address.
-   myMacChar = macAdd.c_str(); // Convert to pointer to const char array   
-   _convert.macToByteArray(myMacChar, myMacByte); // Convert to Byte array
-   _convert.joinTwoConstChar(_HOST_NAME_PREFIX, _convert.noColonMAC(macAdd), _uniqueNamePtr);
-   strcpy(ptrNameArray, _uniqueName); // Copy unique name to variable pointer from main.
+   String macAdd = WiFi.macAddress(); // MAC address with colons.
+   macAdd.replace(":",""); // Strip out colons.
+   strcpy(&targetArray, prefix); // Copy prefix to unique name.
+   strcat(&targetArray, macAdd.c_str());
 } // aaSocMicro::getUniqueName()
 
 /**
