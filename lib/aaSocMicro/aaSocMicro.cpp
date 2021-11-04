@@ -437,6 +437,7 @@ void aaSocMicro::_logPsramMem()
  * 5. A Balun.    
  * @param null.
  * @return null.
+ * @todo #39 add function for unique robot name.
  ******************************************************************************/
 void aaSocMicro::_logWireless()
 {

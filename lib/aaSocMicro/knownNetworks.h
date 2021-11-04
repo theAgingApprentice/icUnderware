@@ -1,5 +1,5 @@
 /*************************************************************************************************************************************
- TODO Encrypt this file.
+ @todo #41 Encrypt the knwonNetworks file.
  *************************************************************************************************************************************/ 
 #ifndef knownNetworks_h // Start of precompiler check to avoid dupicate inclusion of this code block.
 

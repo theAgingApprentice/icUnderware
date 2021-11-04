@@ -91,6 +91,7 @@ static const int8_t HOST_NAME_SIZE = 30;  ///< Max size of network name.
  * 
  * The Peripherals subsystem handles all of the General Purpose Input/Output (GPIO) 
  * interfaces.
+ * @todo #40 rename wifi functions to id them as wifi specific.
  ************************************************************************************/
 class aaSocMicro 
 {
