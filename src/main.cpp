@@ -29,7 +29,8 @@ void setup()
    setupSerial(); // Set serial baud rate. 
    Log.traceln("<setup> Start of setup.");
    MCU.logResetReason(); // Report on reason for last CPU reset.
-   MCU.logSubsystemDetails(); // Log microprocessor details. 
+   MCU.configure(); // Configure robot.
+//   MCU.logSubsystemDetails(); // Log microprocessor details. 
    Log.traceln("<setup> End of setup."); 
 } // start()
 
