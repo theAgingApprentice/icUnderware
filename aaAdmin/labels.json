@@ -228,6 +228,13 @@
      ]
    },
    {
+      "name": "type: enhancement",
+      "color": "91ca55",
+      "description": "Tweak the way an exiting feature behaves.",
+      "aliases": [
+      ]
+    },
+    {
      "name": "type: security",
      "color": "d73a4a",
      "description": "Something is vulnerable or not secure.",

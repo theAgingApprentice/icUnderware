@@ -2,6 +2,7 @@
 
 /**
  * @brief This is the first constructor form for this class.
+ * @overload
  * @details Instantiating this class using the first form results in the 
  * following defaullt settings.
  * 
@@ -25,6 +26,7 @@ aaSocMicro::aaSocMicro()
 
 /**
  * @brief This is the second constructor form for this class.
+ * @overload
  * @details Instantiating this class using the second form results in the 
  * following default settings.
  * 
@@ -47,6 +49,7 @@ aaSocMicro::aaSocMicro(Print* output)
 
 /**
  * @brief This is the third constructor form for this class.
+ * @overload
  * @details Instantiating this class using the third form results in you
  * controlling all Logging behavior for this class.
  * @param loggingLevel is one of 6 predefined levels from the Logging library.
@@ -76,7 +79,7 @@ aaSocMicro::~aaSocMicro()
  * calling code. 
  * @param reason is the address to put the reason code.
  * @param code is the nuerica reset value reported by the CPU. 
- * @return null 
+ * @return null. 
  ******************************************************************************/
 void aaSocMicro::_transReasonCode(char& reason, RESET_REASON code)
 {
@@ -103,13 +106,13 @@ void aaSocMicro::_transReasonCode(char& reason, RESET_REASON code)
 
 /**
  * @brief Sends human readable reset reason for both cores to the log.
- * @param null
- * @return null
+ * @param null.
+ * @return null.
  ******************************************************************************/
 void aaSocMicro::logResetReason()
 {
    char _reason[20]; // Text version of last reset reason code.
-   for(int8_t i=0; i < NUM_CORES; i++)
+   for(int8_t i=0; i < ESP.getChipCores(); i++)
    {
       _transReasonCode(*_reason, rtc_get_reset_reason(i));
       Log.noticeln("<logResetReason> new CPU%d reset reason = %s", i, _reason);
@@ -132,8 +135,8 @@ void aaSocMicro::logResetReason()
  * hardware acceleration.
  * - Peripherals subsystem that handles all of the General Purpose Input/Output 
  * (GPIO) interfaces.
- * @param null
- * @return null
+ * @param null.
+ * @return null.
  ******************************************************************************/
 void aaSocMicro::logSubsystemDetails()
 {
@@ -141,6 +144,7 @@ void aaSocMicro::logSubsystemDetails()
    _logCoreMem();
    _logIntegratedFlash();
    _logPsramMem();
+   _logWireless();
 } // aaSocMicro::logSubsystemDetails()
 
 /**
@@ -161,8 +165,8 @@ void aaSocMicro::logSubsystemDetails()
  * subsystem called RTC which remains active even when it is in standby. RTC is 
  * able to access some SRAM aswell as some GPIO pins (the ones with capacitive 
  * touch capabilities) even when the chip is in non active modes.
- * @param null
- * @return null
+ * @param null.
+ * @return null.
  ******************************************************************************/
 void aaSocMicro::_logCoreCPU()
 {
@@ -302,8 +306,8 @@ void aaSocMicro::_logCoreCPU()
  * 1. Supports up to 16 MB off-Chip SPI Flash.
  * 2. Supports up to 8 MB off-Chip SPI SRAM.
  * 
- * @param null
- * @return null
+ * @param null.
+ * @return null.
  * @todo: #4 Implement monitoring of heap and stack to detect potential SRAM 
  * corruption. 
  ******************************************************************************/
@@ -348,8 +352,8 @@ void aaSocMicro::_logCoreMem()
  * 4. FM_FAST_READ -
  * 5. FM_SLOW_READ -
  * 255. FM_UNKNOWN -  
- * @param null
- * @return null
+ * @param null.
+ * @return null.
  ******************************************************************************/
 void aaSocMicro::_transFlashModeCode(char& details)
 {
@@ -381,8 +385,8 @@ void aaSocMicro::_transFlashModeCode(char& details)
  * cache for this external memory. The architecture can supports up to 16 MB 
  * off-chip SPI Flash. The Huzzah32 featherboard does not come with any 
  * off-chip SPI Flash memory. 
- * @param null
- * @return null
+ * @param null.
+ * @return null.
  ******************************************************************************/
 void aaSocMicro::_logIntegratedFlash()
 {
@@ -401,8 +405,8 @@ void aaSocMicro::_logIntegratedFlash()
  * cache for this external memory. The architecture can supports up to 8 MB 
  * off-chip SPI SRAM (PSRAM). The Huzzah32 featherboard does not come with any 
  * PSRAM.
- * @param null
- * @return null
+ * @param null.
+ * @return null.
  ******************************************************************************/
 void aaSocMicro::_logPsramMem()
 {
@@ -419,8 +423,304 @@ void aaSocMicro::_logPsramMem()
    } // else   
 } // aaSocMicro::_logPsramMem()
 
-// Still need these routines worked out.
-//void _logGPIO(); // Logs GPIO details.
-//void _Wireless(); // Logs radio details.
-//void _Bluetooth(); // Logs bluetooth details.     
+/**
+ * @brief Sends details about the Wireless system to the log.
+ * @details The ESP32_WROOM_32E supports two Wireless connectivity options:
+ * 1. WiFi: 802.11 b/g/n/e/i (802.11n @ 2.4 GHz up to 150 Mbit/s).
+ * 2. Bluetooth: v4.2 BR/EDR and Bluetooth Low Energy (BLE).
+ * 
+ * Bluetooth and WiFi share the same radio comprised of:
+ * 1. An RF reciever,
+ * 2. An RF transmitter,
+ * 3. A clock generator,
+ * 4. A switch, and
+ * 5. A Balun.    
+ * @param null.
+ * @return null.
+ ******************************************************************************/
+void aaSocMicro::_logWireless()
+{
+   wifi_auth_mode_t encryption = WiFi.encryptionType(_SSIDIndex);
+   int8_t dataReadings = 10; // Number of data readings to average to determine Wifi signal strength.
+   long signalStrength = rfSignalStrength(dataReadings); // Get average signal strength reading.
+   Log.verboseln("<aaSocMicro::_logWireless> Wireless details."); 
+   Log.verboseln("<aaSocMicro::_logWireless> ... WiFi."); 
+   Log.verboseln("<aaSocMicro::_logWireless> ..... Access Point Name = %s.",WiFi.SSID().c_str()); 
+   Log.verboseln("<aaSocMicro::_logWireless> ..... Access Point Encryption method = %X (%s).", encryption, _translateEncryptionType(WiFi.encryptionType(encryption)));
+   Log.verboseln("<aaSocMicro::_logWireless> ..... Wifi signal strength = %u (%s).", signalStrength, evalSignal(signalStrength));
+   String macAdd = WiFi.macAddress(); // Get MAC address as String
+   const int8_t macNumBytes = 6; // MAC addresses have 6 byte addresses.
+   byte myMacByte[macNumBytes]; // Byte array containing the 6 bytes of the SOC Mac address.
+   const char* myMacChar = WiFi.macAddress().c_str();  
+   _convert.macToByteArray(myMacChar, myMacByte); // Convert to Byte array
+   Log.verboseln("<aaSocMicro::cfgToConsole> ..... Robot MAC address: %X:%X:%X:%X:%X:%X.", myMacByte[0], myMacByte[1],myMacByte[2],myMacByte[3],myMacByte[4],myMacByte[5]);
+   const char* myIpChar = _convert.ipToString(WiFi.localIP()).c_str(); // Pointer to char array containing MQTT broker IP address
+   const int8_t ipv4NumBytes = 4; // IPv4 has 4 byte address 
+   byte myIpByte[ipv4NumBytes]; // Byte array for IP address   
+   _convert.ipToByteArray(myIpChar, myIpByte); // Convert to byte array
+   Log.verboseln("<aaSocMicro::cfgToConsole> ...... Robot IP address: %d.%d.%d.%d.", myIpByte[0], myIpByte[1], myIpByte[2], myIpByte[3]); 
+//   getUniqueName(_uniqueNamePtr); 
+//   Log.verboseln("<aaSocMicro::cfgToConsole> ...... Robot host name: %s", _uniqueName);
+   Log.verboseln("<aaSocMicro::_logWireless> ... Bluetooth."); 
+} // aaSocMicro::_logWireless()
 
+/**
+ * @brief Report the status of the wifi connection.
+ * @param null.
+ * @return bool true when connected, false when any other status.
+ ******************************************************************************/
+bool aaSocMicro::areWeConnected()
+{ 
+   if(WiFi.status() == WL_CONNECTED)
+   {
+      return true;
+   } // if
+   else
+   {
+      return false;
+   } // else
+} // aaSocMicro::areWeConnected()
+
+/**
+ * @brief Construct a name that is sure to be unique on the network.
+ * @param char* Pointer to name variable in main.
+ * @return bool true when connected, false when any other status.
+ ******************************************************************************/
+void aaSocMicro::getUniqueName(char *ptrNameArray)
+{ 
+   String macAdd = WiFi.macAddress(); // Get MAC address as String
+   const char* myMacChar; // Pointer to char array containing the SOC MAC address.   
+   const int8_t macNumBytes = 6; // MAC addresses have 6 byte addresses.
+   byte myMacByte[macNumBytes]; // Byte array containing the 6 bytes of the SOC Mac address.
+   myMacChar = macAdd.c_str(); // Convert to pointer to const char array   
+   _convert.macToByteArray(myMacChar, myMacByte); // Convert to Byte array
+   _convert.joinTwoConstChar(_HOST_NAME_PREFIX, _convert.noColonMAC(macAdd), _uniqueNamePtr);
+   strcpy(ptrNameArray, _uniqueName); // Copy unique name to variable pointer from main.
+} // aaSocMicro::getUniqueName()
+
+/**
+ * @brief Provide human readable text for wifi connection status codes.
+ * @param wl_status_t wifi connection status code.
+ * @return bool true when connected, false when any other status.
+ ******************************************************************************/
+const char* aaSocMicro::_connectionStatus(wl_status_t status)
+{
+   switch(status) 
+   {
+      case WL_NO_SHIELD: return "WL_NO_SHIELD"; // For WiFi Shield library.
+      case WL_IDLE_STATUS: return "WL_IDLE_STATUS";
+      case WL_NO_SSID_AVAIL: return "WL_NO_SSID_AVAIL";
+      case WL_SCAN_COMPLETED: return "WL_SCAN_COMPLETED";
+      case WL_CONNECTED: return "WL_CONNECTED";
+      case WL_CONNECT_FAILED: return "WL_CONNECT_FAILED";
+      case WL_CONNECTION_LOST: return "WL_CONNECTION_LOST";
+      case WL_DISCONNECTED: return "WL_DISCONNECTED";
+      default: return "UNKNOWN_STATUS";
+   } //switch
+} // aaSocMicro::_connectionStatus()
+
+/**
+ * @brief Configure the SOC.
+ * @details Set up the SOC based on the configuration structure passed by 
+ * reference.  
+ * @param wl_status_t wifi connection status code.
+ * @return bool true when connected, false when any other status.
+ * @todo Create config structure and pass a pointer to it during configuration.
+ ******************************************************************************/
+bool aaSocMicro::configure()
+{
+   connect(); // Establish WiFi connection.
+   return true;
+} // aaSocMicro::configure()
+
+/**
+ * @brief Connect to Wifi.
+ * @param null.
+ * @return null.
+ ******************************************************************************/
+void aaSocMicro::connect()
+{
+   if(_lookForAP() == _unknownAP) // Scan the 2.4Ghz band for known Access Points and select the one with the strongest signal 
+   {
+      Log.verboseln("<aaSocMicro::connect> No known Access Point SSID was detected. Cannot connect to WiFi at this time.");
+   } // if
+   else // Found a known Access Point to connect to
+   {
+      WiFi.onEvent(_wiFiEvent); // Set up WiFi event handler
+      WiFi.begin(_ssid, _password); // Connect too strongest AP found
+      Log.verboseln("<aaSocMicro::connect> Attempting to connect to Access Point with the SSID %s." , _ssid);
+      while(WiFi.waitForConnectResult() != WL_CONNECTED) // Hold boot process here until IP assigned
+      {
+         delay(500);
+      } //while
+      Log.verboseln("<aaSocMicro::connect> Connected to Access Point with the SSID %s with status code %u (%s).", _ssid, WiFi.status(), _connectionStatus(WiFi.status()));
+   } //else
+} // aaSocMicro::connect()
+
+/**
+ * @brief Collect an average WiFi signal strength. 
+ * @param int8_t Number of datapoints to use to create average. 
+ * @return long Average signal strength of AP connection in decibels (db).
+ ******************************************************************************/
+long aaSocMicro::rfSignalStrength(int8_t dataPoints)
+{
+   long rssi = 0;
+   long averageRSSI = 0;
+   for(int i=0; i < dataPoints; i++)
+   {
+      rssi += WiFi.RSSI();
+      delay(20);
+   } //for
+   averageRSSI = rssi / dataPoints;
+   return averageRSSI;
+} // aaSocMicro::rfSignalStrength()
+
+/**
+ * @brief Return human readable assessment of signal strength.
+ * @param int16_t Signal strength as measured in decibels (db). 
+ * @return const char* Assessment of signal quality in one or two words.
+ =============================================================================*/
+const char* aaSocMicro::evalSignal(int16_t signalStrength)
+{
+   if(signalStrength <= unusable) return "Unusable";
+   if(signalStrength <= notGood) return "Not good";
+   if(signalStrength <= okay) return "Okay";
+   if(signalStrength <= veryGood) return "Very Good";
+   return "Amazing";
+} // aaSocMicro::evalSignal()
+
+/**
+ * @brief Ping IP address once and return the response.
+ * @overload 
+ * @param IPAddress Address to ping. 
+ * @return bool Result of ping. 
+ =============================================================================*/
+bool aaSocMicro::pingIP(IPAddress address)
+{
+   int8_t numPings = 1; // How many pings to send to verify IP address
+   IPAddress tmpIp; 
+   return Ping.ping(address, numPings);
+} // aaSocMicro::pingIP()
+
+/**
+ * @brief Ping IP address usert specified number of times and return response.
+ * @overload
+ * @param IPAddress Address to ping. 
+ * @param int8_t Number of times to ping address. 
+ * @return bool Result of pings. 
+ =============================================================================*/
+bool aaSocMicro::pingIP(IPAddress address, int8_t numPings)
+{
+   IPAddress tmpIp; 
+   return Ping.ping(address, numPings);
+} // aaSocMicro::pingIP()
+
+/**
+ * @brief Scan 2.4GHz radio spectrum for known Access Point.
+ * @param null.
+ * @return const char* Service Set IDentifier (SSID). 
+ =============================================================================*/
+const char* aaSocMicro::_lookForAP()
+{
+   Log.verboseln("<aaSocMicro::_lookForAP> Scanning the 2.4GHz radio spectrum for known Access Points.");
+   _ssid = _unknownAP; //  At the start no known Access Point has been foundto connect to
+   int numberOfNetworks = WiFi.scanNetworks(); // Used to track how many APs are detected by the scan
+   int StrongestSignal = -127; // Used to find the strongest signal. Set as low as possible to start
+   bool APknown; // Flag to indicate if the current AP appears in the known AP list
+   Serial.println(numberOfNetworks);
+
+   // Loop through all detected APs
+   for(int i = 0; i < numberOfNetworks; i++)
+   {
+      APknown = false;
+   
+      // Scan table of known APs to see if the current AP is known to us
+      for (int j = 0; j < numKnownAPs; j++)
+      {
+         // If the current scanned AP appears in the known AP list note the index value and flag found
+         if(WiFi.SSID(i) == SSID[j])
+         {
+            APknown = true;
+            _SSIDIndex = j;
+         } //if
+      }   //for
+
+      // If the current AP is known and has a stronger signal than the others that have been checked
+      // then store it in the variables that will be used to connect to the AP later
+      if((APknown == true) && (WiFi.SSID(i).toInt() > StrongestSignal))
+      {
+         _ssid = SSID[_SSIDIndex].c_str();
+         _password = Password[_SSIDIndex].c_str();
+         StrongestSignal = WiFi.SSID(i).toInt();
+      } //if
+   } //for
+   return _ssid;
+} // aaSocMicro::_lookForAP()
+
+/**
+ * @brief Provide human readable wifi encryption method.
+ * @param wifi_auth_mode_t Wifi encryption type code.
+ * @return const char* Encryption type in one word. 
+ =============================================================================*/
+const char* aaSocMicro::_translateEncryptionType(wifi_auth_mode_t encryptionType)
+{
+   switch (encryptionType)
+   {
+      case (WIFI_AUTH_OPEN): return "Open";
+      case (WIFI_AUTH_WEP): return "WEP";
+      case (WIFI_AUTH_WPA_PSK): return "WPA_PSK";
+      case (WIFI_AUTH_WPA2_PSK): return "WPA2_PSK";
+      case (WIFI_AUTH_WPA_WPA2_PSK): return "WPA_WPA2_PSK";
+      case (WIFI_AUTH_WPA2_ENTERPRISE): return "WPA2_ENTERPRISE";
+      default: return "UNKNOWN";
+   } //switch
+} // aaSocMicro::_translateEncryptionType()
+
+/**
+ * @brief Event handler for wifi.
+ * @details Tracks all wifi event activity even though we do not act on any of 
+ * it at this time. At the very least the logs help us trouble shoot wifi issues 
+ * but this routine also acts as a reminder of what functional possibilities 
+ * exist for future consideration.
+ * @param WiFiEvent_t Type of event that triggered this handler.
+ * @param WiFiEventInfo_t Additional information about the triggering event.
+ =============================================================================*/
+void aaSocMicro::_wiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info)
+{
+   switch(event) 
+   {
+      case SYSTEM_EVENT_AP_START:
+//         WiFi.softAP(AP_SSID, AP_PASS); //can set ap hostname here   
+//         WiFi.softAPenableIpV6(); //enable ap ipv6 here
+         Serial.println("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_AP_START");            
+         break;
+      case SYSTEM_EVENT_STA_START:         
+//         WiFi.setHostname(AP_SSID); //set sta hostname here
+         Serial.println("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_START");            
+         break;
+      case SYSTEM_EVENT_STA_CONNECTED:         
+//         WiFi.enableIpV6(); //enable sta ipv6 here
+         Serial.println("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_CONNECTED");            
+         break;
+      case SYSTEM_EVENT_AP_STA_GOT_IP6:
+         Serial.println("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_AP_STA_GOT_IP6");            
+         break;
+      case SYSTEM_EVENT_STA_GOT_IP:
+//         wifiOnConnect(); // Call function to do things dependant upon getting wifi connected
+         Serial.println("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_GOT_IP");            
+         break;
+      case SYSTEM_EVENT_STA_DISCONNECTED:
+         Serial.println("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_DISCONNECTED");            
+         break;
+      case WL_NO_SSID_AVAIL:
+         Serial.println("<aaSocMicro::WiFiEvent> WL_NO_SSID_AVAIL");            
+         break;
+      case WL_IDLE_STATUS: 
+         Serial.println("<aaSocMicro::WiFiEvent> Detected WL_IDLE_STATUS");            
+         break;
+      default:
+         Serial.println("<aaSocMicro::WiFiEvent> ERROR - UNKNOW SYSTEM EVENT"); 
+         Serial.print("<aaSocMicro::WiFiEvent> ... Event = "); Serial.println(event);           
+         break;
+   } //switch
+} // aaSocMicro::_wiFiEvent()
