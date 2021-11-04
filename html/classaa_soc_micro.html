@@ -74,15 +74,14 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>This is the first constructor form for this class.  
- <a href="classaa_soc_micro.html#details">More...</a></p>
-
 <p><code>#include &lt;<a class="el" href="aa_soc_micro_8h_source.html">aaSocMicro.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a716726aa9e3bcb458f6e0f3ccbcead3e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html#a716726aa9e3bcb458f6e0f3ccbcead3e">aaSocMicro</a> ()</td></tr>
+<tr class="memdesc:a716726aa9e3bcb458f6e0f3ccbcead3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the first constructor form for this class.  <a href="classaa_soc_micro.html#a716726aa9e3bcb458f6e0f3ccbcead3e">More...</a><br /></td></tr>
+<tr class="separator:a716726aa9e3bcb458f6e0f3ccbcead3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12d0d45a66b27759a1ad9ac2ef767dd0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html#a12d0d45a66b27759a1ad9ac2ef767dd0">aaSocMicro</a> (Print *)</td></tr>
-<tr class="memdesc:a12d0d45a66b27759a1ad9ac2ef767dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the second constructor form for this class.  <a href="classaa_soc_micro.html#a12d0d45a66b27759a1ad9ac2ef767dd0">More...</a><br /></td></tr>
 <tr class="separator:a12d0d45a66b27759a1ad9ac2ef767dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37112a3091db17fe9d6783dddb7b33f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html#a37112a3091db17fe9d6783dddb7b33f6">aaSocMicro</a> (int, Print *, bool)</td></tr>
 <tr class="separator:a37112a3091db17fe9d6783dddb7b33f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,8 +188,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>_HOST_NAME_PR
 <tr class="separator:aa929b4486869662b94ff0f45135ca626"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >This is the first constructor form for this class. </p>
-<p >The <a class="el" href="classaa_soc_micro.html" title="This is the first constructor form for this class.">aaSocMicro</a> class provides a single object of authority regarding the ESP32. Details are collected from both FreeRTOS and the ESP32 Arduino framework. The information comes from the ESP32's six substems which are outlined below.</p>
+<div class="textblock"><p >The <a class="el" href="classaa_soc_micro.html">aaSocMicro</a> class provides a single object of authority regarding the ESP32. Details are collected from both FreeRTOS and the ESP32 Arduino framework. The information comes from the ESP32's six substems which are outlined below.</p>
 <h1><a class="anchor" id="autotoc_md5"></a>
 Core subsystem</h1>
 <p >The core subsystem is made up of two CPUs, refered to as COR0 and COR1, as well as both ROM and RAM memory, referred to as core memory.</p>
@@ -219,7 +217,24 @@ Crytographic Acceleration subsystem</h1>
 </ol>
 <h1><a class="anchor" id="autotoc_md10"></a>
 Peripherals subsystem</h1>
-<p >The Peripherals subsystem handles all of the General Purpose Input/Output (GPIO) interfaces.</p>
+<p >The Peripherals subsystem handles all of the General Purpose Input/Output (GPIO) interfaces. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a716726aa9e3bcb458f6e0f3ccbcead3e" name="a716726aa9e3bcb458f6e0f3ccbcead3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a716726aa9e3bcb458f6e0f3ccbcead3e">&#9670;&nbsp;</a></span>aaSocMicro() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">aaSocMicro::aaSocMicro </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This is the first constructor form for this class. </p>
 <p >Instantiating this class using the first form results in the following defaullt settings.</p>
 <ol type="1">
 <li><a class="el" href="class_logging.html">Logging</a> level = Silent. This means that this class will not send messages to the log.</li>
@@ -234,9 +249,11 @@ Peripherals subsystem</h1>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 </li>
 </ol>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+
+</div>
+</div>
 <a id="a12d0d45a66b27759a1ad9ac2ef767dd0" name="a12d0d45a66b27759a1ad9ac2ef767dd0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12d0d45a66b27759a1ad9ac2ef767dd0">&#9670;&nbsp;</a></span>aaSocMicro() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a12d0d45a66b27759a1ad9ac2ef767dd0">&#9670;&nbsp;</a></span>aaSocMicro() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -250,8 +267,7 @@ Peripherals subsystem</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>This is the second constructor form for this class. </p>
+<p >This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</p>
 <p >Instantiating this class using the second form results in the following default settings.</p>
 <ol type="1">
 <li><a class="el" href="class_logging.html">Logging</a> level = Silent. This means that this class will not send messages to the log.</li>
@@ -270,7 +286,7 @@ Peripherals subsystem</h1>
 </div>
 </div>
 <a id="a37112a3091db17fe9d6783dddb7b33f6" name="a37112a3091db17fe9d6783dddb7b33f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a37112a3091db17fe9d6783dddb7b33f6">&#9670;&nbsp;</a></span>aaSocMicro() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a37112a3091db17fe9d6783dddb7b33f6">&#9670;&nbsp;</a></span>aaSocMicro() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -548,7 +564,7 @@ External Memory</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>null. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>#39 add function for unique robot name.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>#39 add function for unique robot name.</dd></dl>
 </li>
 </ol>
 
@@ -664,10 +680,9 @@ External Memory</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>null. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>#47 revisit use of _convert in <a class="el" href="classaa_soc_micro.html" title="This is the first constructor form for this class.">aaSocMicro</a> (see uniqueName).</dd></dl>
 </li>
 </ol>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>#44 Add Bluetooth information into _logWireless in <a class="el" href="classaa_soc_micro.html" title="This is the first constructor form for this class.">aaSocMicro</a>. <br  />
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>#44 Add Bluetooth information into _logWireless in <a class="el" href="classaa_soc_micro.html">aaSocMicro</a>. <br  />
  </dd></dl>
 
 </div>
@@ -926,7 +941,7 @@ External Memory</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bool true when connected, false when any other status. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>#43 Create config structure and pass a pointer to it during configuration.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>#43 Create config structure and pass a pointer to it during configuration.</dd></dl>
 
 </div>
 </div>
@@ -1077,7 +1092,7 @@ External Memory</h3>
 <dl class="section return"><dt>Returns</dt><dd>null. </dd></dl>
 </li>
 </ul>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>#45 add _logGpio() to <a class="el" href="classaa_soc_micro.html" title="This is the first constructor form for this class.">aaSocMicro</a>. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>#45 add _logGpio() to <a class="el" href="classaa_soc_micro.html">aaSocMicro</a>. </dd></dl>
 
 </div>
 </div>
