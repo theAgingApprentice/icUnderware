@@ -1,7 +1,7 @@
 #include <aaSocMicro.h> // Header file for linking.
 
 /**
- * @class aaSocMicro
+ * @fn aaSocMicro::aaSocMicro()
  * @brief This is the first constructor form for this class.
  * @details Instantiating this class using the first form results in the 
  * following defaullt settings.
@@ -25,7 +25,7 @@ aaSocMicro::aaSocMicro()
 } //aaSocMicro::aaSocMicro()
 
 /**
- * @fn aaSocMicro::aaSocMicro(Print* output)
+ * @overload aaSocMicro::aaSocMicro(Print* output)
  * @brief This is the second constructor form for this class.
  * @details Instantiating this class using the second form results in the 
  * following default settings.
@@ -435,7 +435,6 @@ void aaSocMicro::_logPsramMem()
  * 5. A Balun.    
  * @param null.
  * @return null.
- * @todo #47 revisit use of _convert in aaSocMicro (see uniqueName).
  ******************************************************************************/
 void aaSocMicro::_logWireless()
 {
@@ -447,17 +446,8 @@ void aaSocMicro::_logWireless()
    Log.verboseln("<aaSocMicro::_logWireless> ...... Access Point Name = %s.",WiFi.SSID().c_str()); 
    Log.verboseln("<aaSocMicro::_logWireless> ...... Access Point Encryption method = %X (%s).", encryption, _translateEncryptionType(WiFi.encryptionType(encryption)));
    Log.verboseln("<aaSocMicro::_logWireless> ...... Wifi signal strength = %u (%s).", signalStrength, evalSignal(signalStrength));
-   String macAdd = WiFi.macAddress(); // Get MAC address as String
-   const int8_t macNumBytes = 6; // MAC addresses have 6 byte addresses.
-   byte myMacByte[macNumBytes]; // Byte array containing the 6 bytes of the SOC Mac address.
-   const char* myMacChar = WiFi.macAddress().c_str();  
-   _convert.macToByteArray(myMacChar, myMacByte); // Convert to Byte array
-   Log.verboseln("<aaSocMicro::cfgToConsole> ...... Robot MAC address: %X:%X:%X:%X:%X:%X.", myMacByte[0], myMacByte[1],myMacByte[2],myMacByte[3],myMacByte[4],myMacByte[5]);
-   const char* myIpChar = _convert.ipToString(WiFi.localIP()).c_str(); // Pointer to char array containing MQTT broker IP address
-   const int8_t ipv4NumBytes = 4; // IPv4 has 4 byte address 
-   byte myIpByte[ipv4NumBytes]; // Byte array for IP address   
-   _convert.ipToByteArray(myIpChar, myIpByte); // Convert to byte array
-   Log.verboseln("<aaSocMicro::cfgToConsole> ...... Robot IP address: %d.%d.%d.%d.", myIpByte[0], myIpByte[1], myIpByte[2], myIpByte[3]); 
+   Log.verboseln("<aaSocMicro::cfgToConsole> ...... Robot MAC address: %s.", WiFi.macAddress().c_str());
+   Log.verboseln(F("<aaSocMicro::cfgToConsole> ...... Robot IP address: %p."), WiFi.localIP()); 
    Log.verboseln("<aaSocMicro::_logWireless> ... Bluetooth."); 
    /// @todo #44 Add Bluetooth information into _logWireless in aaSocMicro.  
 } // aaSocMicro::_logWireless()
