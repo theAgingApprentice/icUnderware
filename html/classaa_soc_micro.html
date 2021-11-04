@@ -95,9 +95,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aac635a19a9debb041fb5906396fc30e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html#aac635a19a9debb041fb5906396fc30e3">logSubsystemDetails</a> ()</td></tr>
 <tr class="memdesc:aac635a19a9debb041fb5906396fc30e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends details about the host micro controller to the log.  <a href="classaa_soc_micro.html#aac635a19a9debb041fb5906396fc30e3">More...</a><br /></td></tr>
 <tr class="separator:aac635a19a9debb041fb5906396fc30e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a366034915e5087d0eeba7b3cee5cc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html#a5a366034915e5087d0eeba7b3cee5cc7">getUniqueName</a> (char *ptrNameArray)</td></tr>
-<tr class="memdesc:a5a366034915e5087d0eeba7b3cee5cc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a name that is sure to be unique on the network.  <a href="classaa_soc_micro.html#a5a366034915e5087d0eeba7b3cee5cc7">More...</a><br /></td></tr>
-<tr class="separator:a5a366034915e5087d0eeba7b3cee5cc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecf0049b3ca2704f1177708d6f8599d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html#aecf0049b3ca2704f1177708d6f8599d0">getUniqueName</a> (char &amp;, const char *)</td></tr>
+<tr class="memdesc:aecf0049b3ca2704f1177708d6f8599d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a name that is sure to be unique on the network.  <a href="classaa_soc_micro.html#aecf0049b3ca2704f1177708d6f8599d0">More...</a><br /></td></tr>
+<tr class="separator:aecf0049b3ca2704f1177708d6f8599d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5df3c7e959708ea2b438701bd54a8db"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html#ae5df3c7e959708ea2b438701bd54a8db">areWeConnected</a> ()</td></tr>
 <tr class="memdesc:ae5df3c7e959708ea2b438701bd54a8db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report the status of the wifi connection.  <a href="classaa_soc_micro.html#ae5df3c7e959708ea2b438701bd54a8db">More...</a><br /></td></tr>
 <tr class="separator:ae5df3c7e959708ea2b438701bd54a8db"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,7 +219,7 @@ Crytographic Acceleration subsystem</h1>
 </ol>
 <h1><a class="anchor" id="autotoc_md10"></a>
 Peripherals subsystem</h1>
-<p >The Peripherals subsystem handles all of the General Purpose Input/Output (GPIO) interfaces. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>#40 rename wifi functions to id them as wifi specific.</dd></dl>
+<p >The Peripherals subsystem handles all of the General Purpose Input/Output (GPIO) interfaces.</p>
 <p >Instantiating this class using the first form results in the following defaullt settings.</p>
 <ol type="1">
 <li><a class="el" href="class_logging.html">Logging</a> level = Silent. This means that this class will not send messages to the log.</li>
@@ -664,7 +664,7 @@ External Memory</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>null. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>#39 add function for unique robot name.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>#47 revisit use of _convert in <a class="el" href="classaa_soc_micro.html" title="This is the first constructor form for this class.">aaSocMicro</a> (see uniqueName).</dd></dl>
 </li>
 </ol>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>#44 Add Bluetooth information into _logWireless in <a class="el" href="classaa_soc_micro.html" title="This is the first constructor form for this class.">aaSocMicro</a>. <br  />
@@ -983,8 +983,8 @@ External Memory</h3>
 
 </div>
 </div>
-<a id="a5a366034915e5087d0eeba7b3cee5cc7" name="a5a366034915e5087d0eeba7b3cee5cc7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a366034915e5087d0eeba7b3cee5cc7">&#9670;&nbsp;</a></span>getUniqueName()</h2>
+<a id="aecf0049b3ca2704f1177708d6f8599d0" name="aecf0049b3ca2704f1177708d6f8599d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecf0049b3ca2704f1177708d6f8599d0">&#9670;&nbsp;</a></span>getUniqueName()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -992,21 +992,32 @@ External Memory</h3>
         <tr>
           <td class="memname">void aaSocMicro::getUniqueName </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>ptrNameArray</em></td><td>)</td>
+          <td class="paramtype">char &amp;&#160;</td>
+          <td class="paramname"><em>targetArray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>prefix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Construct a name that is sure to be unique on the network. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p >Tis function concatintes a prefix defined in the main program with the MAC address of the SOC creating a unique name to be used for network related activities such as prefixing MQTT broker topic names etc. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">char*</td><td>Pointer to name variable in main. </td></tr>
+    <tr><td class="paramname">targetArray</td><td>address of char array into which we place the name. </td></tr>
+    <tr><td class="paramname">prefix</td><td>Characters that make up the first half of the name. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>bool true when connected, false when any other status. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>null. </dd></dl>
 
 </div>
 </div>
