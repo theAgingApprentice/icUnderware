@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7eaasocmicro_0',['~aaSocMicro',['../classaa_soc_micro.html#a56fe62917e801df460e502ada323fa23',1,'aaSocMicro']]]
+  ['rfsignalstrength_0',['rfSignalStrength',['../classaa_soc_micro.html#a5722b6391d21166cc104705becba1716',1,'aaSocMicro']]]
 ];

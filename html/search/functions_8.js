@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['notice_0',['notice',['../class_logging.html#a6350649aea4d88d6398bb6b789d6da40',1,'Logging']]]
+  ['jointwoconstchar_0',['joinTwoConstChar',['../classaa_format.html#a9bd278c97225bff5cc5cbd77e27eb8ca',1,'aaFormat']]]
 ];

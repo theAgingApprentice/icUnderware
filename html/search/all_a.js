@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['setlevel_0',['setLevel',['../class_logging.html#a15d86da43b329a174d40bf6060cd7f25',1,'Logging']]],
-  ['setprefix_1',['setPrefix',['../class_logging.html#a79bd645ebb0f691d01c38b430f6d38fa',1,'Logging']]],
-  ['setshowlevel_2',['setShowLevel',['../class_logging.html#ac6395383b13666f0aba894383660e92c',1,'Logging']]],
-  ['setsuffix_3',['setSuffix',['../class_logging.html#a56f75c773d8b236d75c345eb92c3cc20',1,'Logging']]]
+  ['logging_0',['Logging',['../class_logging.html',1,'Logging'],['../class_logging.html#acc3d848a3d05076fd185cd95e9c648d5',1,'Logging::Logging()']]],
+  ['logresetreason_1',['logResetReason',['../classaa_soc_micro.html#a6f051b40547e850b43b95673dff10480',1,'aaSocMicro']]],
+  ['logsubsystemdetails_2',['logSubsystemDetails',['../classaa_soc_micro.html#aac635a19a9debb041fb5906396fc30e3',1,'aaSocMicro']]]
 ];

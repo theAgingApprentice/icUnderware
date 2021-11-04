@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['aasocmicro_0',['aaSocMicro',['../classaa_soc_micro.html',1,'']]]
+  ['aaformat_0',['aaFormat',['../classaa_format.html',1,'']]],
+  ['aasocmicro_1',['aaSocMicro',['../classaa_soc_micro.html',1,'']]]
 ];
