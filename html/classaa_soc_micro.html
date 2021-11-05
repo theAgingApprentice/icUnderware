@@ -153,6 +153,12 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a053a16d2d6a83b18a8f101f702e322d1"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html#a053a16d2d6a83b18a8f101f702e322d1">_connectionStatus</a> (wl_status_t status)</td></tr>
 <tr class="memdesc:a053a16d2d6a83b18a8f101f702e322d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide human readable text for wifi connection status codes.  <a href="classaa_soc_micro.html#a053a16d2d6a83b18a8f101f702e322d1">More...</a><br /></td></tr>
 <tr class="separator:a053a16d2d6a83b18a8f101f702e322d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee532bbab22bcd68894ec4e8fd8500e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html#aee532bbab22bcd68894ec4e8fd8500e7">_initBluetooth</a> ()</td></tr>
+<tr class="memdesc:aee532bbab22bcd68894ec4e8fd8500e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize Bluetooth system.  <a href="classaa_soc_micro.html#aee532bbab22bcd68894ec4e8fd8500e7">More...</a><br /></td></tr>
+<tr class="separator:aee532bbab22bcd68894ec4e8fd8500e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47112903cf13a58eeddcb16339c01629"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html#a47112903cf13a58eeddcb16339c01629">_btAddress</a> (char *)</td></tr>
+<tr class="memdesc:a47112903cf13a58eeddcb16339c01629"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize Bluetooth.  <a href="classaa_soc_micro.html#a47112903cf13a58eeddcb16339c01629">More...</a><br /></td></tr>
+<tr class="separator:a47112903cf13a58eeddcb16339c01629"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -189,16 +195,16 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>_HOST_NAME_PR
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >The <a class="el" href="classaa_soc_micro.html">aaSocMicro</a> class provides a single object of authority regarding the ESP32. Details are collected from both FreeRTOS and the ESP32 Arduino framework. The information comes from the ESP32's six substems which are outlined below.</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md9"></a>
 Core subsystem</h1>
 <p >The core subsystem is made up of two CPUs, refered to as COR0 and COR1, as well as both ROM and RAM memory, referred to as core memory.</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 WiFi subsystem</h1>
 <p >The Wifi subsystem shares RF send/recieve, clock, switch and balun with the Bluetooth subsystem.</p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md11"></a>
 Bluetooth subsystem</h1>
 <p >The Bluetooth subsystem shares RF send/recieve, clock, switch and balun with the WiFi subsystem.</p>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md12"></a>
 RTC subsystem</h1>
 <p >The Real Time Clock (RTC) subsystem is used by the ESP32 for low power modes. It contains the following:</p>
 <ol type="1">
@@ -206,7 +212,7 @@ RTC subsystem</h1>
 <li>The small and ultra low power (ULP) 32-bit co-processor</li>
 <li>8Kbs of RAM memory known as the recovery memory.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md9"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 Crytographic Acceleration subsystem</h1>
 <p >The Cryptograpic Acceleration subsystem provides hardware encrytion acceleration. The following algorithms are supported:</p>
 <ol type="1">
@@ -215,7 +221,7 @@ Crytographic Acceleration subsystem</h1>
 <li>AES</li>
 <li>RNG</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md10"></a>
+<h1><a class="anchor" id="autotoc_md14"></a>
 Peripherals subsystem</h1>
 <p >The Peripherals subsystem handles all of the General Purpose Input/Output (GPIO) interfaces. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -242,11 +248,11 @@ Peripherals subsystem</h1>
 <li>Show <a class="el" href="class_logging.html">Logging</a> level = TRUE. This prefixes a single letter to each log <br  />
  message that indicates the method used to issue it (e.g. Log.verbose() messages show up in the logs with a V prepended to them). <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">null</td><td></td></tr>
+    <tr><td class="paramname">null.</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>null. </dd></dl>
 </li>
 </ol>
 
@@ -356,6 +362,41 @@ Peripherals subsystem</h1>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a47112903cf13a58eeddcb16339c01629" name="a47112903cf13a58eeddcb16339c01629"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47112903cf13a58eeddcb16339c01629">&#9670;&nbsp;</a></span>_btAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void aaSocMicro::_btAddress </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>targetArray</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize Bluetooth. </p>
+<p >The Bluetooth address consists of six integers. In this function we concatinate these 6 integers as two-digit hex char* values separate by an additional 1 colon character. This results in a 15 character long address in a character array. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">null.</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>null. </dd></dl>
+
+</div>
+</div>
 <a id="a053a16d2d6a83b18a8f101f702e322d1" name="a053a16d2d6a83b18a8f101f702e322d1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a053a16d2d6a83b18a8f101f702e322d1">&#9670;&nbsp;</a></span>_connectionStatus()</h2>
 
@@ -388,6 +429,63 @@ Peripherals subsystem</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bool true when connected, false when any other status. </dd></dl>
+
+</div>
+</div>
+<a id="aee532bbab22bcd68894ec4e8fd8500e7" name="aee532bbab22bcd68894ec4e8fd8500e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee532bbab22bcd68894ec4e8fd8500e7">&#9670;&nbsp;</a></span>_initBluetooth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool aaSocMicro::_initBluetooth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize Bluetooth system. </p>
+<p >Initializing the Bluetooth system involves the following 3 steps:</p><ol type="1">
+<li>Initialize the contrller.</li>
+<li>Initialize Bluedroid.</li>
+<li>Enable Bluedroid.</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Esp32 Bluetooth Architecture</h1>
+<p >Bluetooth is a wireless technology standard for exchanging data over short distances, with advantages including robustness, low power consumption and low cost. The Bluetooth system can be divided into two different categories: Classic Bluetooth and Bluetooth Low Energy (BLE). ESP32 supports dual-mode Bluetooth, meaning that both Classic Bluetooth and BLE are supported by ESP32. Basically, the Bluetooth protocol stack is split into two parts: a “controller stack” and a “host stack”. The controller stack contains the PHY, Baseband, Link Controller, Link Manager, Device Manager, HCI and other modules, and is used for the hardware interface management and link management. The host stack contains L2CAP, SMP, SDP, ATT, GATT, GAP and various profiles, and functions as an interface to the application layer, thus facilitating the application layer to access the Bluetooth system. The Bluetooth Host can be implemented on the same device as the Controller, or on different devices. Both approaches are supported by ESP32.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Bluedroid</h1>
+<p >The BLUEDROID Bluetooth Stack communicates with Bluetooth Controller over VHCI (Virtual Host Controller Interface) and at the same time provides APIs for user application. Bluetooth Profiles determine the functions of each layer of the Bluetooth from PHY to L2CAP while the Bluetooth Protocols define message formats and procedures for data transport, link control etc.</p>
+<p >The following is a list of Classic Bluetooth Profiles and Protocols supported by BLUEDROID Bluetooth Stack of ESP32.</p>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Classic Bluetooth Profiles</h2>
+<ol type="1">
+<li>GAP</li>
+<li>A2DP (SNK)</li>
+<li>AVRCP (CT)</li>
+</ol>
+<h2><a class="anchor" id="autotoc_md8"></a>
+Classic Bluetooth Protocols</h2>
+<p >L2CAP SDP AVDTP AVCTP</p>
+<p >The communication between ESP32’s Processor and Bluetooth Controller is based on Serial Interface.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">null.</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>null. </dd></dl>
 
 </div>
 </div>
@@ -564,7 +662,6 @@ External Memory</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>null. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>#39 add function for unique robot name.</dd></dl>
 </li>
 </ol>
 
@@ -682,8 +779,6 @@ External Memory</h3>
 <dl class="section return"><dt>Returns</dt><dd>null. </dd></dl>
 </li>
 </ol>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>#44 Add Bluetooth information into _logWireless in <a class="el" href="classaa_soc_micro.html">aaSocMicro</a>. <br  />
- </dd></dl>
 
 </div>
 </div>
@@ -941,7 +1036,7 @@ External Memory</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bool true when connected, false when any other status. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>#43 Create config structure and pass a pointer to it during configuration.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>#43 Create config structure and pass a pointer to it during configuration.</dd></dl>
 
 </div>
 </div>
