@@ -76,7 +76,24 @@ aaSocMicro::~aaSocMicro()
 /**
  * @brief Translates a CPU reset reason code to a human readable string.
  * @details This class populates &reason with text that is accesible to the 
- * calling code. 
+ * calling code. These codes are as follows:
+ *
+ * 1. POWERON_RESET. Vbat power on reset.
+ * 3. SW_RESET. Software reset digital core.
+ * 4. OWDT_RESET. Legacy watch dog reset digital core.
+ * 5. DEEPSLEEP_RESET. Deep Sleep reset digital core.
+ * 6. SDIO_RESET. Reset by SLC module, reset digital core.
+ * 7. TG0WDT_SYS_RESET. Timer Group0 Watch dog reset digital core.
+ * 8. TG1WDT_SYS_RESET. Timer Group1 Watch dog reset digital core.
+ * 9. RTCWDT_SYS_RESET. RTC Watch dog Reset digital core.
+ * 10. INTRUSION_RESET. Instrusion tested to reset CPU.
+ * 11. TGWDT_CPU_RESET. Time Group reset CPU.
+ * 12. SW_CPU_RESET. Software reset CPU.
+ * 13. RTCWDT_CPU_RESET. RTC Watch dog Reset CPU.
+ * 14. EXT_CPU_RESET. For APP CPU, reset by PRO CPU.
+ * 15. RTCWDT_BROWN_OUT_RESET. Reset when the vdd voltage is not stable.
+ * 16. RTCWDT_RTC_RESET. RTC Watch dog reset digital core and rtc module.
+ *  
  * @param reason is the address to put the reason code.
  * @param code is the nuerica reset value reported by the CPU. 
  * @return null. 
@@ -85,22 +102,22 @@ void aaSocMicro::_transReasonCode(char& reason, RESET_REASON code)
 {
    switch(code)
    {
-      case 1: strcpy(&reason, "1. POWERON_RESET"); break; // Vbat power on reset.
-      case 3: strcpy(&reason, "3. SW_RESET"); break; // Software reset digital core.
-      case 4: strcpy(&reason, "4. OWDT_RESET"); break; // Legacy watch dog reset digital core.
-      case 5: strcpy(&reason, "5. DEEPSLEEP_RESET"); break; // Deep Sleep reset digital core.
-      case 6: strcpy(&reason, "6. SDIO_RESET"); break; // 6 = Reset by SLC module, reset digital core.
-      case 7: strcpy(&reason, "7. TG0WDT_SYS_RESET"); break; // 7 = Timer Group0 Watch dog reset digital core.
-      case 8: strcpy(&reason, "8. TG1WDT_SYS_RESET"); break; // 8 = Timer Group1 Watch dog reset digital core.
-      case 9: strcpy(&reason, "9. RTCWDT_SYS_RESET"); break; // 9 = RTC Watch dog Reset digital core.
-      case 10: strcpy(&reason, "10. INTRUSION_RESET"); break; // 10 = Instrusion tested to reset CPU.
-      case 11: strcpy(&reason, "11. TGWDT_CPU_RESET"); break; // 11 = Time Group reset CPU.
-      case 12: strcpy(&reason, "12. SW_CPU_RESET"); break; // 12 = Software reset CPU.
-      case 13: strcpy(&reason, "13. RTCWDT_CPU_RESET"); break; // 13 = RTC Watch dog Reset CPU.
-      case 14: strcpy(&reason, "14. EXT_CPU_RESET"); break; // 14 = for APP CPU, reseted by PRO CPU.
-      case 15: strcpy(&reason, "15. RTCWDT_BROWN_OUT_RESET"); break; // 15 = Reset when the vdd voltage is not stable.
-      case 16: strcpy(&reason, "16. RTCWDT_RTC_RESET"); break; // 16 = RTC Watch dog reset digital core and rtc module.
-      default: strcpy(&reason, "UNKNOWN"); break; // Reset reason unknown.
+      case 1: strcpy(&reason, "1. Vbat power on reset."); break; 
+      case 3: strcpy(&reason, "3. Software reset digital core."); break; 
+      case 4: strcpy(&reason, "4. Legacy watch dog reset digital core."); break; 
+      case 5: strcpy(&reason, "5. Deep Sleep reset digital core."); break; 
+      case 6: strcpy(&reason, "6. Reset by SLC module, reset digital core."); break; 
+      case 7: strcpy(&reason, "7. Reset by SLC module, reset digital core."); break; 
+      case 8: strcpy(&reason, "8. Timer Group1 Watch dog reset digital core."); break; 
+      case 9: strcpy(&reason, "9. RTC Watch dog Reset digital core."); break;  
+      case 10: strcpy(&reason, "10. Instrusion tested to reset CPU."); break;  
+      case 11: strcpy(&reason, "11. Time Group reset CPU."); break; 
+      case 12: strcpy(&reason, "12. Software reset CPU."); break; 
+      case 13: strcpy(&reason, "13. RTC Watch dog Reset CPU."); break; 
+      case 14: strcpy(&reason, "14. For APP CPU, reset by PRO CPU."); break; 
+      case 15: strcpy(&reason, "15. Reset when the vdd voltage is not stable."); break; 
+      case 16: strcpy(&reason, "16. RTC Watch dog reset digital core and rtc module."); break; 
+      default: strcpy(&reason, "UNKNOWN"); break; 
    } // switch()
 } // aaSocMicro::_translateReasonCode()
 
@@ -347,9 +364,9 @@ void aaSocMicro::_logCoreMem()
  * 3. FM_DOUT - SPI host uses the "Dual Output Fast Read" command (3Bh). Two 
  * SPI pins are used to read flash data out. Slightly slower than DIO, because 
  * the address is written via the single MOSI data pin. 
- * 4. FM_FAST_READ -
- * 5. FM_SLOW_READ -
- * 255. FM_UNKNOWN -  
+ * 4. FM_FAST_READ - Have not found definition.
+ * 5. FM_SLOW_READ - Have not found definition.
+ * 255. FM_UNKNOWN - Unknown mode. 
  * @param null.
  * @return null.
  ******************************************************************************/
@@ -363,7 +380,7 @@ void aaSocMicro::_transFlashModeCode(char& details)
       case FM_DOUT: strcpy(&details, "3 (FM_DIO) - Dual I/O Fast Read. Address written via single MOSI data pin."); break;
       case FM_FAST_READ: strcpy(&details, "4 (FM_FAST_READ) - Unknown details."); break;
       case FM_SLOW_READ: strcpy(&details, "5 (FM_SLOW_READ) - Unknown details."); break;
-      default: strcpy(&details, "UNKNOWN"); break; 
+      default: strcpy(&details, "UNKNOWN MODE."); break; 
    } // switch()
 } // aaSocMicro::_transFlashModeCode()
 
@@ -648,7 +665,14 @@ const char* aaSocMicro::_lookForAP()
 } // aaSocMicro::_lookForAP()
 
 /**
- * @brief Provide human readable wifi encryption method.
+ * @brief Provide human readable Wifi encryption method.
+ * @details Wifi encryptions options are:
+ * 1. OPEN
+ * 2. WEP
+ * 3. WPA_PSK
+ * 4. WPA2_PSK
+ * 5. WPA_WPA2_PSK
+ * 6. WPA2_ENTERPRISE
  * @param wifi_auth_mode_t Wifi encryption type code.
  * @return const char* Encryption type in one word. 
  ******************************************************************************/
