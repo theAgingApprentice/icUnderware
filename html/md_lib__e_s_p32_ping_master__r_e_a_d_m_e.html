@@ -69,7 +69,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p >Let the ESP32Ping ping a remote machine.</p>
 <p >#Note that this is a port from <a href="https://github.com/dancol90/ESP8266Ping">https://github.com/dancol90/ESP8266Ping</a> With this library an ESP32Ping can ping a remote machine and know if it's reachable. It provide some basic measurements on ping messages (avg response time).</p>
-<h1><a class="anchor" id="autotoc_md16"></a>
+<h1><a class="anchor" id="autotoc_md15"></a>
 Usage</h1>
 <p >First, include the library in your sketch along with WiFi library:</p>
 <div class="fragment"><div class="line">#include &lt;WiFi.h&gt;</div>
@@ -83,13 +83,13 @@ Usage</h1>
 <div class="fragment"><div class="line">bool ret = Ping.ping(ip_or_host, 10);</div>
 </div><!-- fragment --><p >After <code>Ping.ping()</code> has been called, the average response time (in milliseconds) can be retrieved with</p>
 <div class="fragment"><div class="line">float avg_time_ms = Ping.averageTime();</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md17"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md16"></a>
 Fixed in 1.3</h1>
 <p >Memory leak bug ( <a href="https://github.com/marian-craciunescu/ESP32Ping/issues/4">https://github.com/marian-craciunescu/ESP32Ping/issues/4</a> ) </p>
-<h1><a class="anchor" id="autotoc_md18"></a>
+<h1><a class="anchor" id="autotoc_md17"></a>
 Fixed in 1.4</h1>
 <p >averageTime changed from <code>int</code> to <code>float</code>.Expect the code to still work , but you should upgrade </p>
-<h1><a class="anchor" id="autotoc_md19"></a>
+<h1><a class="anchor" id="autotoc_md18"></a>
 Fixed in 1.5</h1>
 <p >Fixed counters data. (Any review and testing is welcomed) </p>
 </div></div><!-- contents -->

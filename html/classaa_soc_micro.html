@@ -148,7 +148,7 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a790ffdabb9d87f242b589559a0f9a24f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scan 2.4GHz radio spectrum for known Access Point.  <a href="classaa_soc_micro.html#a790ffdabb9d87f242b589559a0f9a24f">More...</a><br /></td></tr>
 <tr class="separator:a790ffdabb9d87f242b589559a0f9a24f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2718ab8ea4bd4cfee3918fbefbd9b4b9"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html#a2718ab8ea4bd4cfee3918fbefbd9b4b9">_translateEncryptionType</a> (wifi_auth_mode_t encryptionType)</td></tr>
-<tr class="memdesc:a2718ab8ea4bd4cfee3918fbefbd9b4b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide human readable wifi encryption method.  <a href="classaa_soc_micro.html#a2718ab8ea4bd4cfee3918fbefbd9b4b9">More...</a><br /></td></tr>
+<tr class="memdesc:a2718ab8ea4bd4cfee3918fbefbd9b4b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide human readable Wifi encryption method.  <a href="classaa_soc_micro.html#a2718ab8ea4bd4cfee3918fbefbd9b4b9">More...</a><br /></td></tr>
 <tr class="separator:a2718ab8ea4bd4cfee3918fbefbd9b4b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a053a16d2d6a83b18a8f101f702e322d1"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classaa_soc_micro.html#a053a16d2d6a83b18a8f101f702e322d1">_connectionStatus</a> (wl_status_t status)</td></tr>
 <tr class="memdesc:a053a16d2d6a83b18a8f101f702e322d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide human readable text for wifi connection status codes.  <a href="classaa_soc_micro.html#a053a16d2d6a83b18a8f101f702e322d1">More...</a><br /></td></tr>
@@ -194,26 +194,23 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>_HOST_NAME_PR
 <tr class="separator:aa929b4486869662b94ff0f45135ca626"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >The <a class="el" href="classaa_soc_micro.html">aaSocMicro</a> class provides a single object of authority regarding the ESP32. Details are collected from both FreeRTOS and the ESP32 Arduino framework. The information comes from the ESP32's six substems which are outlined below.</p>
-<h1><a class="anchor" id="autotoc_md9"></a>
-Core subsystem</h1>
+<div class="textblock"><p >The <a class="el" href="classaa_soc_micro.html">aaSocMicro</a> class provides a single object of authority regarding the ESP32. Details are collected from both FreeRTOS and the ESP32 Arduino framework. The information comes from the ESP32's six sub-systems which are outlined below.</p>
+<h2><a class="anchor" id="autotoc_md9"></a>
+Core subsystem</h2>
 <p >The core subsystem is made up of two CPUs, refered to as COR0 and COR1, as well as both ROM and RAM memory, referred to as core memory.</p>
-<h1><a class="anchor" id="autotoc_md10"></a>
-WiFi subsystem</h1>
-<p >The Wifi subsystem shares RF send/recieve, clock, switch and balun with the Bluetooth subsystem.</p>
-<h1><a class="anchor" id="autotoc_md11"></a>
-Bluetooth subsystem</h1>
-<p >The Bluetooth subsystem shares RF send/recieve, clock, switch and balun with the WiFi subsystem.</p>
-<h1><a class="anchor" id="autotoc_md12"></a>
-RTC subsystem</h1>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Wireless subsystem</h2>
+<p >The wireless subsystem is comprised of WiFi and Bluetooth which share a common RF send/recieve, clock, switch and balun.</p>
+<h2><a class="anchor" id="autotoc_md11"></a>
+RTC subsystem</h2>
 <p >The Real Time Clock (RTC) subsystem is used by the ESP32 for low power modes. It contains the following:</p>
 <ol type="1">
 <li>The Phasor Measurement Unit (PMU)</li>
 <li>The small and ultra low power (ULP) 32-bit co-processor</li>
 <li>8Kbs of RAM memory known as the recovery memory.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md13"></a>
-Crytographic Acceleration subsystem</h1>
+<h2><a class="anchor" id="autotoc_md12"></a>
+Crytographic Acceleration subsystem</h2>
 <p >The Cryptograpic Acceleration subsystem provides hardware encrytion acceleration. The following algorithms are supported:</p>
 <ol type="1">
 <li>SHA</li>
@@ -221,8 +218,8 @@ Crytographic Acceleration subsystem</h1>
 <li>AES</li>
 <li>RNG</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md14"></a>
-Peripherals subsystem</h1>
+<h2><a class="anchor" id="autotoc_md13"></a>
+Peripherals subsystem</h2>
 <p >The Peripherals subsystem handles all of the General Purpose Input/Output (GPIO) interfaces. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a716726aa9e3bcb458f6e0f3ccbcead3e" name="a716726aa9e3bcb458f6e0f3ccbcead3e"></a>
@@ -845,10 +842,9 @@ External Memory</h3>
 <li>FM_QOUT - SPI host uses the "Quad Output Fast Read" command (6Bh). Four SPI pins are used to read the flash data out. Slightly slower than QIO, because the address is written via the single MOSI data pin.</li>
 <li>FM_DIO - SPI host uses the "Dual I/O Fast Read" command (BBh). Two SPI pins are used to write the flash address part of the command, and to read flash data out. Therefore these phases need half the clock cycles compared to standard SPI.</li>
 <li>FM_DOUT - SPI host uses the "Dual Output Fast Read" command (3Bh). Two SPI pins are used to read flash data out. Slightly slower than DIO, because the address is written via the single MOSI data pin.</li>
-<li>FM_FAST_READ -</li>
-<li>FM_SLOW_READ -</li>
-<li>FM_UNKNOWN - <br  />
- <dl class="params"><dt>Parameters</dt><dd>
+<li>FM_FAST_READ - Have not found definition.</li>
+<li>FM_SLOW_READ - Have not found definition.</li>
+<li>FM_UNKNOWN - Unknown mode. <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">null.</td><td></td></tr>
   </table>
@@ -884,14 +880,22 @@ External Memory</h3>
 </table>
 </div><div class="memdoc">
 
-<p>Provide human readable wifi encryption method. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Provide human readable Wifi encryption method. </p>
+<p >Wifi encryptions options are:</p><ol type="1">
+<li>OPEN</li>
+<li>WEP</li>
+<li>WPA_PSK</li>
+<li>WPA2_PSK</li>
+<li>WPA_WPA2_PSK</li>
+<li>WPA2_ENTERPRISE <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">wifi_auth_mode_t</td><td>Wifi encryption type code. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>const char* Encryption type in one word. </dd></dl>
+</li>
+</ol>
 
 </div>
 </div>
@@ -930,7 +934,25 @@ External Memory</h3>
 </div><div class="memdoc">
 
 <p>Translates a CPU reset reason code to a human readable string. </p>
-<p >This class populates &amp;reason with text that is accesible to the calling code. </p><dl class="params"><dt>Parameters</dt><dd>
+<p >This class populates &amp;reason with text that is accesible to the calling code. These codes are as follows:</p>
+<ol type="1">
+<li>POWERON_RESET. Vbat power on reset.</li>
+<li>SW_RESET. Software reset digital core.</li>
+<li>OWDT_RESET. Legacy watch dog reset digital core.</li>
+<li>DEEPSLEEP_RESET. Deep Sleep reset digital core.</li>
+<li>SDIO_RESET. Reset by SLC module, reset digital core.</li>
+<li>TG0WDT_SYS_RESET. Timer Group0 Watch dog reset digital core.</li>
+<li>TG1WDT_SYS_RESET. Timer Group1 Watch dog reset digital core.</li>
+<li>RTCWDT_SYS_RESET. RTC Watch dog Reset digital core.</li>
+<li>INTRUSION_RESET. Instrusion tested to reset CPU.</li>
+<li>TGWDT_CPU_RESET. Time Group reset CPU.</li>
+<li>SW_CPU_RESET. Software reset CPU.</li>
+<li>RTCWDT_CPU_RESET. RTC Watch dog Reset CPU.</li>
+<li>EXT_CPU_RESET. For APP CPU, reset by PRO CPU.</li>
+<li>RTCWDT_BROWN_OUT_RESET. Reset when the vdd voltage is not stable.</li>
+<li>RTCWDT_RTC_RESET. RTC Watch dog reset digital core and rtc module.</li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">reason</td><td>is the address to put the reason code. </td></tr>
     <tr><td class="paramname">code</td><td>is the nuerica reset value reported by the CPU. </td></tr>
