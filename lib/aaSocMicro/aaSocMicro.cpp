@@ -12,8 +12,8 @@
  * 3. Show Logging level = TRUE. This prefixes a single letter to each log  
  * message that indicates the method used to issue it (e.g. Log.verbose() 
  * messages show up in the logs with a V prepended to them).
- * @param null
- * @return null
+ * @param null.
+ * @return null.
  ******************************************************************************/
 aaSocMicro::aaSocMicro()
 {
@@ -168,11 +168,11 @@ void aaSocMicro::logSubsystemDetails()
  ******************************************************************************/
 void aaSocMicro::_logCoreCPU()
 {
-   Log.verboseln("<aaSocMicro::_logCoreCPU> Core CPU details.");
-   Log.verboseln("<aaSocMicro::_logCoreCPU> ... CPU Count = %d", ESP.getChipCores());
-   Log.verboseln("<aaSocMicro::_logCoreCPU> ... CPU Model = %s", ESP.getChipModel());
-   Log.verboseln("<aaSocMicro::_logCoreCPU> ... CPU Revision = %d", ESP.getChipRevision());
-   Log.verboseln("<aaSocMicro::_logCoreCPU> ... CPU clock speed = %uMhz", ESP.getCpuFreqMHz());
+   Log.noticeln("<aaSocMicro::_logCoreCPU> Core CPU details.");
+   Log.noticeln("<aaSocMicro::_logCoreCPU> ... CPU Count = %d", ESP.getChipCores());
+   Log.noticeln("<aaSocMicro::_logCoreCPU> ... CPU Model = %s", ESP.getChipModel());
+   Log.noticeln("<aaSocMicro::_logCoreCPU> ... CPU Revision = %d", ESP.getChipRevision());
+   Log.noticeln("<aaSocMicro::_logCoreCPU> ... CPU clock speed = %uMhz", ESP.getCpuFreqMHz());
 } // aaSocMicro::_logCoreCPU()
 
 /**
@@ -314,20 +314,20 @@ void aaSocMicro::_logCoreMem()
    const uint32_t STATIC_DATA_SIZE = ESP.getSketchSize() + ESP.getFreeSketchSpace();
    const uint32_t SRAM_SIZE = STATIC_DATA_SIZE + ESP.getHeapSize() + uxTaskGetStackHighWaterMark(NULL);
 
-   Log.verboseln("<aaSocMicro::_logCoreMem> Core memory details.");
-   Log.verboseln("<aaSocMicro::_logCoreMem> ... ROM contains Espressif code and we do not touch that.");
-   Log.verboseln("<aaSocMicro::_logCoreMem> ...... ROM size = %u bytes.", XSHAL_ROM_SIZE);
-   Log.verboseln("<aaSocMicro::_logCoreMem> ... SRAM is the binarys read/write area.");
-   Log.verboseln("<aaSocMicro::_logCoreMem> ...... Total SRAM size (stack + heap + static data) = %u bytes.", SRAM_SIZE);
-   Log.verboseln("<aaSocMicro::_logCoreMem> ...... The Stack contains local variables, interrupt and function pointers.");
-   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Stack highwater mark = %u bytes", uxTaskGetStackHighWaterMark(NULL));
-   Log.verboseln("<aaSocMicro::_logCoreMem> ...... Static memory (aka sketch memory) is allocated at compile time and contains global and static variables.");
-   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Static data size = %u bytes.", STATIC_DATA_SIZE);
-   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Sketch size = %u bytes.", ESP.getSketchSize());
-   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Free sketch space = %u bytes.", ESP.getFreeSketchSpace());
-   Log.verboseln("<aaSocMicro::_logCoreMem> ...... The Heap contains dynamic data.");
-   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Heap size = %u bytes.", ESP.getHeapSize());
-   Log.verboseln("<aaSocMicro::_logCoreMem> ......... Free heap = %u bytes.", ESP.getFreeHeap());
+   Log.noticeln("<aaSocMicro::_logCoreMem> Core memory details.");
+   Log.noticeln("<aaSocMicro::_logCoreMem> ... ROM contains Espressif code and we do not touch that.");
+   Log.noticeln("<aaSocMicro::_logCoreMem> ...... ROM size = %u bytes.", XSHAL_ROM_SIZE);
+   Log.noticeln("<aaSocMicro::_logCoreMem> ... SRAM is the binarys read/write area.");
+   Log.noticeln("<aaSocMicro::_logCoreMem> ...... Total SRAM size (stack + heap + static data) = %u bytes.", SRAM_SIZE);
+   Log.noticeln("<aaSocMicro::_logCoreMem> ...... The Stack contains local variables, interrupt and function pointers.");
+   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Stack highwater mark = %u bytes", uxTaskGetStackHighWaterMark(NULL));
+   Log.noticeln("<aaSocMicro::_logCoreMem> ...... Static memory (aka sketch memory) is allocated at compile time and contains global and static variables.");
+   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Static data size = %u bytes.", STATIC_DATA_SIZE);
+   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Sketch size = %u bytes.", ESP.getSketchSize());
+   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Free sketch space = %u bytes.", ESP.getFreeSketchSpace());
+   Log.noticeln("<aaSocMicro::_logCoreMem> ...... The Heap contains dynamic data.");
+   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Heap size = %u bytes.", ESP.getHeapSize());
+   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Free heap = %u bytes.", ESP.getFreeHeap());
 } // aaSocMicro::_logCoreMem()
 
 /**
@@ -389,11 +389,11 @@ void aaSocMicro::_transFlashModeCode(char& details)
 void aaSocMicro::_logIntegratedFlash()
 {
    char _details[80]; // Text version of flash memory mode.
-   Log.verboseln("<aaSocMicro::_logIntegratedFlash> Flash memory details (Arduino binary resides here).");
+   Log.noticeln("<aaSocMicro::_logIntegratedFlash> Flash memory details (Arduino binary resides here).");
    _transFlashModeCode(*_details);
-   Log.verboseln("<aaSocMicro::_logIntegratedFlash> ... Flash mode = %s", _details);
-   Log.verboseln("<aaSocMicro::_logIntegratedFlash> ... Flash chip size = %u", ESP.getFlashChipSize());
-   Log.verboseln("<aaSocMicro::_logIntegratedFlash> ... Flash chip speed = %u", ESP.getFlashChipSpeed());
+   Log.noticeln("<aaSocMicro::_logIntegratedFlash> ... Flash mode = %s", _details);
+   Log.noticeln("<aaSocMicro::_logIntegratedFlash> ... Flash chip size = %u", ESP.getFlashChipSize());
+   Log.noticeln("<aaSocMicro::_logIntegratedFlash> ... Flash chip speed = %u", ESP.getFlashChipSpeed());
 } // aaSocMicro::_logIntegratedFlash()
 
 /**
@@ -411,13 +411,13 @@ void aaSocMicro::_logPsramMem()
    Log.traceln("<aaSocMicro::_logPsramMem> PSRAM is optional external RAM accessed via the SPI bus.");
    if(psramFound()) // Is SPI RAM (psudo ram) available?
    {
-      Log.traceln("<aaSocMicro::_logPsramMem> ... PSRAM detected.");
-      Log.verboseln("<aaSocMicro::_logPsramMem> ... PSRAM size = %u", ESP.getPsramSize());
-      Log.verboseln("<aaSocMicro::_logPsramMem> ... Free PSRAM = %u", ESP.getFreePsram());
+      Log.noticeln("<aaSocMicro::_logPsramMem> ... PSRAM detected.");
+      Log.noticeln("<aaSocMicro::_logPsramMem> ... PSRAM size = %u", ESP.getPsramSize());
+      Log.noticeln("<aaSocMicro::_logPsramMem> ... Free PSRAM = %u", ESP.getFreePsram());
    } // if
    else
    {
-      Log.traceln("<aaSocMicro::_logPsramMem> ... No PSRAM detected.");
+      Log.noticeln("<aaSocMicro::_logPsramMem> ... No PSRAM detected.");
    } // else   
 } // aaSocMicro::_logPsramMem()
 
@@ -439,17 +439,19 @@ void aaSocMicro::_logPsramMem()
 void aaSocMicro::_logWireless()
 {
    wifi_auth_mode_t encryption = WiFi.encryptionType(_SSIDIndex);
-   int8_t dataReadings = 10; // Number of data readings to average to determine Wifi signal strength.
-   long signalStrength = rfSignalStrength(dataReadings); // Get average signal strength reading.
-   Log.verboseln("<aaSocMicro::_logWireless> Wireless details."); 
-   Log.verboseln("<aaSocMicro::_logWireless> ... WiFi."); 
-   Log.verboseln("<aaSocMicro::_logWireless> ...... Access Point Name = %s.",WiFi.SSID().c_str()); 
-   Log.verboseln("<aaSocMicro::_logWireless> ...... Access Point Encryption method = %X (%s).", encryption, _translateEncryptionType(WiFi.encryptionType(encryption)));
-   Log.verboseln("<aaSocMicro::_logWireless> ...... Wifi signal strength = %u (%s).", signalStrength, evalSignal(signalStrength));
-   Log.verboseln("<aaSocMicro::cfgToConsole> ...... Robot MAC address: %s.", WiFi.macAddress().c_str());
-   Log.verboseln(F("<aaSocMicro::cfgToConsole> ...... Robot IP address: %p."), WiFi.localIP()); 
-   Log.verboseln("<aaSocMicro::_logWireless> ... Bluetooth."); 
-   /// @todo #44 Add Bluetooth information into _logWireless in aaSocMicro.  
+   int8_t _dataReadings = 10; // Number of data readings to average to determine Wifi signal strength.
+   long _signalStrength = rfSignalStrength(_dataReadings); // Get average signal strength reading.
+   char _bluetoothAddress[30]; // Hold Bluetooth address in a character array.
+   _btAddress(_bluetoothAddress); // Copy formatted Bluetooth address into the character array.
+   Log.noticeln("<aaSocMicro::_logWireless> Wireless details."); 
+   Log.noticeln("<aaSocMicro::_logWireless> ... WiFi."); 
+   Log.noticeln("<aaSocMicro::_logWireless> ...... Access Point Name = %s.",WiFi.SSID().c_str()); 
+   Log.noticeln("<aaSocMicro::_logWireless> ...... Access Point Encryption method = %X (%s).", encryption, _translateEncryptionType(WiFi.encryptionType(encryption)));
+   Log.noticeln("<aaSocMicro::_logWireless> ...... Wifi signal strength = %u (%s).", _signalStrength, evalSignal(_signalStrength));
+   Log.noticeln("<aaSocMicro::cfgToConsole> ...... Local Wifi MAC address: %s.", WiFi.macAddress().c_str());
+   Log.noticeln(F("<aaSocMicro::cfgToConsole> ...... Local WiFi IP address: %p."), WiFi.localIP()); 
+   Log.noticeln("<aaSocMicro::_logWireless> ... Bluetooth."); 
+   Log.noticeln("<aaSocMicro::cfgToConsole> ...... Local bluetooth MAC address: %s.", _bluetoothAddress); 
 } // aaSocMicro::_logWireless()
 
 /**
@@ -518,6 +520,7 @@ const char* aaSocMicro::_connectionStatus(wl_status_t status)
 bool aaSocMicro::configure()
 {
    connectWifi(); // Establish WiFi connection.
+   _initBluetooth(); // Initialize Bluetooth radio.
    return true;
 } // aaSocMicro::configure()
 
@@ -610,12 +613,11 @@ bool aaSocMicro::pingIP(IPAddress address, int8_t numPings)
  ******************************************************************************/
 const char* aaSocMicro::_lookForAP()
 {
-   Log.verboseln("<aaSocMicro::_lookForAP> Scanning the 2.4GHz radio spectrum for known Access Points.");
    _ssid = _unknownAP; //  At the start no known Access Point has been foundto connect to
    int numberOfNetworks = WiFi.scanNetworks(); // Used to track how many APs are detected by the scan
    int StrongestSignal = -127; // Used to find the strongest signal. Set as low as possible to start
    bool APknown; // Flag to indicate if the current AP appears in the known AP list
-   Serial.println(numberOfNetworks);
+   Log.verboseln("<aaSocMicro::_lookForAP> Scanning the 2.4GHz radio spectrum for one of the %d known Access Points.", numberOfNetworks);
 
    // Loop through all detected APs
    for(int i = 0; i < numberOfNetworks; i++)
@@ -680,35 +682,34 @@ void aaSocMicro::_wiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info)
       case SYSTEM_EVENT_AP_START:
 //         WiFi.softAP(AP_SSID, AP_PASS); //can set ap hostname here   
 //         WiFi.softAPenableIpV6(); //enable ap ipv6 here
-         Serial.println("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_AP_START");            
+         Log.verboseln("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_AP_START");            
          break;
       case SYSTEM_EVENT_STA_START:         
 //         WiFi.setHostname(AP_SSID); //set sta hostname here
-         Serial.println("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_START");            
+         Log.verboseln("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_START");            
          break;
       case SYSTEM_EVENT_STA_CONNECTED:         
 //         WiFi.enableIpV6(); //enable sta ipv6 here
-         Serial.println("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_CONNECTED");            
+         Log.verboseln("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_CONNECTED");            
          break;
       case SYSTEM_EVENT_AP_STA_GOT_IP6:
-         Serial.println("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_AP_STA_GOT_IP6");            
+         Log.verboseln("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_AP_STA_GOT_IP6");            
          break;
       case SYSTEM_EVENT_STA_GOT_IP:
 //         wifiOnConnect(); // Call function to do things dependant upon getting wifi connected
-         Serial.println("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_GOT_IP");            
+         Log.verboseln("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_GOT_IP");            
          break;
       case SYSTEM_EVENT_STA_DISCONNECTED:
-         Serial.println("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_DISCONNECTED");            
+         Log.verboseln("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_DISCONNECTED");            
          break;
       case WL_NO_SSID_AVAIL:
-         Serial.println("<aaSocMicro::WiFiEvent> WL_NO_SSID_AVAIL");            
+         Log.verboseln("<aaSocMicro::WiFiEvent> WL_NO_SSID_AVAIL");            
          break;
       case WL_IDLE_STATUS: 
-         Serial.println("<aaSocMicro::WiFiEvent> Detected WL_IDLE_STATUS");            
+         Log.verboseln("<aaSocMicro::WiFiEvent> Detected WL_IDLE_STATUS");            
          break;
       default:
-         Serial.println("<aaSocMicro::WiFiEvent> ERROR - UNKNOW SYSTEM EVENT"); 
-         Serial.print("<aaSocMicro::WiFiEvent> ... Event = "); Serial.println(event);           
+         Log.verboseln(F("<aaSocMicro::WiFiEvent> ERROR - UNKNOW SYSTEM EVENT %p."), event); 
          break;
    } //switch
 } // aaSocMicro::_wiFiEvent()
@@ -730,8 +731,103 @@ void aaSocMicro::_wiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info)
  * 5. A Balun.    
  * @param null.
  * @return null.
- * @todo #39 add function for unique robot name.
  ******************************************************************************/
 void aaSocMicro::_logGPIO()
 {
 } // aaSocMicro::_logGPIO()
+ 
+/**
+ * @brief Initialize Bluetooth system.
+ * @details Initializing the Bluetooth system involves the following 3 steps:
+ * 1. Initialize the contrller.
+ * 2. Initialize Bluedroid.
+ * 3. Enable Bluedroid.
+ * 
+ * # Esp32 Bluetooth Architecture
+ * Bluetooth is a wireless technology standard for exchanging data over short 
+ * distances, with advantages including robustness, low power consumption and 
+ * low cost. The Bluetooth system can be divided into two different categories: 
+ * Classic Bluetooth and Bluetooth Low Energy (BLE). ESP32 supports dual-mode 
+ * Bluetooth, meaning that both Classic Bluetooth and BLE are supported by 
+ * ESP32. Basically, the Bluetooth protocol stack is split into two parts: a 
+ * “controller stack” and a “host stack”. The controller stack contains the 
+ * PHY, Baseband, Link Controller, Link Manager, Device Manager, HCI and 
+ * other modules, and is used for the hardware interface management and link 
+ * management. The host stack contains L2CAP, SMP, SDP, ATT, GATT, GAP and 
+ * various profiles, and functions as an interface to the application layer, 
+ * thus facilitating the application layer to access the Bluetooth system. The 
+ * Bluetooth Host can be implemented on the same device as the Controller, or 
+ * on different devices. Both approaches are supported by ESP32.
+ * 
+ * # Bluedroid
+ * The BLUEDROID Bluetooth Stack communicates with Bluetooth Controller over 
+ * VHCI (Virtual Host Controller Interface) and at the same time provides APIs 
+ * for user application. Bluetooth Profiles determine the functions of each 
+ * layer of the Bluetooth from PHY to L2CAP while the Bluetooth Protocols 
+ * define message formats and procedures for data transport, link control etc.
+ * 
+ * The following is a list of Classic Bluetooth Profiles and Protocols 
+ * supported by BLUEDROID Bluetooth Stack of ESP32.
+ * 
+ * ## Classic Bluetooth Profiles
+ * 
+ * 1. GAP
+ * 2. A2DP (SNK)
+ * 3. AVRCP (CT)
+ * 
+ * ## Classic Bluetooth Protocols
+ * L2CAP
+ * SDP
+ * AVDTP
+ * AVCTP
+ * 
+ * The communication between ESP32’s Processor and Bluetooth Controller is 
+ * based on Serial Interface. 
+ * 
+ * @param null.
+ * @return null.
+ ******************************************************************************/
+bool aaSocMicro::_initBluetooth()
+{
+   if (!btStart()) 
+   {
+      Log.verboseln("Failed to initialize controller");
+      return false;
+   } // if
+   if (esp_bluedroid_init() != ESP_OK) 
+   {
+      Log.verboseln("Failed to initialize bluedroid");
+      return false;
+   } // if
+   if (esp_bluedroid_enable() != ESP_OK) 
+   {
+      Log.verboseln("Failed to enable bluedroid");
+      return false;
+   } //  if
+   return true;
+} // aaSocMicro::_initBluetooth()
+ 
+/**
+ * @brief Initialize Bluetooth.
+ * @details The Bluetooth address consists of six integers. In this function
+ * we concatinate these 6 integers as two-digit hex char* values separate by 
+ * an additional 1 colon character. This results in a 15 character long 
+ * address in a character array. 
+ * @param null.
+ * @return null.
+ ******************************************************************************/
+void aaSocMicro::_btAddress(char* targetArray) 
+{
+   const uint8_t* point = esp_bt_dev_get_address(); // Retrieve address.
+   strcpy(targetArray, ""); // Clear array.
+   for (int i = 0; i < 6; i++) // Loop through address one integer at a time.
+   {
+      char str[3]; // Build address 3 characters at a time.
+      sprintf(str, "%02X", (int)point[i]); // Convert integer into a 2-digit hex value.
+      strcat(targetArray, str); // Concatinate each hex value into the target array.
+      if(i < 5) // Insert colon every 3 characters for the firt 5 groups. 
+      {
+         strcat(targetArray, ":"); // Concatinate a colon into the target array.
+      } // if
+   } // for
+} // aaSocMicro::_btAddress()

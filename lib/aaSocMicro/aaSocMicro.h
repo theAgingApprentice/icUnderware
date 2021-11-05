@@ -26,6 +26,8 @@ Licensed under the MIT License <http://opensource.org/licenses/MIT>.
 #include <aaFormat.h> // Collection of handy format conversion functions.
 #include <knownNetworks.h> // Defines Access points and passwords that the robot can scan for and connect to.
 #include <ESP32Ping.h> // Verify IP addresses. https://github.com/marian-craciunescu/ESP32Ping.
+#include "esp_bt_main.h"
+#include "esp_bt_device.h"
 
 /**
  * Global variables.
@@ -128,7 +130,9 @@ class aaSocMicro
       int8_t _SSIDIndex = 0; // Contains the SSID index number from the known list of APs.
       char _uniqueName[HOST_NAME_SIZE]; // Character array that holds unique name for Wifi network purposes. 
       char *_uniqueNamePtr = &_uniqueName[0]; // Pointer to first address position of unique name character array.
-      const char* _HOST_NAME_PREFIX; // Prefix for unique network name.       
+      const char* _HOST_NAME_PREFIX; // Prefix for unique network name. 
+      bool _initBluetooth(); // Initialize the Bluetooth system.
+      void _btAddress(char*); // Retrieve Bluetooth address.              
 }; //class aaSocMicro
 
 #endif // End of precompiler protected code block
