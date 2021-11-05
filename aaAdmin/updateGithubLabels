@@ -18,6 +18,7 @@ echo "Running github-label-sync using these arguments:"
 echo "- Label source = $labelSource"
 echo "- Target Github name = $targetGithubName"
 echo "- Github personal token = $githubToken"
-# github-label-sync -a ${GITHUB_TOKEN} -d -l 'https://git.io/fAe5i' ${GITHUB_NAME}/${REPO} # original command.
-# github-label-sync -a $githubToken -d -l $labelSource $targetGithubName/$targetGithubRepo # Uses -d flag to do dry run.
+
 github-label-sync -a $githubToken -l $labelSource $targetGithubName/$targetGithubRepo # Does update to your target Github repository.
+
+echo "Helpful tip: Ignore the 422 error in red above. It's a known bug with the utility." 
