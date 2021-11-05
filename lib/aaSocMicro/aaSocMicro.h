@@ -46,29 +46,20 @@ static const int8_t HOST_NAME_SIZE = 30;  ///< Max size of network name.
 /**
  * The aaSocMicro class provides a single object of authority regarding the 
  * ESP32. Details are collected from both FreeRTOS and the ESP32 Arduino 
- * framework. The information comes from the ESP32's six substems which are 
+ * framework. The information comes from the ESP32's six sub-systems which are 
  * outlined below.
  * 
- * Core subsystem
- * ==============
+ * ## Core subsystem
  * 
  * The core subsystem is made up of two CPUs, refered to as COR0 and COR1, as 
  * well as both ROM and RAM memory, referred to as core memory.
  * 
- * WiFi subsystem
- * ==============
+ * ## Wireless subsystem
  * 
- * The Wifi subsystem shares RF send/recieve, clock, switch and balun with the 
- * Bluetooth subsystem.
+ * The wireless subsystem is comprised of WiFi and Bluetooth which share a 
+ * common RF send/recieve, clock, switch and balun.
  * 
- * Bluetooth subsystem
- * ===================
- * 
- * The Bluetooth subsystem shares RF send/recieve, clock, switch and balun with 
- * the WiFi subsystem.
- * 
- * RTC subsystem
- * =============
+ * ## RTC subsystem
  * 
  * The Real Time Clock (RTC) subsystem is used by the ESP32 for low power modes. It
  * contains the following: 
@@ -77,8 +68,8 @@ static const int8_t HOST_NAME_SIZE = 30;  ///< Max size of network name.
  * 2. The small and ultra low power (ULP) 32-bit co-processor
  * 3. 8Kbs of RAM memory known as the recovery memory. 
  * 
- * Crytographic Acceleration subsystem
- * =================================== 
+ * ## Crytographic Acceleration subsystem
+ * 
  * The Cryptograpic Acceleration subsystem provides hardware encrytion acceleration.
  * The following algorithms are supported:
  * 
@@ -87,8 +78,7 @@ static const int8_t HOST_NAME_SIZE = 30;  ///< Max size of network name.
  * 3. AES
  * 4. RNG 
  * 
- * Peripherals subsystem
- * =====================
+ * ## Peripherals subsystem
  * 
  * The Peripherals subsystem handles all of the General Purpose Input/Output (GPIO) 
  * interfaces.
