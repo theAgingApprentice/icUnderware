@@ -14,7 +14,7 @@
 void setupSerial()
 {
    bool showLevel = true; // Prefixed logging output with a single letter level.
-   Serial.begin(SERIAL_BAUD_RATE); // Initialize serial port.
+   Serial.begin(hwPlatform.SERIAL_BAUD_RATE); // Initialize serial port.
    while(!Serial && !Serial.available()) // Wait for serial to connect.
    {
    } // while
@@ -28,11 +28,7 @@ void setup()
 {
    setupSerial(); // Set serial baud rate. 
    Log.traceln("<setup> Start of setup.");
-   MCU.logResetReason(); // Report on reason for last CPU reset.
-   MCU.configure(); // Configure robot.
-   MCU.logSubsystemDetails(); // Log microprocessor details.
-   MCU.getUniqueName(*uniqueName, appName);
-   Log.verboseln("<setup> Unique network name = %s.", uniqueName);
+   hwPlatform.start();
    Log.traceln("<setup> End of setup.");
 } // start()
 

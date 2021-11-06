@@ -1,10 +1,10 @@
-#include <aaSocMicro.h> // Header file for linking.
+#include <aaEsp32Wroom32v3.h> // Header file for linking.
 
 /**
- * @fn aaSocMicro::aaSocMicro()
+ * @fn aaEsp32Wroom32v3::aaEsp32Wroom32v3()
  * @brief This is the first constructor form for this class.
  * @details Instantiating this class using the first form results in the 
- * following defaullt settings.
+ * following default settings.
  * 
  * 1. Logging level = Silent. This means that this class will not send messages 
  * to the log.
@@ -15,17 +15,17 @@
  * @param null.
  * @return null.
  ******************************************************************************/
-aaSocMicro::aaSocMicro()
+aaEsp32Wroom32v3::aaEsp32Wroom32v3()
 {
    bool showLevel = true; // Prefixed logging output with a single letter level.
    int loggingLevel = LOG_LEVEL_SILENT;
    Print *output = &Serial;
    Log.begin(loggingLevel, output, showLevel); // Set logging parameters. 
-   Log.verboseln("<aaSocMicro::FirstFormConstructor> Logging set to %d.", loggingLevel);
-} //aaSocMicro::aaSocMicro()
+   Log.verboseln("<aaEsp32Wroom32v3::FirstFormConstructor> Logging set to %d.", loggingLevel);
+} //aaEsp32Wroom32v3::aaEsp32Wroom32v3()
 
 /**
- * @overload aaSocMicro::aaSocMicro(Print* output)
+ * @overload aaEsp32Wroom32v3::aaEsp32Wroom32v3(Print* output)
  * @brief This is the second constructor form for this class.
  * @details Instantiating this class using the second form results in the 
  * following default settings.
@@ -39,16 +39,16 @@ aaSocMicro::aaSocMicro()
  * @param output class that handles bit stream input.
  * @return null
  ******************************************************************************/
-aaSocMicro::aaSocMicro(Print* output)
+aaEsp32Wroom32v3::aaEsp32Wroom32v3(Print* output)
 {
    bool showLevel = true; // Prefixed logging output with a single letter level.
    int loggingLevel = LOG_LEVEL_SILENT;
    Log.begin(loggingLevel, output, showLevel); // Set logging parameters. 
-   Log.traceln("<aaSocMicro::SecondFormConstructor> Logging set to %d.", loggingLevel);
-} //aaSocMicro::aaSocMicro()
+   Log.traceln("<aaEsp32Wroom32v3::SecondFormConstructor> Logging set to %d.", loggingLevel);
+} //aaEsp32Wroom32v3::aaEsp32Wroom32v3()
 
 /**
- * @overload aaSocMicro::aaSocMicro(int loggingLevel, Print* output, bool showLevel)
+ * @overload aaEsp32Wroom32v3::aaEsp32Wroom32v3(int loggingLevel, Print* output, bool showLevel)
  * @brief This is the third constructor form for this class.
  * @details Instantiating this class using the third form results in you
  * controlling all Logging behavior for this class.
@@ -57,21 +57,21 @@ aaSocMicro::aaSocMicro(Print* output)
  * @param showLevel prefixs log message with the Logging level letter when TRUE.
  * @return null
  ******************************************************************************/
-aaSocMicro::aaSocMicro(int loggingLevel, Print* output, bool showLevel)
+aaEsp32Wroom32v3::aaEsp32Wroom32v3(int loggingLevel, Print* output, bool showLevel)
 {
    Log.begin(loggingLevel, output, showLevel); // Set logging parameters. 
-   Log.traceln("<aaSocMicro::ThirdFormConstructor> Logging set to %d.", loggingLevel);
-} //aaSocMicro::aaSocMicro()
+   Log.traceln("<aaEsp32Wroom32v3::ThirdFormConstructor> Logging set to %d.", loggingLevel);
+} //aaEsp32Wroom32v3::aaEsp32Wroom32v3()
 
 /**
  * @brief This is the destructor for this class.
  * @param null
  * @return null
  ******************************************************************************/
-aaSocMicro::~aaSocMicro()
+aaEsp32Wroom32v3::~aaEsp32Wroom32v3()
 {
-   Log.traceln("<aaSocMicro::~aaSocMicro> Destructor running.");
-} //aaSocMicro::~aaSocMicro()
+   Log.traceln("<aaEsp32Wroom32v3::~aaEsp32Wroom32v3> Destructor running.");
+} //aaEsp32Wroom32v3::~aaEsp32Wroom32v3()
 
 /**
  * @brief Translates a CPU reset reason code to a human readable string.
@@ -98,7 +98,7 @@ aaSocMicro::~aaSocMicro()
  * @param code is the nuerica reset value reported by the CPU. 
  * @return null. 
  ******************************************************************************/
-void aaSocMicro::_transReasonCode(char& reason, RESET_REASON code)
+void aaEsp32Wroom32v3::_transReasonCode(char& reason, RESET_REASON code)
 {
    switch(code)
    {
@@ -119,14 +119,14 @@ void aaSocMicro::_transReasonCode(char& reason, RESET_REASON code)
       case 16: strcpy(&reason, "16. RTC Watch dog reset digital core and rtc module."); break; 
       default: strcpy(&reason, "UNKNOWN"); break; 
    } // switch()
-} // aaSocMicro::_translateReasonCode()
+} // aaEsp32Wroom32v3::_translateReasonCode()
 
 /**
  * @brief Sends human readable reset reason for both cores to the log.
  * @param null.
  * @return null.
  ******************************************************************************/
-void aaSocMicro::logResetReason()
+void aaEsp32Wroom32v3::logResetReason()
 {
    char _reason[40]; // Text version of last reset reason code.
    for(int8_t i=0; i < ESP.getChipCores(); i++)
@@ -134,7 +134,7 @@ void aaSocMicro::logResetReason()
       _transReasonCode(*_reason, rtc_get_reset_reason(i));
       Log.noticeln("<logResetReason> new CPU%d reset reason = %s", i, _reason);
    } // for
-} // aaSocMicro::logResetReason()
+} // aaEsp32Wroom32v3::logResetReason()
 
 /**
  * @brief Sends details about the host micro controller to the log.
@@ -152,23 +152,23 @@ void aaSocMicro::logResetReason()
  * @param null.
  * @return null.
  ******************************************************************************/
-void aaSocMicro::logSubsystemDetails()
+void aaEsp32Wroom32v3::logSubsystemDetails()
 {
-   Log.noticeln("<aaSocMicro::logSubsystemDetails> Core subsystem details.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> Core subsystem details.");
    _logCoreCPU();
    _logCoreMem();
-   Log.noticeln("<aaSocMicro::logSubsystemDetails> SPI accessible external memory details.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> SPI accessible external memory details.");
    _logIntegratedFlash();
    _logPsramMem();
-   Log.noticeln("<aaSocMicro::logSubsystemDetails> Wireless subsystem details.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> Wireless subsystem details.");
    _logWireless();
-   Log.noticeln("<aaSocMicro::logSubsystemDetails> Crytographic subsystem details.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> Crytographic subsystem details.");
    _logCrypto();
-   Log.noticeln("<aaSocMicro::logSubsystemDetails> RTC subsystem details.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> RTC subsystem details.");
    _logRTC();
-   Log.noticeln("<aaSocMicro::logSubsystemDetails> Peripheral subsystem details.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> Peripheral subsystem details.");
    _logGPIO();
-} // aaSocMicro::logSubsystemDetails()
+} // aaEsp32Wroom32v3::logSubsystemDetails()
 
 /**
  * @brief Sends details about the core CPU(s) to the log.
@@ -191,14 +191,14 @@ void aaSocMicro::logSubsystemDetails()
  * @param null.
  * @return null.
  ******************************************************************************/
-void aaSocMicro::_logCoreCPU()
+void aaEsp32Wroom32v3::_logCoreCPU()
 {
-   Log.noticeln("<aaSocMicro::_logCoreCPU> ... Core CPU details.");
-   Log.noticeln("<aaSocMicro::_logCoreCPU> ...... CPU Count = %d", ESP.getChipCores());
-   Log.noticeln("<aaSocMicro::_logCoreCPU> ...... CPU Model = %s", ESP.getChipModel());
-   Log.noticeln("<aaSocMicro::_logCoreCPU> ...... CPU Revision = %d", ESP.getChipRevision());
-   Log.noticeln("<aaSocMicro::_logCoreCPU> ...... CPU clock speed = %uMhz", ESP.getCpuFreqMHz());
-} // aaSocMicro::_logCoreCPU()
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreCPU> ... Core CPU details.");
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreCPU> ...... CPU Count = %d", ESP.getChipCores());
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreCPU> ...... CPU Model = %s", ESP.getChipModel());
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreCPU> ...... CPU Revision = %d", ESP.getChipRevision());
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreCPU> ...... CPU clock speed = %uMhz", ESP.getCpuFreqMHz());
+} // aaEsp32Wroom32v3::_logCoreCPU()
 
 /**
  * @brief Sends details about the core memory to the log.
@@ -334,27 +334,27 @@ void aaSocMicro::_logCoreCPU()
  * @todo: #4 Implement monitoring of heap and stack to detect potential SRAM 
  * corruption. 
  ******************************************************************************/
-void aaSocMicro::_logCoreMem()
+void aaEsp32Wroom32v3::_logCoreMem()
 {
    const uint32_t _STATIC_DATA_SIZE = ESP.getSketchSize() + ESP.getFreeSketchSpace();
    const uint32_t _SRAM_SIZE = _STATIC_DATA_SIZE + ESP.getHeapSize() + uxTaskGetStackHighWaterMark(NULL);
    int8_t _BUFFER_SIZE = 14; // Size of buffer to hold formatted uint32_t numbers.
    char _buffer[_BUFFER_SIZE]; // Buffer to hold formatted uint32_t numbers. 
-   Log.noticeln("<aaSocMicro::_logCoreMem> ... Core memory details.");
-   Log.noticeln("<aaSocMicro::_logCoreMem> ...... ROM contains Espressif code and we do not touch that.");
-   Log.noticeln("<aaSocMicro::_logCoreMem> ......... ROM size = %s bytes.", _int32toa(XSHAL_ROM_SIZE, _buffer));
-   Log.noticeln("<aaSocMicro::_logCoreMem> ...... SRAM is the binarys read/write area.");
-   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Total SRAM size (stack + heap + static data) = %s bytes.", _int32toa(_SRAM_SIZE, _buffer));
-   Log.noticeln("<aaSocMicro::_logCoreMem> ......... The Stack contains local variables, interrupt and function pointers.");
-   Log.noticeln("<aaSocMicro::_logCoreMem> ............ Stack highwater mark = %s bytes", _int32toa(uxTaskGetStackHighWaterMark(NULL), _buffer));
-   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Static memory (aka sketch memory) contains global and static variables.");
-   Log.noticeln("<aaSocMicro::_logCoreMem> ............ Static data size = %s bytes.", _int32toa(_STATIC_DATA_SIZE, _buffer));
-   Log.noticeln("<aaSocMicro::_logCoreMem> ............ Sketch size = %s bytes.", _int32toa(ESP.getSketchSize(), _buffer));
-   Log.noticeln("<aaSocMicro::_logCoreMem> ............ Free sketch space = %s bytes.", _int32toa(ESP.getFreeSketchSpace(), _buffer));
-   Log.noticeln("<aaSocMicro::_logCoreMem> ......... The Heap contains dynamic data.");
-   Log.noticeln("<aaSocMicro::_logCoreMem> ............ Heap size = %s bytes.", _int32toa(ESP.getHeapSize(), _buffer));
-   Log.noticeln("<aaSocMicro::_logCoreMem> ............ Free heap = %s bytes.", _int32toa(ESP.getFreeHeap(), _buffer));
-} // aaSocMicro::_logCoreMem()
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ... Core memory details.");
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ...... ROM contains Espressif code and we do not touch that.");
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ......... ROM size = %s bytes.", _int32toa(XSHAL_ROM_SIZE, _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ...... SRAM is the binarys read/write area.");
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ......... Total SRAM size (stack + heap + static data) = %s bytes.", _int32toa(_SRAM_SIZE, _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ......... The Stack contains local variables, interrupt and function pointers.");
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ............ Stack highwater mark = %s bytes", _int32toa(uxTaskGetStackHighWaterMark(NULL), _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ......... Static memory (aka sketch memory) contains global and static variables.");
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ............ Static data size = %s bytes.", _int32toa(_STATIC_DATA_SIZE, _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ............ Sketch size = %s bytes.", _int32toa(ESP.getSketchSize(), _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ............ Free sketch space = %s bytes.", _int32toa(ESP.getFreeSketchSpace(), _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ......... The Heap contains dynamic data.");
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ............ Heap size = %s bytes.", _int32toa(ESP.getHeapSize(), _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ............ Free heap = %s bytes.", _int32toa(ESP.getFreeHeap(), _buffer));
+} // aaEsp32Wroom32v3::_logCoreMem()
 
 /**
  * @brief Format uint32 number with commas.
@@ -365,7 +365,7 @@ void aaSocMicro::_logCoreMem()
  * @param startBuffer is a pointer to the start of the conversion buffer.
  * @return pointer to first digit.
  ******************************************************************************/
-char * aaSocMicro::_int32toa(uint32_t val, char* startBuffer)
+char * aaEsp32Wroom32v3::_int32toa(uint32_t val, char* startBuffer)
 {
    char *endBuffer = startBuffer + 13;
    *endBuffer = '\0';
@@ -377,7 +377,7 @@ char * aaSocMicro::_int32toa(uint32_t val, char* startBuffer)
       val /= 10;
    } while (val);
    return endBuffer;
-} // aaSocMicro::_int32toa()
+} // aaEsp32Wroom32v3::_int32toa()
 
 /**
  * @brief Translates a flash memory mode code to a human readable string.
@@ -402,7 +402,7 @@ char * aaSocMicro::_int32toa(uint32_t val, char* startBuffer)
  * @param null.
  * @return null.
  ******************************************************************************/
-void aaSocMicro::_transFlashModeCode(char& details)
+void aaEsp32Wroom32v3::_transFlashModeCode(char& details)
 {
    switch(ESP.getFlashChipMode())
    {
@@ -414,7 +414,7 @@ void aaSocMicro::_transFlashModeCode(char& details)
       case FM_SLOW_READ: strcpy(&details, "5 (FM_SLOW_READ) - Unknown details."); break;
       default: strcpy(&details, "UNKNOWN MODE."); break; 
    } // switch()
-} // aaSocMicro::_transFlashModeCode()
+} // aaEsp32Wroom32v3::_transFlashModeCode()
 
 /**
  * @brief Sends details about the integrated flash memory to the log.
@@ -435,19 +435,19 @@ void aaSocMicro::_transFlashModeCode(char& details)
  * @param null.
  * @return null.
  ******************************************************************************/
-void aaSocMicro::_logIntegratedFlash()
+void aaEsp32Wroom32v3::_logIntegratedFlash()
 {
    const int8_t _DETAIL_SIZE = 80; // Size of buffer holding details about memory.
    const int8_t _BUFFER_SIZE = 14; // Size of buffer to hold formatted uint32_t numbers.
    char _details[_DETAIL_SIZE]; // Text version of flash memory mode.
    char _buffer[_BUFFER_SIZE]; // Buffer to hold formatted uint32_t numbers. 
 
-   Log.noticeln("<aaSocMicro::_logIntegratedFlash> ... Flash memory details (Arduino binary resides here).");
+   Log.noticeln("<aaEsp32Wroom32v3::_logIntegratedFlash> ... Flash memory details (Arduino binary resides here).");
    _transFlashModeCode(*_details);
-   Log.noticeln("<aaSocMicro::_logIntegratedFlash> ...... Flash mode = %s", _details);
-   Log.noticeln("<aaSocMicro::_logIntegratedFlash> ...... Flash chip size = %s", _int32toa(ESP.getFlashChipSize(), _buffer));
-   Log.noticeln("<aaSocMicro::_logIntegratedFlash> ...... Flash chip speed = %s", _int32toa(ESP.getFlashChipSpeed(), _buffer));
-} // aaSocMicro::_logIntegratedFlash()
+   Log.noticeln("<aaEsp32Wroom32v3::_logIntegratedFlash> ...... Flash mode = %s", _details);
+   Log.noticeln("<aaEsp32Wroom32v3::_logIntegratedFlash> ...... Flash chip size = %s bytes.", _int32toa(ESP.getFlashChipSize(), _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::_logIntegratedFlash> ...... Flash chip speed = %s bps.", _int32toa(ESP.getFlashChipSpeed(), _buffer));
+} // aaEsp32Wroom32v3::_logIntegratedFlash()
 
 /**
  * @brief Sends details about the external Pseudo Static RAM memory to the log.
@@ -459,22 +459,22 @@ void aaSocMicro::_logIntegratedFlash()
  * @param null.
  * @return null.
  ******************************************************************************/
-void aaSocMicro::_logPsramMem()
+void aaEsp32Wroom32v3::_logPsramMem()
 {
    const int8_t _BUFFER_SIZE = 14; // Size of buffer to hold formatted uint32_t numbers.
    char _buffer[_BUFFER_SIZE]; // Buffer to hold formatted uint32_t numbers. 
-   Log.traceln("<aaSocMicro::_logPsramMem> ... PSRAM is optional external RAM accessed via the SPI bus.");
+   Log.traceln("<aaEsp32Wroom32v3::_logPsramMem> ... PSRAM is optional external RAM accessed via the SPI bus.");
    if(psramFound()) // Is SPI RAM (psudo ram) available?
    {
-      Log.noticeln("<aaSocMicro::_logPsramMem> ...... PSRAM detected.");
-      Log.noticeln("<aaSocMicro::_logPsramMem> ...... PSRAM size = %s", _int32toa(ESP.getPsramSize(), _buffer));
-      Log.noticeln("<aaSocMicro::_logPsramMem> ...... Free PSRAM = %s", _int32toa(ESP.getFreePsram(), _buffer));
+      Log.noticeln("<aaEsp32Wroom32v3::_logPsramMem> ...... PSRAM detected.");
+      Log.noticeln("<aaEsp32Wroom32v3::_logPsramMem> ...... PSRAM size = %s", _int32toa(ESP.getPsramSize(), _buffer));
+      Log.noticeln("<aaEsp32Wroom32v3::_logPsramMem> ...... Free PSRAM = %s", _int32toa(ESP.getFreePsram(), _buffer));
    } // if
    else
    {
-      Log.noticeln("<aaSocMicro::_logPsramMem> ...... No PSRAM detected.");
+      Log.noticeln("<aaEsp32Wroom32v3::_logPsramMem> ...... No PSRAM detected.");
    } // else   
-} // aaSocMicro::_logPsramMem()
+} // aaEsp32Wroom32v3::_logPsramMem()
 
 /**
  * @brief Sends details about the Wireless system to the log.
@@ -491,22 +491,22 @@ void aaSocMicro::_logPsramMem()
  * @param null.
  * @return null.
  ******************************************************************************/
-void aaSocMicro::_logWireless()
+void aaEsp32Wroom32v3::_logWireless()
 {
    wifi_auth_mode_t encryption = WiFi.encryptionType(_SSIDIndex);
    int8_t _dataReadings = 10; // Number of data readings to average to determine Wifi signal strength.
    long _signalStrength = rfSignalStrength(_dataReadings); // Get average signal strength reading.
    char _bluetoothAddress[30]; // Hold Bluetooth address in a character array.
    _btAddress(_bluetoothAddress); // Copy formatted Bluetooth address into the character array.
-   Log.noticeln("<aaSocMicro::_logWireless> ... WiFi details."); 
-   Log.noticeln("<aaSocMicro::_logWireless> ...... Access Point Name = %s.",WiFi.SSID().c_str()); 
-   Log.noticeln("<aaSocMicro::_logWireless> ...... Access Point Encryption method = %X (%s).", encryption, _translateEncryptionType(WiFi.encryptionType(encryption)));
-   Log.noticeln("<aaSocMicro::_logWireless> ...... Wifi signal strength = %l (%s).", _signalStrength, evalSignal(_signalStrength));
-   Log.noticeln("<aaSocMicro::_logWireless> ...... Local Wifi MAC address: %s.", WiFi.macAddress().c_str());
-   Log.noticeln(F("<aaSocMicro::_logWireless> ...... Local WiFi IP address: %p."), WiFi.localIP()); 
-   Log.noticeln("<aaSocMicro::_logWireless> ... Bluetooth details."); 
-   Log.noticeln("<aaSocMicro::_logWireless> ...... Local bluetooth MAC address: %s.", _bluetoothAddress); 
-} // aaSocMicro::_logWireless()
+   Log.noticeln("<aaEsp32Wroom32v3::_logWireless> ... WiFi details."); 
+   Log.noticeln("<aaEsp32Wroom32v3::_logWireless> ...... Access Point Name = %s.",WiFi.SSID().c_str()); 
+   Log.noticeln("<aaEsp32Wroom32v3::_logWireless> ...... Access Point Encryption method = %X (%s).", encryption, _translateEncryptionType(WiFi.encryptionType(encryption)));
+   Log.noticeln("<aaEsp32Wroom32v3::_logWireless> ...... Wifi signal strength = %l (%s).", _signalStrength, evalSignal(_signalStrength));
+   Log.noticeln("<aaEsp32Wroom32v3::_logWireless> ...... Local Wifi MAC address: %s.", WiFi.macAddress().c_str());
+   Log.noticeln(F("<aaEsp32Wroom32v3::_logWireless> ...... Local WiFi IP address: %p."), WiFi.localIP()); 
+   Log.noticeln("<aaEsp32Wroom32v3::_logWireless> ... Bluetooth details."); 
+   Log.noticeln("<aaEsp32Wroom32v3::_logWireless> ...... Local bluetooth MAC address: %s.", _bluetoothAddress); 
+} // aaEsp32Wroom32v3::_logWireless()
 
 /**
  * @brief Sends details about the RTC subsystem system to the log.
@@ -517,12 +517,12 @@ void aaSocMicro::_logWireless()
  * @param null.
  * @return null.
  ******************************************************************************/
-void aaSocMicro::_logRTC()
+void aaEsp32Wroom32v3::_logRTC()
 {
-   Log.noticeln("<aaSocMicro::_logRTC> ... Phasor measurement unit (PMU) not implemented."); 
-   Log.noticeln("<aaSocMicro::_logRTC> ... Ultra Low Power (ULP) 32-bit co-processor not implemented."); 
-   Log.noticeln("<aaSocMicro::_logRTC> ... Recovery memory not implemented."); 
-} // aaSocMicro::_logRTC()
+   Log.noticeln("<aaEsp32Wroom32v3::_logRTC> ... Phasor measurement unit (PMU) not implemented."); 
+   Log.noticeln("<aaEsp32Wroom32v3::_logRTC> ... Ultra Low Power (ULP) 32-bit co-processor not implemented."); 
+   Log.noticeln("<aaEsp32Wroom32v3::_logRTC> ... Recovery memory not implemented."); 
+} // aaEsp32Wroom32v3::_logRTC()
 
 /**
  * @brief Sends details about the crytographic hardware acceleration subsystem to the log.
@@ -535,20 +535,20 @@ void aaSocMicro::_logRTC()
  * @param null.
  * @return null.
  ******************************************************************************/
-void aaSocMicro::_logCrypto()
+void aaEsp32Wroom32v3::_logCrypto()
 {
-   Log.noticeln("<aaSocMicro::_logCrypto> ... SHA not implemented."); 
-   Log.noticeln("<aaSocMicro::_logCrypto> ... RSA not implemented."); 
-   Log.noticeln("<aaSocMicro::_logCrypto> ... AES not implemented."); 
-   Log.noticeln("<aaSocMicro::_logCrypto> ... RNG not implemented."); 
-} // aaSocMicro::_logCrypto()
+   Log.noticeln("<aaEsp32Wroom32v3::_logCrypto> ... SHA not implemented."); 
+   Log.noticeln("<aaEsp32Wroom32v3::_logCrypto> ... RSA not implemented."); 
+   Log.noticeln("<aaEsp32Wroom32v3::_logCrypto> ... AES not implemented."); 
+   Log.noticeln("<aaEsp32Wroom32v3::_logCrypto> ... RNG not implemented."); 
+} // aaEsp32Wroom32v3::_logCrypto()
 
 /**
  * @brief Report the status of the wifi connection.
  * @param null.
  * @return bool true when connected, false when any other status.
  ******************************************************************************/
-bool aaSocMicro::areWeConnected()
+bool aaEsp32Wroom32v3::areWeConnected()
 { 
    if(WiFi.status() == WL_CONNECTED)
    {
@@ -558,7 +558,7 @@ bool aaSocMicro::areWeConnected()
    {
       return false;
    } // else
-} // aaSocMicro::areWeConnected()
+} // aaEsp32Wroom32v3::areWeConnected()
 
 /**
  * @brief Construct a name that is sure to be unique on the network.
@@ -569,20 +569,20 @@ bool aaSocMicro::areWeConnected()
  * @param prefix Characters that make up the first half of the name.
  * @return null.
  ******************************************************************************/
-void aaSocMicro::getUniqueName(char& targetArray, const char* prefix)
+void aaEsp32Wroom32v3::getUniqueName(char& targetArray, const char* prefix)
 { 
    String macAdd = WiFi.macAddress(); // MAC address with colons.
    macAdd.replace(":",""); // Strip out colons.
    strcpy(&targetArray, prefix); // Copy prefix to unique name.
    strcat(&targetArray, macAdd.c_str());
-} // aaSocMicro::getUniqueName()
+} // aaEsp32Wroom32v3::getUniqueName()
 
 /**
  * @brief Provide human readable text for wifi connection status codes.
  * @param wl_status_t wifi connection status code.
  * @return bool true when connected, false when any other status.
  ******************************************************************************/
-const char* aaSocMicro::_connectionStatus(wl_status_t status)
+const char* aaEsp32Wroom32v3::_connectionStatus(wl_status_t status)
 {
    switch(status) 
    {
@@ -596,7 +596,7 @@ const char* aaSocMicro::_connectionStatus(wl_status_t status)
       case WL_DISCONNECTED: return "WL_DISCONNECTED";
       default: return "UNKNOWN_STATUS";
    } //switch
-} // aaSocMicro::_connectionStatus()
+} // aaEsp32Wroom32v3::_connectionStatus()
 
 /**
  * @brief Configure the SOC.
@@ -606,43 +606,43 @@ const char* aaSocMicro::_connectionStatus(wl_status_t status)
  * @return bool true when connected, false when any other status.
  * @todo #43 Create config structure and pass a pointer to it during configuration.
  ******************************************************************************/
-bool aaSocMicro::configure()
+bool aaEsp32Wroom32v3::configure()
 {
    connectWifi(); // Establish WiFi connection.
    _initBluetooth(); // Initialize Bluetooth radio.
    return true;
-} // aaSocMicro::configure()
+} // aaEsp32Wroom32v3::configure()
 
 /**
  * @brief Connect to Wifi.
  * @param null.
  * @return null.
  ******************************************************************************/
-void aaSocMicro::connectWifi()
+void aaEsp32Wroom32v3::connectWifi()
 {
    if(_lookForAP() == _unknownAP) // Scan the 2.4Ghz band for known Access Points and select the one with the strongest signal 
    {
-      Log.verboseln("<aaSocMicro::connect> No known Access Point SSID was detected. Cannot connect to WiFi at this time.");
+      Log.verboseln("<aaEsp32Wroom32v3::connect> No known Access Point SSID was detected. Cannot connect to WiFi at this time.");
    } // if
    else // Found a known Access Point to connect to
    {
       WiFi.onEvent(_wiFiEvent); // Set up WiFi event handler
       WiFi.begin(_ssid, _password); // Connect too strongest AP found
-      Log.verboseln("<aaSocMicro::connect> Attempting to connect to Access Point with the SSID %s." , _ssid);
+      Log.verboseln("<aaEsp32Wroom32v3::connect> Attempting to connect to Access Point with the SSID %s." , _ssid);
       while(WiFi.waitForConnectResult() != WL_CONNECTED) // Hold boot process here until IP assigned
       {
          delay(500);
       } //while
-      Log.verboseln("<aaSocMicro::connect> Connected to Access Point with the SSID %s with status code %u (%s).", _ssid, WiFi.status(), _connectionStatus(WiFi.status()));
+      Log.verboseln("<aaEsp32Wroom32v3::connect> Connected to Access Point with the SSID %s with status code %u (%s).", _ssid, WiFi.status(), _connectionStatus(WiFi.status()));
    } //else
-} // aaSocMicro::connect()
+} // aaEsp32Wroom32v3::connect()
 
 /**
  * @brief Collect an average WiFi signal strength. 
  * @param int8_t Number of datapoints to use to create average. 
  * @return long Average signal strength of AP connection in decibels (db).
  ******************************************************************************/
-long aaSocMicro::rfSignalStrength(int8_t dataPoints)
+long aaEsp32Wroom32v3::rfSignalStrength(int8_t dataPoints)
 {
    long rssi = 0;
    long averageRSSI = 0;
@@ -653,60 +653,60 @@ long aaSocMicro::rfSignalStrength(int8_t dataPoints)
    } //for
    averageRSSI = rssi / dataPoints;
    return averageRSSI;
-} // aaSocMicro::rfSignalStrength()
+} // aaEsp32Wroom32v3::rfSignalStrength()
 
 /**
  * @brief Return human readable assessment of signal strength.
  * @param int16_t Signal strength as measured in decibels (db). 
  * @return const char* Assessment of signal quality in one or two words.
  ******************************************************************************/
-const char* aaSocMicro::evalSignal(int16_t signalStrength)
+const char* aaEsp32Wroom32v3::evalSignal(int16_t signalStrength)
 {
    if(signalStrength <= unusable) return "Unusable";
    if(signalStrength <= notGood) return "Not good";
    if(signalStrength <= okay) return "Okay";
    if(signalStrength <= veryGood) return "Very Good";
    return "Amazing";
-} // aaSocMicro::evalSignal()
+} // aaEsp32Wroom32v3::evalSignal()
 
 /**
- * @fn bool aaSocMicro::pingIP(IPAddress address)
+ * @fn bool aaEsp32Wroom32v3::pingIP(IPAddress address)
  * @brief Ping IP address once and return the response.
  * @param IPAddress Address to ping. 
  * @return bool Result of ping. 
  ******************************************************************************/
-bool aaSocMicro::pingIP(IPAddress address)
+bool aaEsp32Wroom32v3::pingIP(IPAddress address)
 {
    int8_t numPings = 1; // How many pings to send to verify IP address
    IPAddress tmpIp; 
    return Ping.ping(address, numPings);
-} // aaSocMicro::pingIP()
+} // aaEsp32Wroom32v3::pingIP()
 
 /**
- * @overload bool aaSocMicro::pingIP(IPAddress address, int8_t numPings)
+ * @overload bool aaEsp32Wroom32v3::pingIP(IPAddress address, int8_t numPings)
  * @brief Ping IP address usert specified number of times and return response.
  * @param IPAddress Address to ping. 
  * @param int8_t Number of times to ping address. 
  * @return bool Result of pings. 
  ******************************************************************************/
-bool aaSocMicro::pingIP(IPAddress address, int8_t numPings)
+bool aaEsp32Wroom32v3::pingIP(IPAddress address, int8_t numPings)
 {
    IPAddress tmpIp; 
    return Ping.ping(address, numPings);
-} // aaSocMicro::pingIP()
+} // aaEsp32Wroom32v3::pingIP()
 
 /**
  * @brief Scan 2.4GHz radio spectrum for known Access Point.
  * @param null.
  * @return const char* Service Set IDentifier (SSID). 
  ******************************************************************************/
-const char* aaSocMicro::_lookForAP()
+const char* aaEsp32Wroom32v3::_lookForAP()
 {
    _ssid = _unknownAP; //  At the start no known Access Point has been foundto connect to
    int numberOfNetworks = WiFi.scanNetworks(); // Used to track how many APs are detected by the scan
    int StrongestSignal = -127; // Used to find the strongest signal. Set as low as possible to start
    bool APknown; // Flag to indicate if the current AP appears in the known AP list
-   Log.verboseln("<aaSocMicro::_lookForAP> Scanning the 2.4GHz radio spectrum for one of the %d known Access Points.", numberOfNetworks);
+   Log.verboseln("<aaEsp32Wroom32v3::_lookForAP> Scanning the 2.4GHz radio spectrum for one of the %d known Access Points.", numberOfNetworks);
 
    // Loop through all detected APs
    for(int i = 0; i < numberOfNetworks; i++)
@@ -734,7 +734,7 @@ const char* aaSocMicro::_lookForAP()
       } //if
    } //for
    return _ssid;
-} // aaSocMicro::_lookForAP()
+} // aaEsp32Wroom32v3::_lookForAP()
 
 /**
  * @brief Provide human readable Wifi encryption method.
@@ -748,7 +748,7 @@ const char* aaSocMicro::_lookForAP()
  * @param wifi_auth_mode_t Wifi encryption type code.
  * @return const char* Encryption type in one word. 
  ******************************************************************************/
-const char* aaSocMicro::_translateEncryptionType(wifi_auth_mode_t encryptionType)
+const char* aaEsp32Wroom32v3::_translateEncryptionType(wifi_auth_mode_t encryptionType)
 {
    switch (encryptionType)
    {
@@ -760,7 +760,7 @@ const char* aaSocMicro::_translateEncryptionType(wifi_auth_mode_t encryptionType
       case (WIFI_AUTH_WPA2_ENTERPRISE): return "WPA2_ENTERPRISE";
       default: return "UNKNOWN";
    } //switch
-} // aaSocMicro::_translateEncryptionType()
+} // aaEsp32Wroom32v3::_translateEncryptionType()
 
 /**
  * @brief Event handler for wifi.
@@ -771,44 +771,44 @@ const char* aaSocMicro::_translateEncryptionType(wifi_auth_mode_t encryptionType
  * @param WiFiEvent_t Type of event that triggered this handler.
  * @param WiFiEventInfo_t Additional information about the triggering event.
  ******************************************************************************/
-void aaSocMicro::_wiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info)
+void aaEsp32Wroom32v3::_wiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info)
 {
    switch(event) 
    {
       case SYSTEM_EVENT_AP_START:
 //         WiFi.softAP(AP_SSID, AP_PASS); //can set ap hostname here   
 //         WiFi.softAPenableIpV6(); //enable ap ipv6 here
-         Log.verboseln("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_AP_START");            
+         Log.verboseln("<aaEsp32Wroom32v3::WiFiEvent> Detected SYSTEM_EVENT_AP_START");            
          break;
       case SYSTEM_EVENT_STA_START:         
 //         WiFi.setHostname(AP_SSID); //set sta hostname here
-         Log.verboseln("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_START");            
+         Log.verboseln("<aaEsp32Wroom32v3::WiFiEvent> Detected SYSTEM_EVENT_STA_START");            
          break;
       case SYSTEM_EVENT_STA_CONNECTED:         
 //         WiFi.enableIpV6(); //enable sta ipv6 here
-         Log.verboseln("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_CONNECTED");            
+         Log.verboseln("<aaEsp32Wroom32v3::WiFiEvent> Detected SYSTEM_EVENT_STA_CONNECTED");            
          break;
       case SYSTEM_EVENT_AP_STA_GOT_IP6:
-         Log.verboseln("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_AP_STA_GOT_IP6");            
+         Log.verboseln("<aaEsp32Wroom32v3::WiFiEvent> Detected SYSTEM_EVENT_AP_STA_GOT_IP6");            
          break;
       case SYSTEM_EVENT_STA_GOT_IP:
 //         wifiOnConnect(); // Call function to do things dependant upon getting wifi connected
-         Log.verboseln("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_GOT_IP");            
+         Log.verboseln("<aaEsp32Wroom32v3::WiFiEvent> Detected SYSTEM_EVENT_STA_GOT_IP");            
          break;
       case SYSTEM_EVENT_STA_DISCONNECTED:
-         Log.verboseln("<aaSocMicro::WiFiEvent> Detected SYSTEM_EVENT_STA_DISCONNECTED");            
+         Log.verboseln("<aaEsp32Wroom32v3::WiFiEvent> Detected SYSTEM_EVENT_STA_DISCONNECTED");            
          break;
       case WL_NO_SSID_AVAIL:
-         Log.verboseln("<aaSocMicro::WiFiEvent> WL_NO_SSID_AVAIL");            
+         Log.verboseln("<aaEsp32Wroom32v3::WiFiEvent> WL_NO_SSID_AVAIL");            
          break;
       case WL_IDLE_STATUS: 
-         Log.verboseln("<aaSocMicro::WiFiEvent> Detected WL_IDLE_STATUS");            
+         Log.verboseln("<aaEsp32Wroom32v3::WiFiEvent> Detected WL_IDLE_STATUS");            
          break;
       default:
-         Log.verboseln(F("<aaSocMicro::WiFiEvent> ERROR - UNKNOW SYSTEM EVENT %p."), event); 
+         Log.verboseln(F("<aaEsp32Wroom32v3::WiFiEvent> ERROR - UNKNOW SYSTEM EVENT %p."), event); 
          break;
    } //switch
-} // aaSocMicro::_wiFiEvent()
+} // aaEsp32Wroom32v3::_wiFiEvent()
 
 /**
  * @brief Sends details about the GPIO pins to the log.
@@ -828,10 +828,10 @@ void aaSocMicro::_wiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info)
  * @param null.
  * @return null.
  ******************************************************************************/
-void aaSocMicro::_logGPIO()
+void aaEsp32Wroom32v3::_logGPIO()
 {
-   Log.noticeln("<aaSocMicro::_logGPIO> ... General purpose I/O pins in use.");
-} // aaSocMicro::_logGPIO()
+   Log.noticeln("<aaEsp32Wroom32v3::_logGPIO> ... General purpose I/O pins in use.");
+} // aaEsp32Wroom32v3::_logGPIO()
  
 /**
  * @brief Initialize Bluetooth system.
@@ -884,7 +884,7 @@ void aaSocMicro::_logGPIO()
  * @param null.
  * @return null.
  ******************************************************************************/
-bool aaSocMicro::_initBluetooth()
+bool aaEsp32Wroom32v3::_initBluetooth()
 {
    if (!btStart()) 
    {
@@ -902,7 +902,7 @@ bool aaSocMicro::_initBluetooth()
       return false;
    } //  if
    return true;
-} // aaSocMicro::_initBluetooth()
+} // aaEsp32Wroom32v3::_initBluetooth()
  
 /**
  * @brief Initialize Bluetooth.
@@ -913,7 +913,7 @@ bool aaSocMicro::_initBluetooth()
  * @param null.
  * @return null.
  ******************************************************************************/
-void aaSocMicro::_btAddress(char* targetArray) 
+void aaEsp32Wroom32v3::_btAddress(char* targetArray) 
 {
    const uint8_t* point = esp_bt_dev_get_address(); // Retrieve address.
    strcpy(targetArray, ""); // Clear array.
@@ -927,4 +927,4 @@ void aaSocMicro::_btAddress(char* targetArray)
          strcat(targetArray, ":"); // Concatinate a colon into the target array.
       } // if
    } // for
-} // aaSocMicro::_btAddress()
+} // aaEsp32Wroom32v3::_btAddress()
