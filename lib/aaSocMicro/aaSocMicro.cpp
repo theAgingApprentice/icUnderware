@@ -128,7 +128,7 @@ void aaSocMicro::_transReasonCode(char& reason, RESET_REASON code)
  ******************************************************************************/
 void aaSocMicro::logResetReason()
 {
-   char _reason[20]; // Text version of last reset reason code.
+   char _reason[40]; // Text version of last reset reason code.
    for(int8_t i=0; i < ESP.getChipCores(); i++)
    {
       _transReasonCode(*_reason, rtc_get_reset_reason(i));
@@ -154,12 +154,20 @@ void aaSocMicro::logResetReason()
  ******************************************************************************/
 void aaSocMicro::logSubsystemDetails()
 {
+   Log.noticeln("<aaSocMicro::logSubsystemDetails> Core subsystem details.");
    _logCoreCPU();
    _logCoreMem();
+   Log.noticeln("<aaSocMicro::logSubsystemDetails> SPI accessible external memory details.");
    _logIntegratedFlash();
    _logPsramMem();
+   Log.noticeln("<aaSocMicro::logSubsystemDetails> Wireless subsystem details.");
    _logWireless();
-   /// @todo #45 add _logGpio() to aaSocMicro.
+   Log.noticeln("<aaSocMicro::logSubsystemDetails> Crytographic subsystem details.");
+   _logCrypto();
+   Log.noticeln("<aaSocMicro::logSubsystemDetails> RTC subsystem details.");
+   _logRTC();
+   Log.noticeln("<aaSocMicro::logSubsystemDetails> Peripheral subsystem details.");
+   _logGPIO();
 } // aaSocMicro::logSubsystemDetails()
 
 /**
@@ -185,11 +193,11 @@ void aaSocMicro::logSubsystemDetails()
  ******************************************************************************/
 void aaSocMicro::_logCoreCPU()
 {
-   Log.noticeln("<aaSocMicro::_logCoreCPU> Core CPU details.");
-   Log.noticeln("<aaSocMicro::_logCoreCPU> ... CPU Count = %d", ESP.getChipCores());
-   Log.noticeln("<aaSocMicro::_logCoreCPU> ... CPU Model = %s", ESP.getChipModel());
-   Log.noticeln("<aaSocMicro::_logCoreCPU> ... CPU Revision = %d", ESP.getChipRevision());
-   Log.noticeln("<aaSocMicro::_logCoreCPU> ... CPU clock speed = %uMhz", ESP.getCpuFreqMHz());
+   Log.noticeln("<aaSocMicro::_logCoreCPU> ... Core CPU details.");
+   Log.noticeln("<aaSocMicro::_logCoreCPU> ...... CPU Count = %d", ESP.getChipCores());
+   Log.noticeln("<aaSocMicro::_logCoreCPU> ...... CPU Model = %s", ESP.getChipModel());
+   Log.noticeln("<aaSocMicro::_logCoreCPU> ...... CPU Revision = %d", ESP.getChipRevision());
+   Log.noticeln("<aaSocMicro::_logCoreCPU> ...... CPU clock speed = %uMhz", ESP.getCpuFreqMHz());
 } // aaSocMicro::_logCoreCPU()
 
 /**
@@ -328,24 +336,48 @@ void aaSocMicro::_logCoreCPU()
  ******************************************************************************/
 void aaSocMicro::_logCoreMem()
 {
-   const uint32_t STATIC_DATA_SIZE = ESP.getSketchSize() + ESP.getFreeSketchSpace();
-   const uint32_t SRAM_SIZE = STATIC_DATA_SIZE + ESP.getHeapSize() + uxTaskGetStackHighWaterMark(NULL);
-
-   Log.noticeln("<aaSocMicro::_logCoreMem> Core memory details.");
-   Log.noticeln("<aaSocMicro::_logCoreMem> ... ROM contains Espressif code and we do not touch that.");
-   Log.noticeln("<aaSocMicro::_logCoreMem> ...... ROM size = %u bytes.", XSHAL_ROM_SIZE);
-   Log.noticeln("<aaSocMicro::_logCoreMem> ... SRAM is the binarys read/write area.");
-   Log.noticeln("<aaSocMicro::_logCoreMem> ...... Total SRAM size (stack + heap + static data) = %u bytes.", SRAM_SIZE);
-   Log.noticeln("<aaSocMicro::_logCoreMem> ...... The Stack contains local variables, interrupt and function pointers.");
-   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Stack highwater mark = %u bytes", uxTaskGetStackHighWaterMark(NULL));
-   Log.noticeln("<aaSocMicro::_logCoreMem> ...... Static memory (aka sketch memory) is allocated at compile time and contains global and static variables.");
-   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Static data size = %u bytes.", STATIC_DATA_SIZE);
-   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Sketch size = %u bytes.", ESP.getSketchSize());
-   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Free sketch space = %u bytes.", ESP.getFreeSketchSpace());
-   Log.noticeln("<aaSocMicro::_logCoreMem> ...... The Heap contains dynamic data.");
-   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Heap size = %u bytes.", ESP.getHeapSize());
-   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Free heap = %u bytes.", ESP.getFreeHeap());
+   const uint32_t _STATIC_DATA_SIZE = ESP.getSketchSize() + ESP.getFreeSketchSpace();
+   const uint32_t _SRAM_SIZE = _STATIC_DATA_SIZE + ESP.getHeapSize() + uxTaskGetStackHighWaterMark(NULL);
+   int8_t _BUFFER_SIZE = 14; // Size of buffer to hold formatted uint32_t numbers.
+   char _buffer[_BUFFER_SIZE]; // Buffer to hold formatted uint32_t numbers. 
+   Log.noticeln("<aaSocMicro::_logCoreMem> ... Core memory details.");
+   Log.noticeln("<aaSocMicro::_logCoreMem> ...... ROM contains Espressif code and we do not touch that.");
+   Log.noticeln("<aaSocMicro::_logCoreMem> ......... ROM size = %s bytes.", _int32toa(XSHAL_ROM_SIZE, _buffer));
+   Log.noticeln("<aaSocMicro::_logCoreMem> ...... SRAM is the binarys read/write area.");
+   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Total SRAM size (stack + heap + static data) = %s bytes.", _int32toa(_SRAM_SIZE, _buffer));
+   Log.noticeln("<aaSocMicro::_logCoreMem> ......... The Stack contains local variables, interrupt and function pointers.");
+   Log.noticeln("<aaSocMicro::_logCoreMem> ............ Stack highwater mark = %s bytes", _int32toa(uxTaskGetStackHighWaterMark(NULL), _buffer));
+   Log.noticeln("<aaSocMicro::_logCoreMem> ......... Static memory (aka sketch memory) contains global and static variables.");
+   Log.noticeln("<aaSocMicro::_logCoreMem> ............ Static data size = %s bytes.", _int32toa(_STATIC_DATA_SIZE, _buffer));
+   Log.noticeln("<aaSocMicro::_logCoreMem> ............ Sketch size = %s bytes.", _int32toa(ESP.getSketchSize(), _buffer));
+   Log.noticeln("<aaSocMicro::_logCoreMem> ............ Free sketch space = %s bytes.", _int32toa(ESP.getFreeSketchSpace(), _buffer));
+   Log.noticeln("<aaSocMicro::_logCoreMem> ......... The Heap contains dynamic data.");
+   Log.noticeln("<aaSocMicro::_logCoreMem> ............ Heap size = %s bytes.", _int32toa(ESP.getHeapSize(), _buffer));
+   Log.noticeln("<aaSocMicro::_logCoreMem> ............ Free heap = %s bytes.", _int32toa(ESP.getFreeHeap(), _buffer));
 } // aaSocMicro::_logCoreMem()
+
+/**
+ * @brief Format uint32 number with commas.
+ * @details Format a uint32_t (32 bits) number into a string in the format
+ * "23,854,972". The provided buffer must be at least 14 bytes long. The number 
+ * will be right-adjusted in the buffer. Returns a pointer to the first digit.
+ * @param val is the number to be convereted.
+ * @param startBuffer is a pointer to the start of the conversion buffer.
+ * @return pointer to first digit.
+ ******************************************************************************/
+char * aaSocMicro::_int32toa(uint32_t val, char* startBuffer)
+{
+   char *endBuffer = startBuffer + 13;
+   *endBuffer = '\0';
+   do 
+   {
+      if ((endBuffer - startBuffer) % 4 == 2)
+         *--endBuffer = ',';
+      *--endBuffer = '0' + val % 10;
+      val /= 10;
+   } while (val);
+   return endBuffer;
+} // aaSocMicro::_int32toa()
 
 /**
  * @brief Translates a flash memory mode code to a human readable string.
@@ -405,12 +437,16 @@ void aaSocMicro::_transFlashModeCode(char& details)
  ******************************************************************************/
 void aaSocMicro::_logIntegratedFlash()
 {
-   char _details[80]; // Text version of flash memory mode.
-   Log.noticeln("<aaSocMicro::_logIntegratedFlash> Flash memory details (Arduino binary resides here).");
+   const int8_t _DETAIL_SIZE = 80; // Size of buffer holding details about memory.
+   const int8_t _BUFFER_SIZE = 14; // Size of buffer to hold formatted uint32_t numbers.
+   char _details[_DETAIL_SIZE]; // Text version of flash memory mode.
+   char _buffer[_BUFFER_SIZE]; // Buffer to hold formatted uint32_t numbers. 
+
+   Log.noticeln("<aaSocMicro::_logIntegratedFlash> ... Flash memory details (Arduino binary resides here).");
    _transFlashModeCode(*_details);
-   Log.noticeln("<aaSocMicro::_logIntegratedFlash> ... Flash mode = %s", _details);
-   Log.noticeln("<aaSocMicro::_logIntegratedFlash> ... Flash chip size = %u", ESP.getFlashChipSize());
-   Log.noticeln("<aaSocMicro::_logIntegratedFlash> ... Flash chip speed = %u", ESP.getFlashChipSpeed());
+   Log.noticeln("<aaSocMicro::_logIntegratedFlash> ...... Flash mode = %s", _details);
+   Log.noticeln("<aaSocMicro::_logIntegratedFlash> ...... Flash chip size = %s", _int32toa(ESP.getFlashChipSize(), _buffer));
+   Log.noticeln("<aaSocMicro::_logIntegratedFlash> ...... Flash chip speed = %s", _int32toa(ESP.getFlashChipSpeed(), _buffer));
 } // aaSocMicro::_logIntegratedFlash()
 
 /**
@@ -425,16 +461,18 @@ void aaSocMicro::_logIntegratedFlash()
  ******************************************************************************/
 void aaSocMicro::_logPsramMem()
 {
-   Log.traceln("<aaSocMicro::_logPsramMem> PSRAM is optional external RAM accessed via the SPI bus.");
+   const int8_t _BUFFER_SIZE = 14; // Size of buffer to hold formatted uint32_t numbers.
+   char _buffer[_BUFFER_SIZE]; // Buffer to hold formatted uint32_t numbers. 
+   Log.traceln("<aaSocMicro::_logPsramMem> ... PSRAM is optional external RAM accessed via the SPI bus.");
    if(psramFound()) // Is SPI RAM (psudo ram) available?
    {
-      Log.noticeln("<aaSocMicro::_logPsramMem> ... PSRAM detected.");
-      Log.noticeln("<aaSocMicro::_logPsramMem> ... PSRAM size = %u", ESP.getPsramSize());
-      Log.noticeln("<aaSocMicro::_logPsramMem> ... Free PSRAM = %u", ESP.getFreePsram());
+      Log.noticeln("<aaSocMicro::_logPsramMem> ...... PSRAM detected.");
+      Log.noticeln("<aaSocMicro::_logPsramMem> ...... PSRAM size = %s", _int32toa(ESP.getPsramSize(), _buffer));
+      Log.noticeln("<aaSocMicro::_logPsramMem> ...... Free PSRAM = %s", _int32toa(ESP.getFreePsram(), _buffer));
    } // if
    else
    {
-      Log.noticeln("<aaSocMicro::_logPsramMem> ... No PSRAM detected.");
+      Log.noticeln("<aaSocMicro::_logPsramMem> ...... No PSRAM detected.");
    } // else   
 } // aaSocMicro::_logPsramMem()
 
@@ -460,16 +498,50 @@ void aaSocMicro::_logWireless()
    long _signalStrength = rfSignalStrength(_dataReadings); // Get average signal strength reading.
    char _bluetoothAddress[30]; // Hold Bluetooth address in a character array.
    _btAddress(_bluetoothAddress); // Copy formatted Bluetooth address into the character array.
-   Log.noticeln("<aaSocMicro::_logWireless> Wireless details."); 
-   Log.noticeln("<aaSocMicro::_logWireless> ... WiFi."); 
+   Log.noticeln("<aaSocMicro::_logWireless> ... WiFi details."); 
    Log.noticeln("<aaSocMicro::_logWireless> ...... Access Point Name = %s.",WiFi.SSID().c_str()); 
    Log.noticeln("<aaSocMicro::_logWireless> ...... Access Point Encryption method = %X (%s).", encryption, _translateEncryptionType(WiFi.encryptionType(encryption)));
-   Log.noticeln("<aaSocMicro::_logWireless> ...... Wifi signal strength = %u (%s).", _signalStrength, evalSignal(_signalStrength));
-   Log.noticeln("<aaSocMicro::cfgToConsole> ...... Local Wifi MAC address: %s.", WiFi.macAddress().c_str());
-   Log.noticeln(F("<aaSocMicro::cfgToConsole> ...... Local WiFi IP address: %p."), WiFi.localIP()); 
-   Log.noticeln("<aaSocMicro::_logWireless> ... Bluetooth."); 
-   Log.noticeln("<aaSocMicro::cfgToConsole> ...... Local bluetooth MAC address: %s.", _bluetoothAddress); 
+   Log.noticeln("<aaSocMicro::_logWireless> ...... Wifi signal strength = %l (%s).", _signalStrength, evalSignal(_signalStrength));
+   Log.noticeln("<aaSocMicro::_logWireless> ...... Local Wifi MAC address: %s.", WiFi.macAddress().c_str());
+   Log.noticeln(F("<aaSocMicro::_logWireless> ...... Local WiFi IP address: %p."), WiFi.localIP()); 
+   Log.noticeln("<aaSocMicro::_logWireless> ... Bluetooth details."); 
+   Log.noticeln("<aaSocMicro::_logWireless> ...... Local bluetooth MAC address: %s.", _bluetoothAddress); 
 } // aaSocMicro::_logWireless()
+
+/**
+ * @brief Sends details about the RTC subsystem system to the log.
+ * @details The Real Time Clock (RTC) is comprised of three things:
+ * 1. The Phasor measurement unit (PMU), 
+ * 2. An Ultra Low Power (ULP) 32-bit co-processor, and 
+ * 3. 8Kbs of RAM memory known as the recovery memory. 
+ * @param null.
+ * @return null.
+ ******************************************************************************/
+void aaSocMicro::_logRTC()
+{
+   Log.noticeln("<aaSocMicro::_logRTC> ... Phasor measurement unit (PMU) not implemented."); 
+   Log.noticeln("<aaSocMicro::_logRTC> ... Ultra Low Power (ULP) 32-bit co-processor not implemented."); 
+   Log.noticeln("<aaSocMicro::_logRTC> ... Recovery memory not implemented."); 
+} // aaSocMicro::_logRTC()
+
+/**
+ * @brief Sends details about the crytographic hardware acceleration subsystem to the log.
+ * @details The crytographic hardware acceleration subsystem supports four 
+ * hardware acceleration algorithms:
+ * 1. SHA, 
+ * 2. RSA, 
+ * 3. AES,
+ * 4. RNG. 
+ * @param null.
+ * @return null.
+ ******************************************************************************/
+void aaSocMicro::_logCrypto()
+{
+   Log.noticeln("<aaSocMicro::_logCrypto> ... SHA not implemented."); 
+   Log.noticeln("<aaSocMicro::_logCrypto> ... RSA not implemented."); 
+   Log.noticeln("<aaSocMicro::_logCrypto> ... AES not implemented."); 
+   Log.noticeln("<aaSocMicro::_logCrypto> ... RNG not implemented."); 
+} // aaSocMicro::_logCrypto()
 
 /**
  * @brief Report the status of the wifi connection.
@@ -758,6 +830,7 @@ void aaSocMicro::_wiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info)
  ******************************************************************************/
 void aaSocMicro::_logGPIO()
 {
+   Log.noticeln("<aaSocMicro::_logGPIO> ... General purpose I/O pins in use.");
 } // aaSocMicro::_logGPIO()
  
 /**

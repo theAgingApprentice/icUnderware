@@ -87,32 +87,37 @@ class aaSocMicro
 {
    public:
       aaSocMicro(); // First form class constructor.
-      aaSocMicro(Print *); // Second form of class constructor.
-      aaSocMicro(int, Print *, bool); // Third form of class constructor.
+      aaSocMicro(Print*); // Second form of class constructor.
+      aaSocMicro(int, Print*, bool); // Third form of class constructor.
       ~aaSocMicro(); // Class destructor.
       void logResetReason(); // Logs last CPU reset reason for both cores.
       void logSubsystemDetails(); // Logs details of host micro controller.
-      void getUniqueName(char &, const char*); // Construct a name that is sure to be unique on the network.
+      void getUniqueName(char&, const char*); // Construct a name that is sure to be unique on the network.
       bool areWeConnected(); // Return flag reporting if we are wifi connected or not.
       void connectWifi(); // Connect to Wifi.
-      long rfSignalStrength(int8_t points); // Collect an average WiFi signal strength. 
-      const char* evalSignal(int16_t signalStrength); // Return human readable assessment of signal strength.
-      bool pingIP(IPAddress address); // Ping IP address and return response. Assume 1 ping.
-      bool pingIP(IPAddress address, int8_t numPings); // Ping IP address and return response. User specified num pings.
+      long rfSignalStrength(int8_t); // Collect an average WiFi signal strength. 
+      const char* evalSignal(int16_t); // Return human readable assessment of signal strength.
+      bool pingIP(IPAddress); // Ping IP address and return response. Assume 1 ping.
+      bool pingIP(IPAddress, int8_t); // Ping IP address and return response. User specified num pings.
       bool configure(); // Configure the SOC.      
    private:
-      void _transReasonCode(char &, RESET_REASON); // Translate reset reason codes.
-      void _logCoreCPU(); // Logs core CPU details.
-      void _logCoreMem(); // Logs core memory details.
+      void _transReasonCode(char&, RESET_REASON); // Translate reset reason codes.
+      void _logCoreCPU(); // Logs CPU details inside of the core subsystem.
+      void _logCoreMem(); // Logs memory details inside of the core subsystem.
       void _logIntegratedFlash(); // Logs integrated flash details.
       void _logPsramMem(); // Logs PSRAM details.
-      void _transFlashModeCode(char &); // Translate flash memory mode code.
-      void _logGPIO(); // Logs GPIO details.
-      void _logWireless(); // Logs WiFi and Bluetooth details.
+      void _transFlashModeCode(char&); // Translate flash memory mode code.
+      void _logGPIO(); // Logs GPIO details inside of the Peripherals subsystem.
+      void _logWireless(); // Logs WiFi and Bluetooth details inside of the Wireless subsystem.
+      void _logRTC(); // Logs PMU, ULP and RAM details inside of the RTC subsystem.
+      void _logCrypto(); // Logs details inside of the crytographic hardware acceleration subsystem.
       const char* _lookForAP(); // Scan 2.4GHz radio spectrum for known Access Point.
-      const char* _translateEncryptionType(wifi_auth_mode_t encryptionType); // Provide human readable wifi encryption method.
-      const char* _connectionStatus(wl_status_t status); // Provide human readable text for wifi connection status codes. 
-      static void _wiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info); // Event handler for wifi.
+      const char* _translateEncryptionType(wifi_auth_mode_t); // Provide human readable wifi encryption method.
+      const char* _connectionStatus(wl_status_t); // Provide human readable text for wifi connection status codes. 
+      static void _wiFiEvent(WiFiEvent_t, WiFiEventInfo_t); // Event handler for wifi.
+      bool _initBluetooth(); // Initialize the Bluetooth system.
+      void _btAddress(char*); // Retrieve Bluetooth address. 
+      char* _int32toa(uint32_t, char*); // Format uint32 number.
       const char* _unknownAP = "unknown"; // Comparitor used to check if a valid AP was found.
       const char* _ssid; // SSID of Access Point selected to connect to over Wifi. 
       const char* _password; // Password of Access Point selected to connect to over Wifi.
@@ -121,8 +126,6 @@ class aaSocMicro
       char _uniqueName[HOST_NAME_SIZE]; // Character array that holds unique name for Wifi network purposes. 
       char *_uniqueNamePtr = &_uniqueName[0]; // Pointer to first address position of unique name character array.
       const char* _HOST_NAME_PREFIX; // Prefix for unique network name. 
-      bool _initBluetooth(); // Initialize the Bluetooth system.
-      void _btAddress(char*); // Retrieve Bluetooth address.              
 }; //class aaSocMicro
 
 #endif // End of precompiler protected code block
