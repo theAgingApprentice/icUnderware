@@ -1,20 +1,23 @@
 /*
-                   .d8888b.                    888b     d888 d8b                          
-                  d88P  Y88b                   8888b   d8888 Y8P                          
-                  Y88b.                        88888b.d88888                              
- 8888b.   8888b.   "Y888b.    .d88b.   .d8888b 888Y88888P888 888  .d8888b 888d888 .d88b.  
-    "88b     "88b     "Y88b. d88""88b d88P"    888 Y888P 888 888 d88P"    888P"  d88""88b 
-.d888888 .d888888       "888 888  888 888      888  Y8P  888 888 888      888    888  888 
-888  888 888  888 Y88b  d88P Y88..88P Y88b.    888   "   888 888 Y88b.    888    Y88..88P 
-"Y888888 "Y888888  "Y8888P"   "Y88P"   "Y8888P 888       888 888  "Y8888P 888     "Y88P"  
-                                                                                                                                                  
+                  8888888888                   .d8888b.   .d8888b.  888       888                                         .d8888b.   .d8888b.            .d8888b.  
+                  888                         d88P  Y88b d88P  Y88b 888   o   888                                        d88P  Y88b d88P  Y88b          d88P  Y88b 
+                  888                              .d88P        888 888  d8b  888                                             .d88P        888               .d88P 
+ 8888b.   8888b.  8888888   .d8888b  88888b.      8888"       .d88P 888 d888b 888 888d888 .d88b.   .d88b.  88888b.d88b.      8888"       .d88P 888  888     8888"  
+    "88b     "88b 888       88K      888 "88b      "Y8b.  .od888P"  888d88888b888 888P"  d88""88b d88""88b 888 "888 "88b      "Y8b.  .od888P"  888  888      "Y8b. 
+.d888888 .d888888 888       "Y8888b. 888  888 888    888 d88P"      88888P Y88888 888    888  888 888  888 888  888  888 888    888 d88P"      Y88  88P 888    888 
+888  888 888  888 888            X88 888 d88P Y88b  d88P 888"       8888P   Y8888 888    Y88..88P Y88..88P 888  888  888 Y88b  d88P 888"        Y8bd8P  Y88b  d88P 
+"Y888888 "Y888888 8888888888 88888P' 88888P"   "Y8888P"  888888888  888P     Y888 888     "Y88P"   "Y88P"  888  888  888  "Y8888P"  888888888    Y88P    "Y8888P"  
+                                     888                                                                                                                           
+                                     888                                                                                                                           
+                                     888                                                                                                                           
+
 Part of the Aging Apprentice's Arduino API for ESP32 core.
-Github: https://github.com/theAgingApprentice/icUnderware/tree/main/lib/aaSocMicro
+Github: https://github.com/theAgingApprentice/icUnderware/tree/main/lib/aaEsp32Wroom32v3
 Licensed under the MIT License <http://opensource.org/licenses/MIT>.                                                                                                              
 */
 
-#ifndef aaSocMicro_h // Start precompiler code block. 
-   #define aaSocMicro_h // Precompiler macro to prevent duplicate inclusions.
+#ifndef aaEsp32Wroom32v3_h // Start precompiler code block. 
+   #define aaEsp32Wroom32v3_h // Precompiler macro to prevent duplicate inclusions.
 
 /**
  * Included libraries.
@@ -26,8 +29,8 @@ Licensed under the MIT License <http://opensource.org/licenses/MIT>.
 #include <aaFormat.h> // Collection of handy format conversion functions.
 #include <knownNetworks.h> // Defines Access points and passwords that the robot can scan for and connect to.
 #include <ESP32Ping.h> // Verify IP addresses. https://github.com/marian-craciunescu/ESP32Ping.
-#include "esp_bt_main.h"
-#include "esp_bt_device.h"
+#include "esp_bt_main.h" // Bluetooth support.
+#include "esp_bt_device.h" // Bluetooth support.
 
 /**
  * Global variables.
@@ -44,10 +47,10 @@ enum signalStrength ///< Provides text translation of Wifi signal strength.
 static const int8_t HOST_NAME_SIZE = 30;  ///< Max size of network name. 
 
 /**
- * The aaSocMicro class provides a single object of authority regarding the 
- * ESP32. Details are collected from both FreeRTOS and the ESP32 Arduino 
- * framework. The information comes from the ESP32's six sub-systems which are 
- * outlined below.
+ * The aaEsp32Wroom32v3 class provides a single object of authority regarding 
+ * the ESP32Wroom32 version 3 SOC. Details are collected from both FreeRTOS and
+ * the ESP32 Arduino framework. The information comes from the ESP32's six 
+ * sub-systems which are outlined below.
  * 
  * ## Core subsystem
  * 
@@ -83,13 +86,13 @@ static const int8_t HOST_NAME_SIZE = 30;  ///< Max size of network name.
  * The Peripherals subsystem handles all of the General Purpose Input/Output (GPIO) 
  * interfaces.
  ************************************************************************************/
-class aaSocMicro 
+class aaEsp32Wroom32v3 
 {
    public:
-      aaSocMicro(); // First form class constructor.
-      aaSocMicro(Print*); // Second form of class constructor.
-      aaSocMicro(int, Print*, bool); // Third form of class constructor.
-      ~aaSocMicro(); // Class destructor.
+      aaEsp32Wroom32v3(); // First form class constructor.
+      aaEsp32Wroom32v3(Print*); // Second form of class constructor.
+      aaEsp32Wroom32v3(int, Print*, bool); // Third form of class constructor.
+      ~aaEsp32Wroom32v3(); // Class destructor.
       void logResetReason(); // Logs last CPU reset reason for both cores.
       void logSubsystemDetails(); // Logs details of host micro controller.
       void getUniqueName(char&, const char*); // Construct a name that is sure to be unique on the network.
@@ -126,6 +129,6 @@ class aaSocMicro
       char _uniqueName[HOST_NAME_SIZE]; // Character array that holds unique name for Wifi network purposes. 
       char *_uniqueNamePtr = &_uniqueName[0]; // Pointer to first address position of unique name character array.
       const char* _HOST_NAME_PREFIX; // Prefix for unique network name. 
-}; //class aaSocMicro
+}; //class aaEsp32Wroom32v3
 
 #endif // End of precompiler protected code block

@@ -6,15 +6,12 @@
  ******************************************************************************/
 #include <Arduino.h> // Arduino Core for ESP32. Comes with PlatformIO.
 #include <ArduinoLog.h> // https://github.com/thijse/Arduino-Log.
-#include <aaSocMicro.h> // Information about the host ESP32 SOC. 
+#include <aaHardware.h> // Hardware platform API. 
 
 /**
  * Global variables, constants and objects.
  */
-const unsigned long SERIAL_BAUD_RATE = 115200;
-aaSocMicro MCU;
-const char* appName = "APP_NAME"; // Put the name of your app here.
-char uniqueName[40]; // Unique name safe to use for  MQTT topic trees.
+aaHardware hwPlatform;
 
 /**
  * Declare functions found in main.cpp.
