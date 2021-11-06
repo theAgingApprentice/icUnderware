@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['aaformat_0',['aaFormat',['../classaa_format.html',1,'aaFormat'],['../classaa_format.html#ad41bf0bf66328e26282c6d35f4b368f8',1,'aaFormat::aaFormat()']]],
-  ['aasocmicro_1',['aaSocMicro',['../classaa_soc_micro.html',1,'aaSocMicro'],['../classaa_soc_micro.html#a716726aa9e3bcb458f6e0f3ccbcead3e',1,'aaSocMicro::aaSocMicro()'],['../classaa_soc_micro.html#a12d0d45a66b27759a1ad9ac2ef767dd0',1,'aaSocMicro::aaSocMicro(Print *)'],['../classaa_soc_micro.html#a37112a3091db17fe9d6783dddb7b33f6',1,'aaSocMicro::aaSocMicro(int, Print *, bool)']]],
-  ['areweconnected_2',['areWeConnected',['../classaa_soc_micro.html#ae5df3c7e959708ea2b438701bd54a8db',1,'aaSocMicro']]]
+  ['aaesp32wroom32v3_0',['aaEsp32Wroom32v3',['../classaa_esp32_wroom32v3.html',1,'aaEsp32Wroom32v3'],['../classaa_esp32_wroom32v3.html#a3230d7ef8ed66593da272c5b451d9d3d',1,'aaEsp32Wroom32v3::aaEsp32Wroom32v3()'],['../classaa_esp32_wroom32v3.html#aaf77b8f26d6861d1b51d2968ed1ed2e3',1,'aaEsp32Wroom32v3::aaEsp32Wroom32v3(Print *)'],['../classaa_esp32_wroom32v3.html#a3d8d687caaed488a8dd78157359df9a6',1,'aaEsp32Wroom32v3::aaEsp32Wroom32v3(int, Print *, bool)']]],
+  ['aaformat_1',['aaFormat',['../classaa_format.html',1,'aaFormat'],['../classaa_format.html#ad41bf0bf66328e26282c6d35f4b368f8',1,'aaFormat::aaFormat()']]],
+  ['aahardware_2',['aaHardware',['../classaa_hardware.html',1,'aaHardware'],['../classaa_hardware.html#a385f1492d3a49814c5056d72ced5b1cb',1,'aaHardware::aaHardware()'],['../classaa_hardware.html#a0f82d0032df4c52f08883fb695df7988',1,'aaHardware::aaHardware(Print *)'],['../classaa_hardware.html#a26139a9044d05862f61b1cca379c4095',1,'aaHardware::aaHardware(int, Print *, bool)']]],
+  ['areweconnected_3',['areWeConnected',['../classaa_esp32_wroom32v3.html#a619517ccc2162b944d54800fe629fa38',1,'aaEsp32Wroom32v3']]]
 ];

@@ -76,19 +76,16 @@ $(function() {
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span> <span class="comment">// Arduino Core for ESP32. Comes with PlatformIO.</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;ArduinoLog.h&gt;</span> <span class="comment">// https://github.com/thijse/Arduino-Log.</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;aaSocMicro.h&gt;</span> <span class="comment">// Information about the host ESP32 SOC. </span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;aaHardware.h&gt;</span> <span class="comment">// Hardware platform API. </span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> SERIAL_BAUD_RATE = 115200;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><a class="code hl_class" href="classaa_soc_micro.html">aaSocMicro</a> MCU;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">const</span> <span class="keywordtype">char</span>* appName = <span class="stringliteral">&quot;APP_NAME&quot;</span>; <span class="comment">// Put the name of your app here.</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keywordtype">char</span> uniqueName[40]; <span class="comment">// Unique name safe to use for  MQTT topic trees.</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keywordtype">void</span> setupSerial(); <span class="comment">// Serial output initilization.</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keywordtype">void</span> setup(); <span class="comment">// Arduino mandatory function #1. Runs once at boot. </span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keywordtype">void</span> loop(); <span class="comment">// Arduino mandatory function #2. Runs continually.</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#endif </span><span class="comment">// End of precompiler protected code block</span></div>
-<div class="ttc" id="aclassaa_soc_micro_html"><div class="ttname"><a href="classaa_soc_micro.html">aaSocMicro</a></div><div class="ttdef"><b>Definition:</b> aaSocMicro.h:87</div></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><a class="code hl_class" href="classaa_hardware.html">aaHardware</a> hwPlatform;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keywordtype">void</span> setupSerial(); <span class="comment">// Serial output initilization.</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keywordtype">void</span> setup(); <span class="comment">// Arduino mandatory function #1. Runs once at boot. </span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keywordtype">void</span> loop(); <span class="comment">// Arduino mandatory function #2. Runs continually.</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#endif </span><span class="comment">// End of precompiler protected code block</span></div>
+<div class="ttc" id="aclassaa_hardware_html"><div class="ttname"><a href="classaa_hardware.html">aaHardware</a></div><div class="ttdef"><b>Definition:</b> aaHardware.h:50</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
