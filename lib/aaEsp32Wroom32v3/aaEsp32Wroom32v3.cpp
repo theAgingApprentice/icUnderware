@@ -171,6 +171,159 @@ void aaEsp32Wroom32v3::logSubsystemDetails()
 } // aaEsp32Wroom32v3::logSubsystemDetails()
 
 /**
+ * @brief Retrieve details about the MCU subsystems.
+ * @details Returns a formatted value for one of the MCU subsystem attributes. 
+ * These subsystem and attributes are as follows:
+ *
+ * ## Core subsystem
+ * 
+ * ## Wireless subsystem
+ * 
+ * ## Cryptographic subsystem
+ * 
+ * ## RTC subsystem
+ * 
+ * ## Peripheral subsystem
+ * 
+ * @param subSystem specifies which attribute to retrieve.
+ * @param buffer is the address of the reply buffer.
+ * @return true if attribute has been implemented.
+ ******************************************************************************/
+bool aaEsp32Wroom32v3::getSubsystemDetails(uint8_t subSystem, char& buffer)
+{
+   const int8_t base = 10;
+   const int8_t numDigits = 3;
+   char number[numDigits];
+   switch(subSystem)
+   {
+      case _CORE_CPU_COUNT:
+         itoa(ESP.getChipCores(), number, base);      
+         strcpy(&buffer, "Core CPU count = ");
+         strcat(&buffer, number);
+         return true;
+         break;
+      case _CORE_CPU_MODEL:
+         strcpy(&buffer, "Core CPU model is.");
+         return true;
+         break;
+      case _CORE_CPU_REVISION:
+         strcpy(&buffer, "Core CPU version is.");
+         return true;
+         break;
+      case _CORE_CPU_SPEED:
+         strcpy(&buffer, "Core CPU speed is.");
+         return true;
+         break;
+      case _CORE_ROM_SIZE:
+         strcpy(&buffer, "Core ROM size is.");
+         return true;
+         break;
+      case _CORE_SRAM_TOTAL_SIZE:
+         strcpy(&buffer, "Core SRAM total size is.");
+         return true;
+         break;
+      case _CORE_SRAM_STACK_SIZE:
+         strcpy(&buffer, "Core SRAM stack size is.");
+         return true;
+         break;
+      case _CORE_SRAM_STATIC_SIZE:
+         strcpy(&buffer, "Core SRAM static size is.");
+         return true;
+         break;
+      case _CORE_SRAM_STATIC_FREE:
+         strcpy(&buffer, "Core SRAM static free is.");
+         return true;
+         break;
+      case _CORE_SRAM_HEAP_SIZE:
+         strcpy(&buffer, "Core SRAM heap size is.");
+         return true;
+         break;
+      case _CORE_SRAM_HEAP_FREE:
+         strcpy(&buffer, "Core SRAM heap free is.");
+         return true;
+         break;
+      case _SPI_FLASH_MODE:
+         strcpy(&buffer, "SPI Flash mode is.");
+         return true;
+         break;
+      case _SPI_FLASH_SIZE:
+         strcpy(&buffer, "SPI Flash size is.");
+         return true;
+         break;
+      case _SPI_FLASH_SPEED:
+         strcpy(&buffer, "SPI Flash speed is.");
+         return true;
+         break;
+      case _SPI_PSRAM_SIZE:
+         strcpy(&buffer, "SPI PSRAM size is.");
+         return true;
+         break;
+      case _SPI_PSRAM_FREE:
+         strcpy(&buffer, "SPI PSRAM free is.");
+         return true;
+         break;
+      case _WIRELESS_AP_NAME:
+         strcpy(&buffer, "Wireless WiFi AP name is.");
+         return true;
+         break;
+      case _WIRELESS_AP_ENCRYPT_METHOD:
+         strcpy(&buffer, "Wireless WiFi AP encryption method is.");
+         return true;
+         break;
+      case _WIRELESS_AP_SIGNAL_STRENGTH:
+         strcpy(&buffer, "Wireless WiFi signal strength is.");
+         return true;
+         break;
+      case _WIRELESS_WIFI_MAC:
+         strcpy(&buffer, "Wireless WiFi MAC address is.");
+         return true;
+         break;
+      case _WIRELESS_WIFI_IP:
+         strcpy(&buffer, "Wireless WiFi IP address is.");
+         return true;
+         break;
+      case _WIRELESS_BLUETOOTH_MAC:
+         strcpy(&buffer, "Wireless Bluetooth MAC address is.");
+         return true;
+         break;
+      case _RTC_PMU:
+         strcpy(&buffer, "RTC PMU details not available.");
+         return true;
+         break;
+      case _RTC_ULP:
+         strcpy(&buffer, "RTC ULP details not available.");
+         return true;
+         break;
+      case _RTC_RAM:
+         strcpy(&buffer, "RTC RAM details not available.");
+         return true;
+         break;
+      case _CRYPTO_SHA:
+         strcpy(&buffer, "Crypto SHA details not available.");
+         return true;
+         break;
+      case _CRYPTO_RSA:
+         strcpy(&buffer, "Crypto RSA details not available.");
+         return true;
+         break;
+      case _CRYPTO_AES:
+         strcpy(&buffer, "Crypto AES details not available.");
+         return true;
+         break;
+      case _CRYPTO_RNG:
+         strcpy(&buffer, "Crypto RNG details not available.");
+         return true;
+         break;
+      case _PERIPHERAL:      
+         strcpy(&buffer, "Usable GPIO pins.");
+         return true;
+         break;
+   } // switch
+   Log.errorln("<aaEsp32Wroomv3::getSubsystemDetails> Subsystem %d is unknown.", subSystem);
+   return false;
+} // aaEsp32Wroom32v3::getSubsystemDetails()    
+
+/**
  * @brief Sends details about the core CPU(s) to the log.
  * @details The ESP32_WROOM_32E comes with 2 Xtensa 32-bit LX6 microprocessors 
  * known as core 0 and core 1. Core0 is used for RF communication. The Arduino 
@@ -372,10 +525,12 @@ char * aaEsp32Wroom32v3::_int32toa(uint32_t val, char* startBuffer)
    do 
    {
       if ((endBuffer - startBuffer) % 4 == 2)
+      {
          *--endBuffer = ',';
+      } // if
       *--endBuffer = '0' + val % 10;
       val /= 10;
-   } while (val);
+   } while(val);
    return endBuffer;
 } // aaEsp32Wroom32v3::_int32toa()
 

@@ -81,9 +81,13 @@ aaHardware::~aaHardware()
  ******************************************************************************/
 void aaHardware::start()
 {
+   const int8_t _BUFFER_SIZE = 80; // Size of buffer holding system details
+   char _buffer[_BUFFER_SIZE]; // Buffer to hold system details.
    Log.traceln("<aaHardware::start> Initializing underlying hardware platform.");
    MCU.logResetReason(); // Report on reason for last CPU reset.
    MCU.configure(); // Configure robot.
-   MCU.logSubsystemDetails(); // Log microprocessor details.
+//   MCU.logSubsystemDetails(); // Log microprocessor details.
+   bool tmp = MCU.getSubsystemDetails(0, *_buffer);
+   Log.noticeln("<aaHardware::start> %s", _buffer);
    MCU.getUniqueName(*uniqueName, APP_NAME);
 } //aaHardware::start()

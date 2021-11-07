@@ -45,6 +45,36 @@ enum signalStrength ///< Provides text translation of Wifi signal strength.
 }; //enum
 
 static const int8_t HOST_NAME_SIZE = 30;  ///< Max size of network name. 
+const int8_t _CORE_CPU_COUNT = 0;
+const int8_t _CORE_CPU_MODEL = 1;
+const int8_t _CORE_CPU_REVISION = 2;
+const int8_t _CORE_CPU_SPEED = 3;
+const int8_t _CORE_ROM_SIZE = 4;
+const int8_t _CORE_SRAM_TOTAL_SIZE = 5;
+const int8_t _CORE_SRAM_STACK_SIZE = 6;
+const int8_t _CORE_SRAM_STATIC_SIZE = 7;
+const int8_t _CORE_SRAM_STATIC_FREE = 8;
+const int8_t _CORE_SRAM_HEAP_SIZE = 9;
+const int8_t _CORE_SRAM_HEAP_FREE = 10;
+const int8_t _SPI_FLASH_MODE = 11;
+const int8_t _SPI_FLASH_SIZE = 12;
+const int8_t _SPI_FLASH_SPEED = 13;
+const int8_t _SPI_PSRAM_SIZE = 14;
+const int8_t _SPI_PSRAM_FREE = 15;
+const int8_t _WIRELESS_AP_NAME = 16;
+const int8_t _WIRELESS_AP_ENCRYPT_METHOD = 17;
+const int8_t _WIRELESS_AP_SIGNAL_STRENGTH  = 18;
+const int8_t _WIRELESS_WIFI_MAC = 19;
+const int8_t _WIRELESS_WIFI_IP = 20;
+const int8_t _WIRELESS_BLUETOOTH_MAC = 21;
+const int8_t _RTC_PMU = 22;
+const int8_t _RTC_ULP = 24;
+const int8_t _RTC_RAM = 25;
+const int8_t _CRYPTO_SHA = 26;
+const int8_t _CRYPTO_RSA = 27;
+const int8_t _CRYPTO_AES = 28;
+const int8_t _CRYPTO_RNG = 29;
+const int8_t _PERIPHERAL = 30;
 
 /**
  * The aaEsp32Wroom32v3 class provides a single object of authority regarding 
@@ -102,7 +132,8 @@ class aaEsp32Wroom32v3
       const char* evalSignal(int16_t); // Return human readable assessment of signal strength.
       bool pingIP(IPAddress); // Ping IP address and return response. Assume 1 ping.
       bool pingIP(IPAddress, int8_t); // Ping IP address and return response. User specified num pings.
-      bool configure(); // Configure the SOC.      
+      bool configure(); // Configure the SOC.
+      bool getSubsystemDetails(uint8_t, char&); // Retrieve SOC subsystem details.      
    private:
       void _transReasonCode(char&, RESET_REASON); // Translate reset reason codes.
       void _logCoreCPU(); // Logs CPU details inside of the core subsystem.
