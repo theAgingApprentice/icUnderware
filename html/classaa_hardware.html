@@ -106,7 +106,24 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>uniqueName</b> [40]</
 <tr class="separator:aca72cd81b677046ebca1a9ddf2670277"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Included libraries. Global variables. The <a class="el" href="classaa_hardware.html">aaHardware</a> class provides a single object of authority regarding the hardware that underlies your ESP32 embedded Arduino appication. </p>
+<div class="textblock"><p >Included libraries. Global variables. The <a class="el" href="classaa_hardware.html">aaHardware</a> class provides a single object of authority regarding the hardware that underlies your ESP32 embedded Arduino appication. The hardware is imagined as follows:</p>
+<h1><a class="anchor" id="autotoc_md17"></a>
+MCU</h1>
+<p >All hardware is under the control of the Micro Controller Unit (MCU) via the I2C bus or a GPIO pin. The icUnderware project currenty only supports the ESP32_WROOM_32_V3 SOC and does not support the SPI bus.</p>
+<h1><a class="anchor" id="autotoc_md18"></a>
+Main PCB</h1>
+<p >The main PCB has the MCU and all of its usable pins broken out for easy access. The Adafruit Huzzah32 is the only development board that is currently supported. <br  />
+</p>
+<h1><a class="anchor" id="autotoc_md19"></a>
+Onboard controls</h1>
+<p >Buttons and switches mounted on the project platform.</p>
+<h1><a class="anchor" id="autotoc_md20"></a>
+Ongoard Indicators</h1>
+<p >LEDs used to indicate status information at a glance.</p>
+<h1><a class="anchor" id="autotoc_md21"></a>
+Onboard diplays</h1>
+<p >OLED or LCDs used to provide detailed information or add other visually fun things like facial expressions. <br  />
+ </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a385f1492d3a49814c5056d72ced5b1cb" name="a385f1492d3a49814c5056d72ced5b1cb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a385f1492d3a49814c5056d72ced5b1cb">&#9670;&nbsp;</a></span>aaHardware() <span class="overload">[1/3]</span></h2>
