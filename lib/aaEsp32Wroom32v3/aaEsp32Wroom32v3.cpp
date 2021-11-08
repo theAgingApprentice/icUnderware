@@ -138,254 +138,48 @@ void aaEsp32Wroom32v3::logResetReason()
 
 /**
  * @brief Sends details about the host micro controller to the log.
- * @details Inside the ESP32 chip is the following architecture:
- * - Core subsystem. Comprised of CPU(s), RAM and ROM.
- * - Wireless subsystem. Comprised of WiFi and Bluetooth which share a common
- * RF send/recieve, clock, switch and balun. 
- * - RTC subsystem inside of which are a PMU (Phasor measurement unit), a small 
- * and ultra low power (ULP) 32-bit co-processor, and 8Kbs of RAM memory known 
- * as the recovery memory. 
- * - Crytographic Acceleration subsystem which supports SHA, RSA, AES and RNG 
- * hardware acceleration.
- * - Peripherals subsystem that handles all of the General Purpose Input/Output 
- * (GPIO) interfaces.
- * @param null.
- * @return null.
- ******************************************************************************/
-void aaEsp32Wroom32v3::logSubsystemDetails()
-{
-   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> Core subsystem details.");
-   _logCoreCPU();
-   _logCoreMem();
-   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> SPI accessible external memory details.");
-   _logIntegratedFlash();
-   _logPsramMem();
-   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> Wireless subsystem details.");
-   _logWireless();
-   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> Crytographic subsystem details.");
-   _logCrypto();
-   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> RTC subsystem details.");
-   _logRTC();
-   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> Peripheral subsystem details.");
-   _logGPIO();
-} // aaEsp32Wroom32v3::logSubsystemDetails()
-
-/**
- * @brief Retrieve details about the MCU subsystems.
- * @details Returns a formatted value for one of the MCU subsystem attributes. 
- * These subsystem and attributes are as follows:
- *
- * ## Core subsystem
+ * @details The EP32 is based on a Harvard architecture meaning that there are 
+ * two physically separate paths (buses) to access SRAM. The first bus is used 
+ * for accessing Instruction Memory (IRAM). IRAM is used for code execution and 
+ * text data. It contains:
+ * - 32KB cache for CPU0
+ * - 32KB cache for CPU1
+ * - Interrupt vectors
+ * - Text (code binary)
+ * - Free IRAM added to the heap 
  * 
- * ## Wireless subsystem
+ * The second bus is used for accessing Data Memory (DRAM). DRAM handles Block 
+ * Started by Symbol (BSS) aka the stack, data aka static data and heap aka the 
+ * heap. The Memory Mapping Unit (MMU) takes the total SRAM and maps it to 
+ * distinct address locations. These locations are called Static Data, the Heap 
+ * and the Stack.
  * 
- * ## Cryptographic subsystem
+ * The ESP32 chip's architecture consists of five subsystems:
  * 
- * ## RTC subsystem
+ * # The Core subsystem
  * 
- * ## Peripheral subsystem
+ * The ESP32_WROOM_32E core subsystem is comprised of two CPU(s), RAM and ROM.
  * 
- * @param subSystem specifies which attribute to retrieve.
- * @param buffer is the address of the reply buffer.
- * @return true if attribute has been implemented.
- ******************************************************************************/
-bool aaEsp32Wroom32v3::getSubsystemDetails(uint8_t subSystem, char& buffer)
-{
-   const int8_t base = 10;
-   const int8_t numDigits = 3;
-   char number[numDigits];
-   switch(subSystem)
-   {
-      case _CORE_CPU_COUNT:
-         itoa(ESP.getChipCores(), number, base);      
-         strcpy(&buffer, "Core CPU count = ");
-         strcat(&buffer, number);
-         return true;
-         break;
-      case _CORE_CPU_MODEL:
-         strcpy(&buffer, "Core CPU model is.");
-         return true;
-         break;
-      case _CORE_CPU_REVISION:
-         strcpy(&buffer, "Core CPU version is.");
-         return true;
-         break;
-      case _CORE_CPU_SPEED:
-         strcpy(&buffer, "Core CPU speed is.");
-         return true;
-         break;
-      case _CORE_ROM_SIZE:
-         strcpy(&buffer, "Core ROM size is.");
-         return true;
-         break;
-      case _CORE_SRAM_TOTAL_SIZE:
-         strcpy(&buffer, "Core SRAM total size is.");
-         return true;
-         break;
-      case _CORE_SRAM_STACK_SIZE:
-         strcpy(&buffer, "Core SRAM stack size is.");
-         return true;
-         break;
-      case _CORE_SRAM_STATIC_SIZE:
-         strcpy(&buffer, "Core SRAM static size is.");
-         return true;
-         break;
-      case _CORE_SRAM_STATIC_FREE:
-         strcpy(&buffer, "Core SRAM static free is.");
-         return true;
-         break;
-      case _CORE_SRAM_HEAP_SIZE:
-         strcpy(&buffer, "Core SRAM heap size is.");
-         return true;
-         break;
-      case _CORE_SRAM_HEAP_FREE:
-         strcpy(&buffer, "Core SRAM heap free is.");
-         return true;
-         break;
-      case _SPI_FLASH_MODE:
-         strcpy(&buffer, "SPI Flash mode is.");
-         return true;
-         break;
-      case _SPI_FLASH_SIZE:
-         strcpy(&buffer, "SPI Flash size is.");
-         return true;
-         break;
-      case _SPI_FLASH_SPEED:
-         strcpy(&buffer, "SPI Flash speed is.");
-         return true;
-         break;
-      case _SPI_PSRAM_SIZE:
-         strcpy(&buffer, "SPI PSRAM size is.");
-         return true;
-         break;
-      case _SPI_PSRAM_FREE:
-         strcpy(&buffer, "SPI PSRAM free is.");
-         return true;
-         break;
-      case _WIRELESS_AP_NAME:
-         strcpy(&buffer, "Wireless WiFi AP name is.");
-         return true;
-         break;
-      case _WIRELESS_AP_ENCRYPT_METHOD:
-         strcpy(&buffer, "Wireless WiFi AP encryption method is.");
-         return true;
-         break;
-      case _WIRELESS_AP_SIGNAL_STRENGTH:
-         strcpy(&buffer, "Wireless WiFi signal strength is.");
-         return true;
-         break;
-      case _WIRELESS_WIFI_MAC:
-         strcpy(&buffer, "Wireless WiFi MAC address is.");
-         return true;
-         break;
-      case _WIRELESS_WIFI_IP:
-         strcpy(&buffer, "Wireless WiFi IP address is.");
-         return true;
-         break;
-      case _WIRELESS_BLUETOOTH_MAC:
-         strcpy(&buffer, "Wireless Bluetooth MAC address is.");
-         return true;
-         break;
-      case _RTC_PMU:
-         strcpy(&buffer, "RTC PMU details not available.");
-         return true;
-         break;
-      case _RTC_ULP:
-         strcpy(&buffer, "RTC ULP details not available.");
-         return true;
-         break;
-      case _RTC_RAM:
-         strcpy(&buffer, "RTC RAM details not available.");
-         return true;
-         break;
-      case _CRYPTO_SHA:
-         strcpy(&buffer, "Crypto SHA details not available.");
-         return true;
-         break;
-      case _CRYPTO_RSA:
-         strcpy(&buffer, "Crypto RSA details not available.");
-         return true;
-         break;
-      case _CRYPTO_AES:
-         strcpy(&buffer, "Crypto AES details not available.");
-         return true;
-         break;
-      case _CRYPTO_RNG:
-         strcpy(&buffer, "Crypto RNG details not available.");
-         return true;
-         break;
-      case _PERIPHERAL:      
-         strcpy(&buffer, "Usable GPIO pins.");
-         return true;
-         break;
-   } // switch
-   Log.errorln("<aaEsp32Wroomv3::getSubsystemDetails> Subsystem %d is unknown.", subSystem);
-   return false;
-} // aaEsp32Wroom32v3::getSubsystemDetails()    
-
-/**
- * @brief Sends details about the core CPU(s) to the log.
- * @details The ESP32_WROOM_32E comes with 2 Xtensa 32-bit LX6 microprocessors 
- * known as core 0 and core 1. Core0 is used for RF communication. The Arduino 
- * binary runs on core 1 by default though you can pin threads to core 0 in 
- * order to run code there.
+ * ## The Core CPUs
  * 
- * - Ultra Low Power (ULP) coprocessor is a simple Finite State Machine (FSM) 
- * which is designed to perform measurements using the ADC, temperature 
- * sensor, and external I2C sensors, while the main processors are in deep 
- * sleep mode. The ULP coprocessor can access the RTC_SLOW_MEM memory region, 
- * and registers in RTC_CNTL, RTC_IO, and SARADC peripherals. The ULP 
- * coprocessor uses fixed-width 32-bit instructions, 32-bit memory addressing, 
- * and has 4 general-purpose 16-bit registers.
- * - Real time  clock (RTC). The ESP32 processor has a very low power real time 
- * subsystem called RTC which remains active even when it is in standby. RTC is 
- * able to access some SRAM aswell as some GPIO pins (the ones with capacitive 
- * touch capabilities) even when the chip is in non active modes.
- * @param null.
- * @return null.
- ******************************************************************************/
-void aaEsp32Wroom32v3::_logCoreCPU()
-{
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreCPU> ... Core CPU details.");
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreCPU> ...... CPU Count = %d", ESP.getChipCores());
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreCPU> ...... CPU Model = %s", ESP.getChipModel());
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreCPU> ...... CPU Revision = %d", ESP.getChipRevision());
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreCPU> ...... CPU clock speed = %uMhz", ESP.getCpuFreqMHz());
-} // aaEsp32Wroom32v3::_logCoreCPU()
-
-/**
- * @brief Sends details about the core memory to the log.
- * @details The ESP32 core subsystem contains ROM (Read Only Memory) and SRAM
+ * The CPUs are Xtensa 32-bit LX6 microprocessors known as core 0 and core 1. 
+ * Core0 is used for RF communication. The Arduino binary runs on core 1 by 
+ * default though you can pin threads to core 0 in order to run code there.
+ *  
+ * ## The Core memory
+ * 
+ * The Core memory comes as both ROM (Read Only Memory) and SRAM
  * (Static Random Access Memory). The ROM contains espressif magic and we 
  * cannot play with that so instead we focus on the SRAM. 
  * 
- * ## SRAM
+ * ### SRAM
  * 
- * The internal RAM layout of the ESP32 is made up of three memory blocks 
- * called SRAM0 (192KB), SRAM1 (128 KB) and SRAM2 (200 KB). SRAM0 and SRAM1 
- * can be used as a contiguous IRAM whereas SRAM1 and SRAM2 can be used as a 
- * contiguous DRAM address space. While SRAM1 can be used as both IRAM and 
- * DRAM, for practical purposes the Espressif IoT Development Framework 
- * (ESP-IDF) uses SRAM1 as DRAM, as it’s generally the data memory that 
- * applications fall short of.
- * 
- * The EP32 is based on a Harvard architecture meaning that there are two 
- * physically separate paths (buses) to access SRAM. 
- * 
- * 1. The first bus is used for accessing Instruction memory (IRAM). IRAM is 
- * used for code execution and text data. It contains
- *    - 32KB cache for CPU0
- *    - 32KB cache for CPU1
- *    - Interrupt vectors
- *    - Text (code binary)
- *    - Free IRAM added to the heap 
- * 2. The second bus is used for accessing Data (DRAM). DRAM handles 
- * Block started by symbol (BSS) aka the stack, data aka static data and 
- * heap aka the heap. The Memory Mapping Unit (MMU) takes the total SRAM and 
- * maps it to distinct address locations. These locations are called Static 
- * Data, the Heap and the Stack (BSS).
- * 
- * ### IRAM   
+ * The internal Core RAM is divided into three memory blocks called SRAM0 
+ * (192KB), SRAM1 (128 KB) and SRAM2 (200 KB). SRAM0 and SRAM1 can be used as a 
+ * contiguous IRAM whereas SRAM1 and SRAM2 can be used as a contiguous DRAM 
+ * address space. While SRAM1 can be used as both IRAM and DRAM, for practical 
+ * purposes the Espressif IoT Development Framework (ESP-IDF) uses SRAM1 as 
+ * DRAM, as it’s generally the data memory that applications fall short of.
  * 
  * The 192 KB of available IRAM in ESP32 is used for code execution, as well as 
  * part of it is used as a cache memory for flash (and PSRAM) access. 
@@ -401,8 +195,9 @@ void aaEsp32Wroom32v3::_logCoreCPU()
  * are some portions of the applications which are time critical, or that 
  * operate on flash itself. They need to be placed in IRAM and that is achieved 
  * using a special attribute to these functions or files and linker script doing 
- * a job of placing them in IRAM. The symbols _iram_text_start and _iram_text_end 
- * are placed by the linker script at the two boundaries of this text section.
+ * a job of placing them in IRAM. The symbols _iram_text_start and 
+ * _iram_text_end are placed by the linker script at the two boundaries of this 
+ * text section.
  * 4. The IRAM after the text section remains unused and is added to the heap.
  *  
  * _iram_text_start and _iram_text_end symbols are placed by the linker script 
@@ -421,9 +216,7 @@ void aaEsp32Wroom32v3::_logCoreCPU()
  * If the application has such data that can obey these two rules of accesses, 
  * it can make use of IRAM memory for that data.
  * 
- * ### DRAM    
- * 
- * A typical (simplified) DRAM layout for an application. As the DRAM addresses 
+ *  * A typical (simplified) DRAM layout for an application. As the DRAM addresses 
  * start at the end of SRAM2, increasing in backward direction, the link time 
  * segments allocation happens starting at the end of SRAM2.
  * 
@@ -467,47 +260,180 @@ void aaEsp32Wroom32v3::_logCoreCPU()
  * others, the effects of the corruption may not be noticed until much later.
  * ```
  * 
- * ### RTC Memory
+ * # The Wireless subsystem 
  * 
- * The RTC (Real Time Clock) memory is an area of the processor SRAM which 
- * remains powered and accessible to the RTC functions of the ESP32 
- * microcontroller and the ULP coprocessor even when standby is activated.
+ * The Wireless subsystem is comprised of WiFi and Bluetooth which share the 
+ * following common components:
+ *  
+ * 1. An RF reciever,
+ * 2. An RF transmitter,
+ * 3. A clock generator,
+ * 4. A switch, and
+ * 5. A Balun.    
+ *
+ * The WiFi standards supported are 802.11 b/g/n/e/i (802.11n @ 2.4 GHz up to 
+ * 150 Mbit/s). The Bluetooth standards  supported is v4.2 BR/EDR and Bluetooth 
+ * Low Energy (BLE).
  * 
- * ### External Memory
+ * ## The RTC
  * 
- * Off-chip SPI memory can be mapped into the available address space as 
- * external memory. Parts of the embedded memory can be used as transparent 
- * cache for this external memory.
+ * The Real Time Clock (RTC) is comprised of three things:
+ * 1. The Phasor measurement unit (PMU), 
+ * 2. An Ultra Low Power (ULP) 32-bit co-processor, and 
+ * 3. Recovery memory.
+ * 
+ * The Real Time Clock (RTC) is a minimally viable very low power system that 
+ * remains active even when the ESP32 is in hybernation or standby mode. It is
+ * comprised of a Phasor Measurement Unit (PMU), a small ultra low power (ULP) 
+ * 32-bit co-processor, and 8Kbs of RAM memory known as the recovery memory.  
+ * 
+ * RTC is able to access some SRAM as well as some GPIO pins (the ones with 
+ * capacitive touch capabilities) even when the chip is in non active modes.
+ * 
+ * ### The ULP coprocessor 
+ * 
+ * The Ultra Low Power (ULP) coprocessor is a simple Finite State Machine (FSM) 
+ * which is designed to perform measurements using the ADC, temperature 
+ * sensor, and external I2C sensors, while the main processors are in deep 
+ * sleep mode. The ULP coprocessor can access the RTC_SLOW_MEM memory region, 
+ * and registers in RTC_CNTL, RTC_IO, and SARADC peripherals. The ULP 
+ * coprocessor uses fixed-width 32-bit instructions, 32-bit memory addressing, 
+ * and has 4 general-purpose 16-bit registers.
+ * 
+ * ### Recovery memory
+ * 
+ * The RTC memory is 8Kbs of RAM known as the recovery memory. The recovery RAM 
+ * is area of SRAM which remains powered and accessible to the RTC functions of 
+ * the ESP32 microcontroller and the ULP coprocessor even when standby is activated.
+ * 
+ * ### The PMU
+ * 
+ * The Phasor measurement unit (PMU) monitors for system events which will wake up 
+ * the ESP32 when required.
+ *  
+ * # The Crytographic Acceleration subsystem 
+ * 
+ * The crytographic hardware acceleration subsystem supports four hardware 
+ * acceleration algorithms:
+ * 1. SHA, 
+ * 2. RSA, 
+ * 3. AES, and
+ * 4. RNG.  
+ * 
+ * # The Peripherals subsystem 
+ * 
+ * The Peripherals subsystem covers external devices on either the SPI or I2C 
+ * bus as well as all of the General Purpose Input/Output (GPIO) pins. Off-chip 
+ * SPI memory can be mapped into the available address space as external memory. 
+ * Parts of the embedded memory can be used as transparent cache for this 
+ * external memory.
  * 
  * 1. Supports up to 16 MB off-Chip SPI Flash.
  * 2. Supports up to 8 MB off-Chip SPI SRAM.
  * 
+ * ## Off-chip Flash memory 
+ * 
+ * Flash memory is used to store your program image and any 
+ * initialized data. You can execute program code from flash, but you can't 
+ * modify data in flash memory from your executing code. To modify the data, 
+ * it must first be copied into SRAM. Flash memory is the same technology used 
+ * for thumb-drives and SD cards. It is non-volatile, so your program will 
+ * still be there when the system is powered off. Flash memory has a finite 
+ * lifetime of about 100,000 write cycles. So if you upload 10 programs a day, 
+ * every day for the next 27 years, you might wear it out. The Huzzah32 
+ * featherboard does not come with any off-chip Flash memory. 
+ * 
+ * ## Off-chip PSRAM memory
+ * 
+ * Off-chip SPI memory can be mapped into the available address space 
+ * as external memory. Parts of the embedded memory can be used as transparent 
+ * cache for this external memory. The architecture can supports up to 8 MB 
+ * off-chip SPI SRAM (PSRAM). The Huzzah32 featherboard does not come with any 
+ * PSRAM.
+ * 
  * @param null.
  * @return null.
- * @todo: #4 Implement monitoring of heap and stack to detect potential SRAM 
- * corruption. 
  ******************************************************************************/
-void aaEsp32Wroom32v3::_logCoreMem()
+void aaEsp32Wroom32v3::logSubsystemDetails()
 {
    const uint32_t _STATIC_DATA_SIZE = ESP.getSketchSize() + ESP.getFreeSketchSpace();
    const uint32_t _SRAM_SIZE = _STATIC_DATA_SIZE + ESP.getHeapSize() + uxTaskGetStackHighWaterMark(NULL);
    int8_t _BUFFER_SIZE = 14; // Size of buffer to hold formatted uint32_t numbers.
    char _buffer[_BUFFER_SIZE]; // Buffer to hold formatted uint32_t numbers. 
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ... Core memory details.");
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ...... ROM contains Espressif code and we do not touch that.");
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ......... ROM size = %s bytes.", _int32toa(XSHAL_ROM_SIZE, _buffer));
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ...... SRAM is the binarys read/write area.");
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ......... Total SRAM size (stack + heap + static data) = %s bytes.", _int32toa(_SRAM_SIZE, _buffer));
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ......... The Stack contains local variables, interrupt and function pointers.");
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ............ Stack highwater mark = %s bytes", _int32toa(uxTaskGetStackHighWaterMark(NULL), _buffer));
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ......... Static memory (aka sketch memory) contains global and static variables.");
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ............ Static data size = %s bytes.", _int32toa(_STATIC_DATA_SIZE, _buffer));
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ............ Sketch size = %s bytes.", _int32toa(ESP.getSketchSize(), _buffer));
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ............ Free sketch space = %s bytes.", _int32toa(ESP.getFreeSketchSpace(), _buffer));
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ......... The Heap contains dynamic data.");
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ............ Heap size = %s bytes.", _int32toa(ESP.getHeapSize(), _buffer));
-   Log.noticeln("<aaEsp32Wroom32v3::_logCoreMem> ............ Free heap = %s bytes.", _int32toa(ESP.getFreeHeap(), _buffer));
-} // aaEsp32Wroom32v3::_logCoreMem()
+   const int8_t _DETAIL_SIZE = 80; // Size of buffer holding details about memory.
+   char _details[_DETAIL_SIZE]; // Text version of flash memory mode.
+   wifi_auth_mode_t encryption = WiFi.encryptionType(_SSIDIndex);
+   int8_t _dataReadings = 10; // Number of data readings to average to determine Wifi signal strength.
+   long _signalStrength = rfSignalStrength(_dataReadings); // Get average signal strength reading.
+   char _bluetoothAddress[30]; // Hold Bluetooth address in a character array.
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> Core subsystem details.");
+   // Core CPU
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ... Core CPU details.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ...... CPU Count = %d", ESP.getChipCores());
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ...... CPU Model = %s", ESP.getChipModel());
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ...... CPU Revision = %d", ESP.getChipRevision());
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ...... CPU clock speed = %uMhz", ESP.getCpuFreqMHz());   
+   // Core Memory
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ... Core memory details.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ...... ROM contains Espressif code and we do not touch that.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ......... ROM size = %s bytes.", _int32toa(XSHAL_ROM_SIZE, _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ...... SRAM is the binarys read/write area.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ......... The Stack contains local variables, interrupt and function pointers.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ............ Stack highwater mark = %s bytes", _int32toa(uxTaskGetStackHighWaterMark(NULL), _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ......... Static memory (aka sketch memory) contains global and static variables.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ............ Static data size = %s bytes.", _int32toa(_STATIC_DATA_SIZE, _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ............ Sketch size = %s bytes.", _int32toa(ESP.getSketchSize(), _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ............ Free sketch space = %s bytes.", _int32toa(ESP.getFreeSketchSpace(), _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ......... The Heap contains dynamic data.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ............ Heap size = %s bytes.", _int32toa(ESP.getHeapSize(), _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ............ Free heap = %s bytes.", _int32toa(ESP.getFreeHeap(), _buffer));   
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ......... Total SRAM size (stack + heap + static data) = %s bytes.", _int32toa(_SRAM_SIZE, _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> Wireless subsystem details.");
+   // Wireless 
+   _btAddress(_bluetoothAddress); // Copy formatted Bluetooth address into the character array.
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ... WiFi details."); 
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ...... Access Point Name = %s.",WiFi.SSID().c_str()); 
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ...... Access Point Encryption method = %X (%s).", encryption, _translateEncryptionType(WiFi.encryptionType(encryption)));
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ...... Wifi signal strength = %l (%s).", _signalStrength, evalSignal(_signalStrength));
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ...... Local Wifi MAC address: %s.", WiFi.macAddress().c_str());
+   Log.noticeln(F("<aaEsp32Wroom32v3::logSubsystemDetails> ...... Local WiFi IP address: %p."), WiFi.localIP()); 
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ... Bluetooth details."); 
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ...... Local bluetooth MAC address: %s.", _bluetoothAddress); 
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> Crytographic subsystem details.");
+   // Cryptographic hardware acceleration
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ... SHA not implemented."); 
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ... RSA not implemented."); 
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ... AES not implemented."); 
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ... RNG not implemented."); 
+   // RTC
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> RTC subsystem details.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ... Phasor measurement unit (PMU) not implemented."); 
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ... Ultra Low Power (ULP) 32-bit co-processor not implemented."); 
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ... Recovery memory not implemented.");    
+   // Peripherals
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> Peripheral subsystem details.");
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ... SPI accessible external memory details.");
+   // Integrated Flash
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ...... Flash memory details (Arduino binary resides here).");
+   _transFlashModeCode(*_details);
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ......... Flash mode = %s", _details);
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ......... Flash chip size = %s bytes.", _int32toa(ESP.getFlashChipSize(), _buffer));
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ......... Flash chip speed = %s bps.", _int32toa(ESP.getFlashChipSpeed(), _buffer));   
+   // PSRAM 
+   Log.traceln("<aaEsp32Wroom32v3::logSubsystemDetails> ...... PSRAM is optional external RAM accessed via the SPI bus.");
+   if(psramFound()) // Is SPI RAM (psudo ram) available?
+   {
+      Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ......... PSRAM detected.");
+      Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ......... PSRAM size = %s", _int32toa(ESP.getPsramSize(), _buffer));
+      Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ......... Free PSRAM = %s", _int32toa(ESP.getFreePsram(), _buffer));
+   } // if
+   else
+   {
+      Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ......... No PSRAM detected.");
+   } // else   
+
+   Log.noticeln("<aaEsp32Wroom32v3::logSubsystemDetails> ... General purpose I/O pins in use.");   
+} // aaEsp32Wroom32v3::logSubsystemDetails()
 
 /**
  * @brief Format uint32 number with commas.
@@ -570,133 +496,6 @@ void aaEsp32Wroom32v3::_transFlashModeCode(char& details)
       default: strcpy(&details, "UNKNOWN MODE."); break; 
    } // switch()
 } // aaEsp32Wroom32v3::_transFlashModeCode()
-
-/**
- * @brief Sends details about the integrated flash memory to the log.
- * @details Flash memory is used to store your program image and any 
- * initialized data. You can execute program code from flash, but you can't 
- * modify data in flash memory from your executing code. To modify the data, 
- * it must first be copied into SRAM. Flash memory is the same technology used 
- * for thumb-drives and SD cards. It is non-volatile, so your program will 
- * still be there when the system is powered off. Flash memory has a finite 
- * lifetime of about 100,000 write cycles. So if you upload 10 programs a day, 
- * every day for the next 27 years, you might wear it out. 
- * 
- * Off-chip SPI memory can be mapped into the available address space 
- * as external memory. Parts of the embedded memory can be used as transparent 
- * cache for this external memory. The architecture can supports up to 16 MB 
- * off-chip SPI Flash. The Huzzah32 featherboard does not come with any 
- * off-chip SPI Flash memory. 
- * @param null.
- * @return null.
- ******************************************************************************/
-void aaEsp32Wroom32v3::_logIntegratedFlash()
-{
-   const int8_t _DETAIL_SIZE = 80; // Size of buffer holding details about memory.
-   const int8_t _BUFFER_SIZE = 14; // Size of buffer to hold formatted uint32_t numbers.
-   char _details[_DETAIL_SIZE]; // Text version of flash memory mode.
-   char _buffer[_BUFFER_SIZE]; // Buffer to hold formatted uint32_t numbers. 
-
-   Log.noticeln("<aaEsp32Wroom32v3::_logIntegratedFlash> ... Flash memory details (Arduino binary resides here).");
-   _transFlashModeCode(*_details);
-   Log.noticeln("<aaEsp32Wroom32v3::_logIntegratedFlash> ...... Flash mode = %s", _details);
-   Log.noticeln("<aaEsp32Wroom32v3::_logIntegratedFlash> ...... Flash chip size = %s bytes.", _int32toa(ESP.getFlashChipSize(), _buffer));
-   Log.noticeln("<aaEsp32Wroom32v3::_logIntegratedFlash> ...... Flash chip speed = %s bps.", _int32toa(ESP.getFlashChipSpeed(), _buffer));
-} // aaEsp32Wroom32v3::_logIntegratedFlash()
-
-/**
- * @brief Sends details about the external Pseudo Static RAM memory to the log.
- * @details Off-chip SPI memory can be mapped into the available address space 
- * as external memory. Parts of the embedded memory can be used as transparent 
- * cache for this external memory. The architecture can supports up to 8 MB 
- * off-chip SPI SRAM (PSRAM). The Huzzah32 featherboard does not come with any 
- * PSRAM.
- * @param null.
- * @return null.
- ******************************************************************************/
-void aaEsp32Wroom32v3::_logPsramMem()
-{
-   const int8_t _BUFFER_SIZE = 14; // Size of buffer to hold formatted uint32_t numbers.
-   char _buffer[_BUFFER_SIZE]; // Buffer to hold formatted uint32_t numbers. 
-   Log.traceln("<aaEsp32Wroom32v3::_logPsramMem> ... PSRAM is optional external RAM accessed via the SPI bus.");
-   if(psramFound()) // Is SPI RAM (psudo ram) available?
-   {
-      Log.noticeln("<aaEsp32Wroom32v3::_logPsramMem> ...... PSRAM detected.");
-      Log.noticeln("<aaEsp32Wroom32v3::_logPsramMem> ...... PSRAM size = %s", _int32toa(ESP.getPsramSize(), _buffer));
-      Log.noticeln("<aaEsp32Wroom32v3::_logPsramMem> ...... Free PSRAM = %s", _int32toa(ESP.getFreePsram(), _buffer));
-   } // if
-   else
-   {
-      Log.noticeln("<aaEsp32Wroom32v3::_logPsramMem> ...... No PSRAM detected.");
-   } // else   
-} // aaEsp32Wroom32v3::_logPsramMem()
-
-/**
- * @brief Sends details about the Wireless system to the log.
- * @details The ESP32_WROOM_32E supports two Wireless connectivity options:
- * 1. WiFi: 802.11 b/g/n/e/i (802.11n @ 2.4 GHz up to 150 Mbit/s).
- * 2. Bluetooth: v4.2 BR/EDR and Bluetooth Low Energy (BLE).
- * 
- * Bluetooth and WiFi share the same radio comprised of:
- * 1. An RF reciever,
- * 2. An RF transmitter,
- * 3. A clock generator,
- * 4. A switch, and
- * 5. A Balun.    
- * @param null.
- * @return null.
- ******************************************************************************/
-void aaEsp32Wroom32v3::_logWireless()
-{
-   wifi_auth_mode_t encryption = WiFi.encryptionType(_SSIDIndex);
-   int8_t _dataReadings = 10; // Number of data readings to average to determine Wifi signal strength.
-   long _signalStrength = rfSignalStrength(_dataReadings); // Get average signal strength reading.
-   char _bluetoothAddress[30]; // Hold Bluetooth address in a character array.
-   _btAddress(_bluetoothAddress); // Copy formatted Bluetooth address into the character array.
-   Log.noticeln("<aaEsp32Wroom32v3::_logWireless> ... WiFi details."); 
-   Log.noticeln("<aaEsp32Wroom32v3::_logWireless> ...... Access Point Name = %s.",WiFi.SSID().c_str()); 
-   Log.noticeln("<aaEsp32Wroom32v3::_logWireless> ...... Access Point Encryption method = %X (%s).", encryption, _translateEncryptionType(WiFi.encryptionType(encryption)));
-   Log.noticeln("<aaEsp32Wroom32v3::_logWireless> ...... Wifi signal strength = %l (%s).", _signalStrength, evalSignal(_signalStrength));
-   Log.noticeln("<aaEsp32Wroom32v3::_logWireless> ...... Local Wifi MAC address: %s.", WiFi.macAddress().c_str());
-   Log.noticeln(F("<aaEsp32Wroom32v3::_logWireless> ...... Local WiFi IP address: %p."), WiFi.localIP()); 
-   Log.noticeln("<aaEsp32Wroom32v3::_logWireless> ... Bluetooth details."); 
-   Log.noticeln("<aaEsp32Wroom32v3::_logWireless> ...... Local bluetooth MAC address: %s.", _bluetoothAddress); 
-} // aaEsp32Wroom32v3::_logWireless()
-
-/**
- * @brief Sends details about the RTC subsystem system to the log.
- * @details The Real Time Clock (RTC) is comprised of three things:
- * 1. The Phasor measurement unit (PMU), 
- * 2. An Ultra Low Power (ULP) 32-bit co-processor, and 
- * 3. 8Kbs of RAM memory known as the recovery memory. 
- * @param null.
- * @return null.
- ******************************************************************************/
-void aaEsp32Wroom32v3::_logRTC()
-{
-   Log.noticeln("<aaEsp32Wroom32v3::_logRTC> ... Phasor measurement unit (PMU) not implemented."); 
-   Log.noticeln("<aaEsp32Wroom32v3::_logRTC> ... Ultra Low Power (ULP) 32-bit co-processor not implemented."); 
-   Log.noticeln("<aaEsp32Wroom32v3::_logRTC> ... Recovery memory not implemented."); 
-} // aaEsp32Wroom32v3::_logRTC()
-
-/**
- * @brief Sends details about the crytographic hardware acceleration subsystem to the log.
- * @details The crytographic hardware acceleration subsystem supports four 
- * hardware acceleration algorithms:
- * 1. SHA, 
- * 2. RSA, 
- * 3. AES,
- * 4. RNG. 
- * @param null.
- * @return null.
- ******************************************************************************/
-void aaEsp32Wroom32v3::_logCrypto()
-{
-   Log.noticeln("<aaEsp32Wroom32v3::_logCrypto> ... SHA not implemented."); 
-   Log.noticeln("<aaEsp32Wroom32v3::_logCrypto> ... RSA not implemented."); 
-   Log.noticeln("<aaEsp32Wroom32v3::_logCrypto> ... AES not implemented."); 
-   Log.noticeln("<aaEsp32Wroom32v3::_logCrypto> ... RNG not implemented."); 
-} // aaEsp32Wroom32v3::_logCrypto()
 
 /**
  * @brief Report the status of the wifi connection.
@@ -965,29 +764,6 @@ void aaEsp32Wroom32v3::_wiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info)
    } //switch
 } // aaEsp32Wroom32v3::_wiFiEvent()
 
-/**
- * @brief Sends details about the GPIO pins to the log.
- * @details Peripherals connect to the SOC via the GPIO pins that are exposed
- * for use by the development board it is mounted to. These pin definitions are
- * defined in the include file included file 
- * The ESP32_WROOM_32E supports two Wireless connectivity options:
- * 1. WiFi: 802.11 b/g/n/e/i (802.11n @ 2.4 GHz up to 150 Mbit/s).
- * 2. Bluetooth: v4.2 BR/EDR and Bluetooth Low Energy (BLE).
- * 
- * Bluetooth and WiFi share the same radio comprised of:
- * 1. An RF reciever,
- * 2. An RF transmitter,
- * 3. A clock generator,
- * 4. A switch, and
- * 5. A Balun.    
- * @param null.
- * @return null.
- ******************************************************************************/
-void aaEsp32Wroom32v3::_logGPIO()
-{
-   Log.noticeln("<aaEsp32Wroom32v3::_logGPIO> ... General purpose I/O pins in use.");
-} // aaEsp32Wroom32v3::_logGPIO()
- 
 /**
  * @brief Initialize Bluetooth system.
  * @details Initializing the Bluetooth system involves the following 3 steps:

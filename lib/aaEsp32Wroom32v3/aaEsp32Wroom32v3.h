@@ -20,6 +20,11 @@ Licensed under the MIT License <http://opensource.org/licenses/MIT>.
    #define aaEsp32Wroom32v3_h // Precompiler macro to prevent duplicate inclusions.
 
 /**
+ * Compiler substitution macros.
+ ******************************************************************************/
+//#define 
+
+/**
  * Included libraries.
  ******************************************************************************/
 #include <Arduino.h> // Arduino Core for ESP32. Comes with Platform.io.
@@ -44,37 +49,7 @@ enum signalStrength ///< Provides text translation of Wifi signal strength.
     unusable = -90, ///< -90 db or less will make the connection unsuable.     
 }; //enum
 
-static const int8_t HOST_NAME_SIZE = 30;  ///< Max size of network name. 
-const int8_t _CORE_CPU_COUNT = 0;
-const int8_t _CORE_CPU_MODEL = 1;
-const int8_t _CORE_CPU_REVISION = 2;
-const int8_t _CORE_CPU_SPEED = 3;
-const int8_t _CORE_ROM_SIZE = 4;
-const int8_t _CORE_SRAM_TOTAL_SIZE = 5;
-const int8_t _CORE_SRAM_STACK_SIZE = 6;
-const int8_t _CORE_SRAM_STATIC_SIZE = 7;
-const int8_t _CORE_SRAM_STATIC_FREE = 8;
-const int8_t _CORE_SRAM_HEAP_SIZE = 9;
-const int8_t _CORE_SRAM_HEAP_FREE = 10;
-const int8_t _SPI_FLASH_MODE = 11;
-const int8_t _SPI_FLASH_SIZE = 12;
-const int8_t _SPI_FLASH_SPEED = 13;
-const int8_t _SPI_PSRAM_SIZE = 14;
-const int8_t _SPI_PSRAM_FREE = 15;
-const int8_t _WIRELESS_AP_NAME = 16;
-const int8_t _WIRELESS_AP_ENCRYPT_METHOD = 17;
-const int8_t _WIRELESS_AP_SIGNAL_STRENGTH  = 18;
-const int8_t _WIRELESS_WIFI_MAC = 19;
-const int8_t _WIRELESS_WIFI_IP = 20;
-const int8_t _WIRELESS_BLUETOOTH_MAC = 21;
-const int8_t _RTC_PMU = 22;
-const int8_t _RTC_ULP = 24;
-const int8_t _RTC_RAM = 25;
-const int8_t _CRYPTO_SHA = 26;
-const int8_t _CRYPTO_RSA = 27;
-const int8_t _CRYPTO_AES = 28;
-const int8_t _CRYPTO_RNG = 29;
-const int8_t _PERIPHERAL = 30;
+static const int8_t HOST_NAME_SIZE = 30;  ///< Max size of network name.
 
 /**
  * The aaEsp32Wroom32v3 class provides a single object of authority regarding 
@@ -133,18 +108,9 @@ class aaEsp32Wroom32v3
       bool pingIP(IPAddress); // Ping IP address and return response. Assume 1 ping.
       bool pingIP(IPAddress, int8_t); // Ping IP address and return response. User specified num pings.
       bool configure(); // Configure the SOC.
-      bool getSubsystemDetails(uint8_t, char&); // Retrieve SOC subsystem details.      
    private:
       void _transReasonCode(char&, RESET_REASON); // Translate reset reason codes.
-      void _logCoreCPU(); // Logs CPU details inside of the core subsystem.
-      void _logCoreMem(); // Logs memory details inside of the core subsystem.
-      void _logIntegratedFlash(); // Logs integrated flash details.
-      void _logPsramMem(); // Logs PSRAM details.
       void _transFlashModeCode(char&); // Translate flash memory mode code.
-      void _logGPIO(); // Logs GPIO details inside of the Peripherals subsystem.
-      void _logWireless(); // Logs WiFi and Bluetooth details inside of the Wireless subsystem.
-      void _logRTC(); // Logs PMU, ULP and RAM details inside of the RTC subsystem.
-      void _logCrypto(); // Logs details inside of the crytographic hardware acceleration subsystem.
       const char* _lookForAP(); // Scan 2.4GHz radio spectrum for known Access Point.
       const char* _translateEncryptionType(wifi_auth_mode_t); // Provide human readable wifi encryption method.
       const char* _connectionStatus(wl_status_t); // Provide human readable text for wifi connection status codes. 
