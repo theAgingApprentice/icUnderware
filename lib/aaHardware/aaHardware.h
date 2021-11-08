@@ -17,7 +17,7 @@ Licensed under the MIT License <http://opensource.org/licenses/MIT>.
    #define aaHardware_h // Precompiler macro to prevent duplicate inclusions.
 
 /**
- * Define which microcontroller unit is being used for this application.
+ * Compiler substitution macros.
  ******************************************************************************/
 #define ESP32_WROOM_32_V3 // SOC chip that comes on the Adafruit Huzzah32. 
 // #define someOtherChip // No second MCU currently supported.
@@ -44,8 +44,34 @@ Licensed under the MIT License <http://opensource.org/licenses/MIT>.
 
 /**
  * The aaHardware class provides a single object of authority regarding the 
- * hardware that underlies your ESP32 embedded Arduino appication. 
- ************************************************************************************/
+ * hardware that underlies your ESP32 embedded Arduino appication.  The 
+ * hardware is imagined as follows:
+ * 
+ * # MCU 
+ * 
+ * All hardware is under the control of the Micro Controller Unit (MCU) via
+ * the I2C bus or a GPIO pin. The icUnderware project currenty only supports the
+ * ESP32_WROOM_32_V3 SOC and does not support the SPI bus.
+ * 
+ * # Main PCB 
+ * 
+ * The main PCB has the MCU and all of its usable pins broken out for easy 
+ * access. The Adafruit Huzzah32 is the only development board that is 
+ * currently supported.  
+ * 
+ * # Onboard controls
+ * 
+ * Buttons and switches mounted on the project platform.
+ *
+ * # Ongoard Indicators
+ * 
+ * LEDs used to indicate status information at a glance.
+ * 
+ * # Onboard diplays
+ * 
+ * OLED or LCDs used to provide detailed information or add other visually 
+ * fun things like facial expressions.  
+ ******************************************************************************/
 class aaHardware 
 {
    public:
