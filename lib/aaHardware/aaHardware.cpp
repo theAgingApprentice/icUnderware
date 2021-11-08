@@ -85,5 +85,4 @@ void aaHardware::start()
    MCU.logResetReason(); // Report on reason for last CPU reset.
    MCU.configure(); // Configure robot.
    MCU.logSubsystemDetails(); // Log microprocessor details.
-   MCU.getUniqueName(*uniqueName, APP_NAME);
 } //aaHardware::start()

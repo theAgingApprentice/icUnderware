@@ -20,6 +20,11 @@ Licensed under the MIT License <http://opensource.org/licenses/MIT>.
    #define aaEsp32Wroom32v3_h // Precompiler macro to prevent duplicate inclusions.
 
 /**
+ * Compiler substitution macros.
+ ******************************************************************************/
+//#define 
+
+/**
  * Included libraries.
  ******************************************************************************/
 #include <Arduino.h> // Arduino Core for ESP32. Comes with Platform.io.
@@ -44,7 +49,7 @@ enum signalStrength ///< Provides text translation of Wifi signal strength.
     unusable = -90, ///< -90 db or less will make the connection unsuable.     
 }; //enum
 
-static const int8_t HOST_NAME_SIZE = 30;  ///< Max size of network name. 
+static const int8_t HOST_NAME_SIZE = 30;  ///< Max size of network name.
 
 /**
  * The aaEsp32Wroom32v3 class provides a single object of authority regarding 
@@ -102,18 +107,10 @@ class aaEsp32Wroom32v3
       const char* evalSignal(int16_t); // Return human readable assessment of signal strength.
       bool pingIP(IPAddress); // Ping IP address and return response. Assume 1 ping.
       bool pingIP(IPAddress, int8_t); // Ping IP address and return response. User specified num pings.
-      bool configure(); // Configure the SOC.      
+      bool configure(); // Configure the SOC.
    private:
       void _transReasonCode(char&, RESET_REASON); // Translate reset reason codes.
-      void _logCoreCPU(); // Logs CPU details inside of the core subsystem.
-      void _logCoreMem(); // Logs memory details inside of the core subsystem.
-      void _logIntegratedFlash(); // Logs integrated flash details.
-      void _logPsramMem(); // Logs PSRAM details.
       void _transFlashModeCode(char&); // Translate flash memory mode code.
-      void _logGPIO(); // Logs GPIO details inside of the Peripherals subsystem.
-      void _logWireless(); // Logs WiFi and Bluetooth details inside of the Wireless subsystem.
-      void _logRTC(); // Logs PMU, ULP and RAM details inside of the RTC subsystem.
-      void _logCrypto(); // Logs details inside of the crytographic hardware acceleration subsystem.
       const char* _lookForAP(); // Scan 2.4GHz radio spectrum for known Access Point.
       const char* _translateEncryptionType(wifi_auth_mode_t); // Provide human readable wifi encryption method.
       const char* _connectionStatus(wl_status_t); // Provide human readable text for wifi connection status codes. 
